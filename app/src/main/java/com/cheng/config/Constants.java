@@ -8,4 +8,5 @@ package com.cheng.config;
 public class Constants {
     //是否为测试环境
     public static final boolean DEBUG = true;
+    public static final String URL = "http://srv.yue.fm/article/random?device_id=A99BDCA9-44B2-4F73-9EE1-DD0046AAD1F7";
 }
