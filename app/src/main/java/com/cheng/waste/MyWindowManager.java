@@ -3,10 +3,17 @@ package com.cheng.waste;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cheng on 2016/12/7.
@@ -90,6 +97,7 @@ public class MyWindowManager {
         WindowManager windowManager = getWindowManager(context);
         if(mFloatContentView == null){
             mFloatContentView = new FloatContentView(context);
+
             if(mFloatContentViewParams == null){
                 mFloatContentViewParams = new WindowManager.LayoutParams();
                 mFloatContentViewParams.type = WindowManager.LayoutParams.TYPE_PHONE;
