@@ -78,8 +78,8 @@ public class MyWindowManager {
                 mFloatIconViewParams.gravity = Gravity.LEFT | Gravity.TOP;
                 mFloatIconViewParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
                 mFloatIconViewParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                mFloatIconViewParams.x = DeviceUtils.getWidth();
-                mFloatIconViewParams.y = DeviceUtils.getHeight() / 2;
+                mFloatIconViewParams.x = windowManager.getDefaultDisplay().getWidth();
+                mFloatIconViewParams.y = windowManager.getDefaultDisplay().getHeight() / 2;
             }
             mFloatIconView.setParams(mFloatIconViewParams);
             windowManager.addView(mFloatIconView, mFloatIconViewParams);
@@ -110,7 +110,7 @@ public class MyWindowManager {
 //                mFloatContentViewParams.x = DeviceUtils.getWidth();
 //                mFloatContentViewParams.y = DeviceUtils.getHeight() / 2;
             }
-            mFloatIconView.setParams(mFloatContentViewParams);
+//            mFloatContentView.setParams(mFloatContentViewParams);
             windowManager.addView(mFloatContentView, mFloatContentViewParams);
         }
     }

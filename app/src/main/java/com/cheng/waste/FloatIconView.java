@@ -144,7 +144,7 @@ public class FloatIconView extends LinearLayout{
     }
 
     private void openFloatContentView(){
-        MyWindowManager.removeFloatContentView(getContext());
+        MyWindowManager.reomveFloatIconView(getContext());
         MyWindowManager.createFloatContentView(getContext());
     }
 }

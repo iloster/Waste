@@ -29,6 +29,6 @@ public class MainActivity extends AppCompatActivity {
         initUtils();
     }
     public void initUtils(){
-        DeviceUtils.init(this);
+        DeviceUtils.init(this.getApplicationContext());
     }
 }

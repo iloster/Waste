@@ -21,17 +21,14 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="8dp"
             android:id="@+id/closeBtn"/>
-        <ScrollView
+
+        <com.cheng.view.MyViewFlipper
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:id="@+id/scrollView">
-           <android.support.v4.view.ViewPager
-               android:layout_width="match_parent"
-               android:layout_height="150dp"
-               android:id="@+id/contentViewPager">
-           </android.support.v4.view.ViewPager>
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:id="@+id/myViewFlipper">
+
+        </com.cheng.view.MyViewFlipper>
+
     </LinearLayout>
 
 

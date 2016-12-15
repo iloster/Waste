@@ -38,12 +38,12 @@ public class FloatContentAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View curView = mListView.get(position);
+        View curView = mListView.get(position%getCount());
 //        TextView text = (TextView) curView.findViewById(R.id.contentTxt);
 //        text.setText(position);
         LogUtils.v(TAG,"instantiateItem:"+position);
-        container.addView(mListView.get(position));
-        return mListView.get(position);
+        container.addView(curView);
+        return mListView.get(position%getCount());
     }
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
