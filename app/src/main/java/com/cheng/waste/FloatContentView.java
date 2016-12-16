@@ -11,6 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.cheng.config.Constants;
+import com.cheng.content.ArticleSubView;
+import com.cheng.http.CallBack;
+import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.MyViewFlipper;
 
@@ -32,8 +36,8 @@ public class FloatContentView extends RelativeLayout implements MyViewFlipper.On
 
     private List<View> listView;
     private MyViewFlipper mViewFipper;
-    private int currentNumber = 1;
     private Context mContext;
+
     public FloatContentView(Context context) {
         super(context);
         mContext =context;
@@ -51,7 +55,7 @@ public class FloatContentView extends RelativeLayout implements MyViewFlipper.On
 
         mViewFipper = (MyViewFlipper)findViewById(R.id.myViewFlipper);
         mViewFipper.setOnViewFlipperListener(this);
-        mViewFipper.addView(createView(currentNumber));
+        mViewFipper.addView(showArticleView());
         mCloseBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,25 +66,22 @@ public class FloatContentView extends RelativeLayout implements MyViewFlipper.On
     }
 
 
-    /**更换View数据：这里是根据页号来更换textView上的文字**/
-    private View createView(int currentNumber) {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        ScrollView resultView = (ScrollView) layoutInflater.inflate(R.layout.service_float_content_item, null);
-        ((TextView) resultView.findViewById(R.id.contentTxt)).setText(currentNumber + "");
-        return resultView;
-    }
-
     @Override
     public View getNextView() {
-        LogUtils.v(TAG,"getNextView");
-        currentNumber = currentNumber == 10 ? 1 : currentNumber + 1;
-        return createView(currentNumber);
+       return showArticleView();
     }
 
     @Override
     public View getPreviousView() {
         LogUtils.v(TAG,"getPreviousView");
-        currentNumber = currentNumber == 1 ? 10 : currentNumber - 1;
-        return createView(currentNumber);
+        return showVideoView();
+    }
+
+    public View showArticleView(){
+        return new ArticleSubView(mContext);
+    }
+
+    public View showVideoView(){
+        return new ArticleSubView(mContext);
     }
 }

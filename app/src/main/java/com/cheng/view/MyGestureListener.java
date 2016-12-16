@@ -2,6 +2,7 @@ package com.cheng.view;
 
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.cheng.utils.LogUtils;
 
@@ -28,7 +29,7 @@ public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
         LogUtils.v("LICHENG","ss:"+e1.toString());
         LogUtils.v("LICHENG","ss:"+Math.abs(XFrom - XTo) );
         // 左右滑动的X轴幅度大于100，并且X轴方向的速度大于100
-        if (Math.abs(XFrom - XTo) > 100.0f && Math.abs(speedX) > 100.0f) {
+        if (Math.abs(XFrom - XTo) > 100.0f) {
             // X轴幅度大于Y轴的幅度
             if (Math.abs(XFrom - XTo) >= Math.abs(YFrom - YTo)) {
                 if (XFrom > XTo) {
