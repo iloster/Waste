@@ -12,7 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cheng.config.Constants;
-import com.cheng.content.ArticleSubView;
+//import com.cheng.content.ArticleSubView;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
@@ -55,7 +55,7 @@ public class FloatContentView extends RelativeLayout implements MyViewFlipper.On
 
         mViewFipper = (MyViewFlipper)findViewById(R.id.myViewFlipper);
         mViewFipper.setOnViewFlipperListener(this);
-        mViewFipper.addView(showArticleView());
+//        mViewFipper.addView(showArticleView());
         mCloseBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,10 +78,12 @@ public class FloatContentView extends RelativeLayout implements MyViewFlipper.On
     }
 
     public View showArticleView(){
-        return new ArticleSubView(mContext);
+//        return new ArticleSubView(mContext);
+        return null;
     }
 
     public View showVideoView(){
-        return new ArticleSubView(mContext);
+//        return new ArticleSubView(mContext);
+        return null;
     }
 }

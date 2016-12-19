@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <PreferenceCategory
+            android:layout="@layout/preference_category_widget"
+            android:title="基本设置">
+
+            <CheckBoxPreference
+                android:layout="@layout/preference_item"
+                android:title="夜间模式"
+                android:key="nightShiftPre"
+                android:summary="晚上10点到早上6点自动开启"
+                android:defaultValue="false"/>
+            <CheckBoxPreference
+                android:layout="@layout/preference_item"
+                android:title="Wi-Fi下自动下载"
+                android:key="wifiPre"
+                android:summary="在Wi-Fi下预加载文章和视频"
+                android:defaultValue="false"/>
+            <Preference
+                android:layout="@layout/preference_item"
+                android:title="清除缓存"
+                android:summary="缓存大小10M">
+            </Preference>
+        </PreferenceCategory>
+         <PreferenceCategory
+             android:layout="@layout/preference_category_widget"
+             android:title="收藏">
+             <Preference
+                 android:layout="@layout/preference_item"
+                 android:title="文章"
+                 android:key="loveArticlePre"
+                 android:summary="收藏的文章将会保存在这里">
+             </Preference>
+         </PreferenceCategory>
+        <PreferenceCategory
+            android:layout="@layout/preference_category_widget"
+            android:title="关于">
+            <Preference
+                android:layout="@layout/preference_item"
+                android:summary="v1.0.0"
+                android:title="当前版本"/>
+            <Preference
+                android:layout="@layout/preference_item"
+                android:summary="我的博客：http://drakeet.me"
+                android:title="作者：loster"/>
+        </PreferenceCategory>
+</PreferenceScreen>
