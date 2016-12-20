@@ -1,6 +1,8 @@
 package com.cheng.waste;
 
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -18,8 +20,11 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-            mSettingsFragment = new SettingsFragment();
-            replaceFragment(R.id.settings_container, mSettingsFragment);
+        mSettingsFragment = new SettingsFragment();
+        replaceFragment(R.id.settings_container, mSettingsFragment);
+
+        Intent intent = new Intent(SettingsActivity.this,FloatService.class);
+        startService(intent);
 
     }
 

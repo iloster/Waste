@@ -45,6 +45,8 @@ public class MyWindowManager {
      */
     private static WindowManager mWindowManager;
 
+    private static View subView;
+
     /**
      * 如果WindowManager还未创建，则创建一个新的WindowManager返回。否则返回当前已创建的WindowManager。
      *
@@ -119,6 +121,28 @@ public class MyWindowManager {
         if(mFloatContentView!=null){
             getWindowManager(context).removeView(mFloatContentView);
             mFloatContentView = null;
+        }
+    }
+
+    public static void replaceFloatContentView(Context context,View obj){
+        WindowManager windowManager = getWindowManager(context);
+        if(subView == null){
+            subView = obj;
+
+            if(mFloatContentViewParams == null){
+                mFloatContentViewParams = new WindowManager.LayoutParams();
+                mFloatContentViewParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                mFloatContentViewParams.format = PixelFormat.RGBA_8888;
+                mFloatContentViewParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                mFloatContentViewParams.gravity = Gravity.LEFT | Gravity.TOP;
+                mFloatContentViewParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+                mFloatContentViewParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+//                mFloatContentViewParams.x = DeviceUtils.getWidth();
+//                mFloatContentViewParams.y = DeviceUtils.getHeight() / 2;
+            }
+//            mFloatContentView.setParams(mFloatContentViewParams);
+            windowManager.addView(subView, mFloatContentViewParams);
         }
     }
 

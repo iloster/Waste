@@ -22,12 +22,11 @@
             android:layout_marginRight="8dp"
             android:id="@+id/closeBtn"/>
 
-        <com.cheng.view.MyViewFlipper
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/myViewFlipper">
-
-        </com.cheng.view.MyViewFlipper>
+            android:id="@+id/subView">
+        </RelativeLayout>
 
     </LinearLayout>
 
