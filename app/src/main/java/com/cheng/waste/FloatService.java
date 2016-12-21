@@ -4,10 +4,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.cheng.presenter.FloatPresenter;
 import com.cheng.utils.LogUtils;
 
-public class FloatService extends Service implements IFloatView {
+public class FloatService extends Service {
 
     private final String TAG = "FloatService";
 
@@ -24,8 +23,7 @@ public class FloatService extends Service implements IFloatView {
     public void onCreate() {
 //        super.onCreate();
         LogUtils.v(TAG, "onCreate");
-        FloatPresenter mFloatPresenter = new FloatPresenter(this);
-        mFloatPresenter.showFloatIcon();
+        showFloatIcon();
     }
 
     @Override
@@ -46,15 +44,12 @@ public class FloatService extends Service implements IFloatView {
         return super.onUnbind(intent);
     }
 
-    @Override
+
     public void showFloatIcon() {
         MyWindowManager.createFloatIconView(getApplicationContext());
     }
 
-    @Override
-    public void showFloatContent() {
 
-    }
 }
 
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.cheng.content.FloatContentMainView;
 import com.cheng.utils.LogUtils;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
@@ -19,7 +20,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
  * Created by cheng on 2016/12/20.
  */
 
-public class BaseContentView extends RelativeLayout {
+public class BaseContentView extends RelativeLayout implements FloatContentMainView.SubViewListener{
     private String TAG = "FloatContentView";
 
     private WindowManager windowManager;
@@ -27,6 +28,7 @@ public class BaseContentView extends RelativeLayout {
     private Button mCloseBtn;
     private LinearLayout mContainLayout;
     private RelativeLayout mSubView;
+
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
@@ -54,5 +56,10 @@ public class BaseContentView extends RelativeLayout {
     public void replaceView(View view){
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
         mSubView.addView(view,params);
+    }
+
+    @Override
+    public void replaceSubView(View view) {
+        replaceView(view);
     }
 }

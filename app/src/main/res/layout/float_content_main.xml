@@ -5,6 +5,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:Text="v2ex"
+        android:text="v2ex"
         android:id="@+id/button"/>
 </LinearLayout>

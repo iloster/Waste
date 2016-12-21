@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.cheng.config.Constants;
 //import com.cheng.content.ArticleSubView;
+import com.cheng.content.FloatContentMainView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
@@ -73,7 +74,9 @@ public class FloatContentView extends BaseContentView {
 //               MyWindowManager.replaceFloatContentView(getContext(),new V2exMainView(context));
 //            }
 //        });
-        replaceView(new V2exMainView(context));
+        FloatContentMainView floatContentMainView = new FloatContentMainView(context);
+        floatContentMainView.setSubViewListener(this);
+        replaceView(floatContentMainView);
     }
 
 
