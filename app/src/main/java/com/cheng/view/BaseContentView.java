@@ -37,11 +37,9 @@ public class BaseContentView extends RelativeLayout implements FloatContentMainV
         mCloseBtn = (Button)findViewById(R.id.closeBtn);
 
         mSubView = (RelativeLayout) findViewById(R.id.subView);
-        int width = windowManager.getDefaultDisplay().getWidth();
-        int height = windowManager.getDefaultDisplay().getHeight()*3/4;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
-        LogUtils.v(TAG,"width:"+width);
-        LogUtils.v(TAG,"height:"+height);
+//        int width = windowManager.getDefaultDisplay().getWidth();
+//        int height = windowManager.getDefaultDisplay().getHeight()*3/4;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
         mSubView.setLayoutParams(params);
 
         mCloseBtn.setOnClickListener(new OnClickListener() {

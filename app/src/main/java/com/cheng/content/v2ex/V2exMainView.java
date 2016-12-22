@@ -2,6 +2,7 @@ package com.cheng.content.v2ex;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
@@ -33,12 +34,16 @@ public class V2exMainView extends BaseSubView implements IV2exMainView{
 
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView1);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
     @Override
     public void showData(List<V2exMainBean> v2exMainBeanList) {
         LogUtils.v(TAG,"size:"+v2exMainBeanList.size());
+        LogUtils.v(TAG,"ss:"+v2exMainBeanList.get(1).getTitle());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(new V2exMainViewItem(mContext,v2exMainBeanList));
     }
 
