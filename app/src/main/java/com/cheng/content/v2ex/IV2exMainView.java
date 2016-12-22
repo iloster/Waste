@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IV2exMainView {
     void showData(List<V2exMainBean> v2exMainBeanList);
+    void showLoading(boolean flag);
 }
