@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
 
 public class MainActivity extends Activity {
 
     private final String TAG = "MainActivity";
-
+    private TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
