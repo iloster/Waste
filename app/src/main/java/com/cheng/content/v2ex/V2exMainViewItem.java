@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
 
@@ -41,9 +42,9 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
         V2exMainBean v2exMainBean = mV2exMainBeanList.get(position);
         myViewHolder.mV2exItemTitleTxt.setText(v2exMainBean.getTitle());
         LogUtils.v(TAG,"reply:"+v2exMainBean.getReplies());
-        myViewHolder.mV2exItemReplyTxt.setText(v2exMainBean.getReplies()+"回复");
+        myViewHolder.mV2exItemReplyTxt.setText(v2exMainBean.getReplies()+"个回复");
         myViewHolder.mV2exItemNodeTxt.setText(v2exMainBean.getNode().getTitle());
-        myViewHolder.mV2exItemTimeTxt.setText(v2exMainBean.getLast_modified()+"时间");
+        myViewHolder.mV2exItemTimeTxt.setText(TimeUtils.formatTime(new Long(v2exMainBean.getCreated())*1000));
         myViewHolder.mV2exItemUserTxt.setText(v2exMainBean.getMember().getUsername());
         String url = "http:"+v2exMainBean.getMember().getAvatar_normal();
         LogUtils.v(TAG,"url:"+url);
