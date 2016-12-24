@@ -12,7 +12,7 @@ import com.cheng.config.Constants;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.waste.R;
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
+
 import com.google.gson.Gson;
 
 /**
@@ -23,7 +23,7 @@ public class ArticleSubView extends RelativeLayout{
 
     private TextView mTitleTxt;
     private TextView mContentTxt;
-    private ProgressBarCircularIndeterminate mLoading;
+
     public ArticleSubView(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.service_float_content_item,this);
@@ -34,7 +34,7 @@ public class ArticleSubView extends RelativeLayout{
     private void initView(){
         mTitleTxt = (TextView)findViewById(R.id.titleTxt);
         mContentTxt = (TextView)findViewById(R.id.contentTxt);
-        mLoading = (ProgressBarCircularIndeterminate)findViewById(R.id.loading);
+
         showLoading(true);
     }
     /**
@@ -65,11 +65,7 @@ public class ArticleSubView extends RelativeLayout{
      * 是否显示loading
      */
     private void showLoading(boolean bVisiable){
-        if(bVisiable){
-            mLoading.setVisibility(VISIBLE);
-        }else{
-            mLoading.setVisibility(INVISIBLE);
-        }
+
     }
 
     private void showFail(){
