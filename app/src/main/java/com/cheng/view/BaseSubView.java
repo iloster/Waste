@@ -9,18 +9,10 @@ import android.widget.RelativeLayout;
  */
 
 public class BaseSubView extends RelativeLayout{
-
-    private BaseSubViewListener mBaseSubViewListener;
     public BaseSubView(Context context) {
         super(context);
     }
 
-    public void setBaseSubViewListener(BaseSubViewListener baseSubViewListener){
-        this.mBaseSubViewListener = baseSubViewListener;
-    }
 
 
-    public interface BaseSubViewListener{
-        void replaceSubView(View view);
-    }
 }

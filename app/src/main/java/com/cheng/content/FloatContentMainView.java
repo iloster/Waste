@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.cheng.content.v2ex.V2exMainView;
+import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 
 /**
@@ -16,25 +18,20 @@ import com.cheng.waste.R;
 
 public class FloatContentMainView extends BaseSubView {
 
+    private String TAG = "FloatContentMainView";
     private Button button;
-    private SubViewListener mSubViewListener;
     public FloatContentMainView(final Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.float_content_main,this);
-
+        LogUtils.v(TAG,"FloatContentMainView : ctor");
         button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSubViewListener.replaceSubView(new V2exMainView(context));
+//                mSubViewListener.replaceSubView(new V2exMainView(context));
+                MyWindowManager.replaceSubView(new V2exMainView(context));
             }
         });
     }
 
-    public void setSubViewListener(SubViewListener subViewListener){
-        this.mSubViewListener = subViewListener;
-    }
-    public interface SubViewListener{
-        public void replaceSubView(View view);
-    }
 }

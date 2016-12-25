@@ -4,22 +4,29 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
+import com.cheng.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by cheng on 2016/12/7.
  */
 
 public class MyWindowManager {
+
+    private static String TAG = "MyWindowManager";
     /**
      * 小悬浮窗View的实例
      */
@@ -122,27 +129,17 @@ public class MyWindowManager {
             getWindowManager(context).removeView(mFloatContentView);
             mFloatContentView = null;
         }
+        LogUtils.v(TAG,"removeFloatContentView");
     }
 
-    public static void replaceFloatContentView(Context context,View obj){
-        WindowManager windowManager = getWindowManager(context);
-        if(subView == null){
-            subView = obj;
 
-            if(mFloatContentViewParams == null){
-                mFloatContentViewParams = new WindowManager.LayoutParams();
-                mFloatContentViewParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-                mFloatContentViewParams.format = PixelFormat.RGBA_8888;
-                mFloatContentViewParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-                mFloatContentViewParams.gravity = Gravity.LEFT | Gravity.TOP;
-                mFloatContentViewParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-                mFloatContentViewParams.height = WindowManager.LayoutParams.MATCH_PARENT;
-//                mFloatContentViewParams.x = DeviceUtils.getWidth();
-//                mFloatContentViewParams.y = DeviceUtils.getHeight() / 2;
-            }
-//            mFloatContentView.setParams(mFloatContentViewParams);
-            windowManager.addView(subView, mFloatContentViewParams);
+    public static void replaceSubView(View view){
+        if(mFloatContentView!=null){
+            LogUtils.v(TAG,"replaceSubView");
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
+            mFloatContentView.replaceView(view);
+        }else{
+            Log.e(TAG,"mFloatContentView is Null");
         }
     }
 

@@ -20,7 +20,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
  * Created by cheng on 2016/12/20.
  */
 
-public class BaseContentView extends RelativeLayout implements FloatContentMainView.SubViewListener{
+public class BaseContentView extends RelativeLayout{
     private String TAG = "FloatContentView";
 
     private WindowManager windowManager;
@@ -51,13 +51,13 @@ public class BaseContentView extends RelativeLayout implements FloatContentMainV
         });
     }
 
-    public void replaceView(View view){
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
-        mSubView.addView(view,params);
+    public RelativeLayout getSubViewContainer(){
+        return mSubView;
     }
 
-    @Override
-    public void replaceSubView(View view) {
-        replaceView(view);
+    public void replaceView(View view) {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+        mSubView.addView(view, params);
     }
+
 }

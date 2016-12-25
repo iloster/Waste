@@ -25,14 +25,16 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
     private Context mContext;
     private List<V2exMainBean> mV2exMainBeanList;
     private String TAG = "V2exMainViewItem";
+    private V2exMainPagerView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     public V2exMainViewItem(Context context, List<V2exMainBean> v2exMainBeanList){
         mContext = context;
         mV2exMainBeanList = v2exMainBeanList;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        V2exMainViewItemHolder holder = new V2exMainViewItemHolder(LayoutInflater.from(mContext).inflate(R.layout.content_v2ex_main_item,parent,false));
-
+        View view = LayoutInflater.from(mContext).inflate(R.layout.content_v2ex_main_item,parent,false);
+        V2exMainViewItemHolder holder = new V2exMainViewItemHolder(view);
+        view.setOnClickListener(holder);
         return holder;
     }
 
@@ -56,8 +58,10 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
         return mV2exMainBeanList.size();
     }
 
-
-    class V2exMainViewItemHolder extends RecyclerView.ViewHolder{
+    public void setItemOnClickListener(V2exMainPagerView.OnRecyclerViewItemClickListener onClickListener){
+        mOnRecyclerViewItemClickListener = onClickListener;
+    }
+    class V2exMainViewItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mV2exItemTitleTxt;
         public TextView mV2exItemNodeTxt;
@@ -73,6 +77,13 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
             mV2exItemUserTxt = (TextView)itemView.findViewById(R.id.topic_item_name);
             mV2exItemReplyTxt = (TextView)itemView.findViewById(R.id.topic_item_reply);
             mV2exItemTimeTxt = (TextView)itemView.findViewById(R.id.topic_item_time);
+        }
+
+        @Override
+        public void onClick(View v) {
+            LogUtils.v(TAG,"position:"+getAdapterPosition());
+            int position = getAdapterPosition();
+            mOnRecyclerViewItemClickListener.onItemClick(position,mV2exMainBeanList.get(position));
         }
     }
 }
