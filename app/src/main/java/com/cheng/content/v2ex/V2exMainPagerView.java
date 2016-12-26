@@ -63,6 +63,10 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
     }
 
+    @Override
+    public void showDetail() {
+        
+    }
 
 
     public interface OnRecyclerViewItemClickListener{
