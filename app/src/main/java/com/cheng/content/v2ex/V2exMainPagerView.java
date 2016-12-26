@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 
 import java.util.List;
@@ -64,8 +65,10 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     }
 
     @Override
-    public void showDetail() {
-        
+    public void showDetail(V2exMainBean v2exMainBean) {
+        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext);
+        v2exMainDetail.showDetail(v2exMainBean);
+        MyWindowManager.replaceSubView(v2exMainDetail);
     }
 
 

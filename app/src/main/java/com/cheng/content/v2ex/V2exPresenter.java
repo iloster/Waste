@@ -55,7 +55,8 @@ public class V2exPresenter {
      * @param v2exMainBean
      */
     public void getDetail(V2exMainBean v2exMainBean){
-
+//        V2exMainDetail v2exMainDetail = new V2exMainDetail(mCon)
+        mIV2exMainView.showDetail(v2exMainBean);
     }
 
 }

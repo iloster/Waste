@@ -9,5 +9,5 @@ import java.util.List;
 public interface IV2exMainPagerView {
     void showData(int index,List<V2exMainBean> v2exMainBeanList);
     void showLoading(boolean flag);
-    void showDetail();
+    void showDetail(V2exMainBean v2exMainBean);
 }
