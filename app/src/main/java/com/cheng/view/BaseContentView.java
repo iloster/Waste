@@ -14,6 +14,9 @@ import com.cheng.utils.LogUtils;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
@@ -26,15 +29,18 @@ public class BaseContentView extends RelativeLayout{
     private WindowManager windowManager;
     private WindowManager.LayoutParams mParams;
     private Button mCloseBtn;
+    private Button mBackBtn;
     private LinearLayout mContainLayout;
     private RelativeLayout mSubView;
 
+    private List<View> mListView = new ArrayList<>();
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
         LayoutInflater.from(context).inflate(R.layout.service_float_content,this);
 
         mCloseBtn = (Button)findViewById(R.id.closeBtn);
+        mBackBtn = (Button)findViewById(R.id.backBtn);
 
         mSubView = (RelativeLayout) findViewById(R.id.subView);
 //        int width = windowManager.getDefaultDisplay().getWidth();
@@ -49,6 +55,13 @@ public class BaseContentView extends RelativeLayout{
                 MyWindowManager.createFloatIconView(getContext());
             }
         });
+
+        mBackBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popView();
+            }
+        });
     }
 
     public RelativeLayout getSubViewContainer(){
@@ -58,6 +71,20 @@ public class BaseContentView extends RelativeLayout{
     public void replaceView(View view) {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
         mSubView.addView(view, params);
+        mListView.add(view);
+        if(mListView.size()>1){
+            mBackBtn.setVisibility(VISIBLE);
+        }else{
+            mBackBtn.setVisibility(INVISIBLE);
+        }
+    }
+
+    public void popView(){
+        View view = mListView.remove(mListView.size() - 1);
+        mSubView.removeView(view);
+        if(mListView.size() == 1){
+            mBackBtn.setVisibility(INVISIBLE);
+        }
     }
 
 }

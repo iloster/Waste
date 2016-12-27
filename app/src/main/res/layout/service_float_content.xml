@@ -12,15 +12,32 @@
         android:background="@drawable/shape"
         android:id="@+id/containLayout"
         android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/back_btn_click"
+                android:id="@+id/backBtn"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textAlignment="center"
+                 android:layout_centerInParent="true"
+                 android:text="title"/>
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/close_btn_click"
+                android:layout_margin="5dp"
+                android:id="@+id/closeBtn"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/close_btn_click"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/closeBtn"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
