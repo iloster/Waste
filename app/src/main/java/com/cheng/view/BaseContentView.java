@@ -87,4 +87,5 @@ public class BaseContentView extends RelativeLayout{
         }
     }
 
+
 }

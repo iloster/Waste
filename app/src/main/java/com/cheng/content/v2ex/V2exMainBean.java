@@ -1,9 +1,9 @@
 package com.cheng.content.v2ex;
 
+
 /**
  * Created by dev on 2016/12/21.
  */
-
 public class V2exMainBean {
 
     /**
@@ -38,7 +38,6 @@ public class V2exMainBean {
      * last_modified : 1482287208
      * last_touched : 1482303010
      */
-
     private int id;
     private String title;
     private String url;
