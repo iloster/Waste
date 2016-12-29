@@ -22,6 +22,7 @@ public class WasteApplication extends Application {
         // TODO Auto-generated method stub
         super.onCreate();
         instance = this;
+        initDB();
     }
 
     private void initDB(){

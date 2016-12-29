@@ -38,13 +38,13 @@ public class V2exMainDetail extends BaseSubView {
         mTopicDetailContent = (TextView)findViewById(R.id.topic_detail_content);
     }
 
-    public void showDetail(V2exMainBean v2exMainBean){
-        String url = "http:"+v2exMainBean.getMember().getAvatar_normal();
+    public void showDetail(V2exEntity v){
+        String url = "http:"+v.getAvatar_normal();
         Picasso.with(mContenxt).load(url).into(mTopicDetailIcon);
-        mTopicDetailName.setText(v2exMainBean.getMember().getUsername());
-        mTopicDetailTime.setText(TimeUtils.formatTime(new Long(v2exMainBean.getCreated())*1000));
-        mTopicDetailTitle.setText(v2exMainBean.getTitle());
-        mTopicDetailContent.setText(Html.fromHtml(v2exMainBean.getContent_rendered()));
+        mTopicDetailName.setText(v.getUsername());
+        mTopicDetailTime.setText(TimeUtils.formatTime(new Long(v.getCreated())*1000));
+        mTopicDetailTitle.setText(v.getTitle());
+        mTopicDetailContent.setText(Html.fromHtml(v.getContent_rendered()));
     }
 
 

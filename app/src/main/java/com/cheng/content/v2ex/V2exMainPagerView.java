@@ -5,14 +5,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.widget.RelativeLayout;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
-
-import java.util.List;
 
 /**
  * Created by cheng on 2016/12/25.
@@ -46,14 +43,14 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
 
     @Override
-    public void showData(int index, List<V2exHotTopicEntity> list) {
+    public void showData(int index) {
         if(index == mIndex) {
-            V2exMainViewItem v2exMainViewItem = new V2exMainViewItem(mContext, list);
+            V2exMainViewItem v2exMainViewItem = new V2exMainViewItem(mContext, V2exDbUtils.get(index));
             mRecyclerView.setAdapter(v2exMainViewItem);
             v2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(int position, Object data) {
-                    mV2exPresenter.getDetail((V2exMainBean)data);
+                    mV2exPresenter.getDetail((V2exEntity) data);
                 }
             });
         }
@@ -65,9 +62,9 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     }
 
     @Override
-    public void showDetail(V2exMainBean v2exMainBean) {
+    public void showDetail(V2exEntity v) {
         V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext);
-        v2exMainDetail.showDetail(v2exMainBean);
+        v2exMainDetail.showDetail(v);
         MyWindowManager.replaceSubView(v2exMainDetail);
     }
 

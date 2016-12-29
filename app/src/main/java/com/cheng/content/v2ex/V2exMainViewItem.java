@@ -23,10 +23,10 @@ import java.util.List;
 public class V2exMainViewItem extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<V2exHotTopicEntity> mList;
+    private List<V2exEntity> mList;
     private String TAG = "V2exMainViewItem";
     private V2exMainPagerView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-    public V2exMainViewItem(Context context, List<V2exHotTopicEntity> list){
+    public V2exMainViewItem(Context context, List<V2exEntity> list){
         mContext = context;
         mList = list;
     }
@@ -41,7 +41,7 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         V2exMainViewItemHolder myViewHolder = (V2exMainViewItemHolder)holder;
-        V2exHotTopicEntity v = mList.get(position);
+        V2exEntity v = mList.get(position);
         myViewHolder.mV2exItemTitleTxt.setText(v.getTitle());
         LogUtils.v(TAG,"reply:"+v.getReplies());
         myViewHolder.mV2exItemReplyTxt.setText(v.getReplies()+"个回复");

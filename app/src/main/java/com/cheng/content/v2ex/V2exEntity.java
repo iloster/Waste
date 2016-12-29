@@ -8,8 +8,9 @@ import org.greenrobot.greendao.annotation.Generated;
  * Created by cheng on 2016/12/28.
  */
 @Entity
-public class V2exHotTopicEntity {
-    @Id
+public class V2exEntity {
+    @Id(autoincrement = true)
+    private Long vid;
     private long id;
     private String title;
     private String url;
@@ -33,15 +34,17 @@ public class V2exHotTopicEntity {
     private long created;
     private long last_modified;
     private long last_touched;
-    @Generated(hash = 689961787)
-    public V2exHotTopicEntity(long id, String title, String url, String content,
+    private int node_type;
+    @Generated(hash = 1837906298)
+    public V2exEntity(Long vid, long id, String title, String url, String content,
             String content_rendered, int replies, long userId, String username,
             String tagline, String avatar_mini, String avatar_normal,
             String avatar_large, String node_id, String node_name,
             String node_title_alternative, String node_url, String node_topics,
             String node_avatar_mini, String node_avatar_normal,
             String node_avatar_large, long created, long last_modified,
-            long last_touched) {
+            long last_touched, int node_type) {
+        this.vid = vid;
         this.id = id;
         this.title = title;
         this.url = url;
@@ -65,9 +68,16 @@ public class V2exHotTopicEntity {
         this.created = created;
         this.last_modified = last_modified;
         this.last_touched = last_touched;
+        this.node_type = node_type;
     }
-    @Generated(hash = 942600756)
-    public V2exHotTopicEntity() {
+    @Generated(hash = 1618468526)
+    public V2exEntity() {
+    }
+    public Long getVid() {
+        return this.vid;
+    }
+    public void setVid(Long vid) {
+        this.vid = vid;
     }
     public long getId() {
         return this.id;
@@ -207,5 +217,11 @@ public class V2exHotTopicEntity {
     public void setLast_touched(long last_touched) {
         this.last_touched = last_touched;
     }
-
+    public int getNode_type() {
+        return this.node_type;
+    }
+    public void setNode_type(int node_type) {
+        this.node_type = node_type;
+    }
+    
 }
