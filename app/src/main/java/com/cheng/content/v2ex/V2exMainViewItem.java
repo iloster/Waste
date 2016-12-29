@@ -23,12 +23,12 @@ import java.util.List;
 public class V2exMainViewItem extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<V2exMainBean> mV2exMainBeanList;
+    private List<V2exHotTopicEntity> mList;
     private String TAG = "V2exMainViewItem";
     private V2exMainPagerView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-    public V2exMainViewItem(Context context, List<V2exMainBean> v2exMainBeanList){
+    public V2exMainViewItem(Context context, List<V2exHotTopicEntity> list){
         mContext = context;
-        mV2exMainBeanList = v2exMainBeanList;
+        mList = list;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,21 +41,21 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         V2exMainViewItemHolder myViewHolder = (V2exMainViewItemHolder)holder;
-        V2exMainBean v2exMainBean = mV2exMainBeanList.get(position);
-        myViewHolder.mV2exItemTitleTxt.setText(v2exMainBean.getTitle());
-        LogUtils.v(TAG,"reply:"+v2exMainBean.getReplies());
-        myViewHolder.mV2exItemReplyTxt.setText(v2exMainBean.getReplies()+"个回复");
-        myViewHolder.mV2exItemNodeTxt.setText(v2exMainBean.getNode().getTitle());
-        myViewHolder.mV2exItemTimeTxt.setText(TimeUtils.formatTime(new Long(v2exMainBean.getCreated())*1000));
-        myViewHolder.mV2exItemUserTxt.setText(v2exMainBean.getMember().getUsername());
-        String url = "http:"+v2exMainBean.getMember().getAvatar_normal();
+        V2exHotTopicEntity v = mList.get(position);
+        myViewHolder.mV2exItemTitleTxt.setText(v.getTitle());
+        LogUtils.v(TAG,"reply:"+v.getReplies());
+        myViewHolder.mV2exItemReplyTxt.setText(v.getReplies()+"个回复");
+        myViewHolder.mV2exItemNodeTxt.setText(v.getNode_name());
+        myViewHolder.mV2exItemTimeTxt.setText(TimeUtils.formatTime(new Long(v.getCreated())*1000));
+        myViewHolder.mV2exItemUserTxt.setText(v.getUsername());
+        String url = "http:"+v.getAvatar_normal();
         LogUtils.v(TAG,"url:"+url);
         Picasso.with(mContext).load(url).into(myViewHolder.mV2exItemIconImg);
     }
 
     @Override
     public int getItemCount() {
-        return mV2exMainBeanList.size();
+        return mList.size();
     }
 
     public void setItemOnClickListener(V2exMainPagerView.OnRecyclerViewItemClickListener onClickListener){
@@ -83,7 +83,7 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
         public void onClick(View v) {
             LogUtils.v(TAG,"position:"+getAdapterPosition());
             int position = getAdapterPosition();
-            mOnRecyclerViewItemClickListener.onItemClick(position,mV2exMainBeanList.get(position));
+            mOnRecyclerViewItemClickListener.onItemClick(position,mList.get(position));
         }
     }
 }

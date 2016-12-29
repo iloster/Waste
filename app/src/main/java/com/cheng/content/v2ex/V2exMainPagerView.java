@@ -46,9 +46,9 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
 
     @Override
-    public void showData(int index, List<V2exMainBean> v2exMainBeanList) {
+    public void showData(int index, List<V2exHotTopicEntity> list) {
         if(index == mIndex) {
-            V2exMainViewItem v2exMainViewItem = new V2exMainViewItem(mContext, v2exMainBeanList);
+            V2exMainViewItem v2exMainViewItem = new V2exMainViewItem(mContext, list);
             mRecyclerView.setAdapter(v2exMainViewItem);
             v2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
                 @Override

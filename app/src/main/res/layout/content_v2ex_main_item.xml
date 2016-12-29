@@ -28,7 +28,7 @@
             android:text="iloster"
             android:layout_margin="3dp"
             android:textSize="11sp"
-            android:textColor="#de000000"
+            android:textColor="#212121"
             android:layout_toRightOf="@id/topic_item_icon"/>
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:textSize="11sp"
             android:layout_marginLeft="3dp"
             android:id="@+id/topic_item_time"
-            android:textColor="#de000000"
+            android:textColor="#757575"
             android:layout_below="@id/topic_item_name"
             android:layout_toRightOf="@id/topic_item_icon"/>
         <TextView
@@ -48,7 +48,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:textColor="#de000000"
+            android:textColor="#212121"
             android:textSize="15sp"
             android:layout_below="@id/topic_item_icon"
             android:id="@+id/topic_item_title"/>
@@ -61,7 +61,7 @@
             android:layout_marginBottom="5dp"
             android:textSize="11sp"
             android:text="创造"
-            android:textColor="#de000000"
+            android:textColor="#757575"
             android:padding="2dp"
             android:background="#e0e0e0"
             android:id="@+id/topic_item_node"/>
@@ -75,7 +75,7 @@
             android:layout_marginBottom="5dp"
             android:textSize="11sp"
             android:id="@+id/topic_item_reply"
-            android:textColor="#de000000"
+            android:textColor="#757575"
             android:text="总共10个回复"/>
 
 
