@@ -38,4 +38,8 @@ public class V2exDbUtils {
     public static void delete(){
          WasteApplication.getInstance().daoSession.getV2exEntityDao().deleteAll();
     }
+
+    public static void getByIdAndType(long id,int type){
+
+    }
 }
