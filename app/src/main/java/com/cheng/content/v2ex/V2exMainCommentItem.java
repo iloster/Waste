@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cheng.utils.LogUtils;
@@ -59,7 +60,13 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         }else {
 
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
-            V2exMainCommentBean v = mV2exMainCommentBeanList.get(position);
+            V2exMainCommentBean v = mV2exMainCommentBeanList.get(position-1);
+            if(position == 1){
+                vHolder.mCommentItemHead.setVisibility(View.VISIBLE);
+                vHolder.mCommentItemHead.setText("总共"+(getItemCount()-1)+"个回复 | 直到"+TimeUtils.getNowTimeStr());
+            }else{
+                vHolder.mCommentItemHead.setVisibility(View.GONE);
+            }
             String url = "http:"+v.getMember().getAvatar_mini();
             vHolder.mCommentItemContent.setText(v.getContent());
             Picasso.with(mContext).load(url).into(vHolder.mCommentItemIcon);
@@ -79,8 +86,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-//        return 2;
-        return mV2exMainCommentBeanList.size();
+        return mV2exMainCommentBeanList.size()+1;
     }
 
     @Override
@@ -101,7 +107,8 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         public TextView mCommentItemContent;
         public ImageView mCommentItemThankIcon;
         public TextView mCommentItemThank;
-
+        public LinearLayout mHeadLayout;
+        public TextView mCommentItemHead;
         public V2exMainCommentItemHolder(View itemView) {
             super(itemView);
 
@@ -112,6 +119,10 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
 
             mCommentItemThankIcon = (ImageView) itemView.findViewById(R.id.comment_item_thankIcon);
             mCommentItemThank = (TextView) itemView.findViewById(R.id.comment_item_thank);
+
+            mHeadLayout = (LinearLayout)itemView.findViewById(R.id.headLayout);
+            //mHeadLayout.setVisibility(View.GONE);
+            mCommentItemHead = (TextView) itemView.findViewById(R.id.comment_item_head);
 
         }
     }

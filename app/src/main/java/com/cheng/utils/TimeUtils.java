@@ -42,4 +42,13 @@ public class TimeUtils {
         }
 
     }
+
+    public static String getNowTimeStr(){
+        long curTime = System.currentTimeMillis();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //帖子时间
+        Date date = new Date(curTime);
+        String res = simpleDateFormat.format(date);
+        return res;
+    }
 }
