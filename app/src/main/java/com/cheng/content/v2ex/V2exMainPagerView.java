@@ -1,6 +1,7 @@
 package com.cheng.content.v2ex;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,9 @@ import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cheng on 2016/12/25.
@@ -22,6 +26,9 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     private int mIndex;
     private RecyclerView mRecyclerView;
     private V2exPresenter mV2exPresenter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private V2exMainViewItem mV2exMainViewItem;
+    private List<V2exEntity> mV2exEntityList = new ArrayList<>();
     public V2exMainPagerView(Context context,int index) {
         super(context);
         mContext = context;
@@ -30,24 +37,36 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         LogUtils.v(TAG,"index:"+index);
         initUI();
 
+        mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
+        mSwipeRefreshLayout.setRefreshing(true);
         mV2exPresenter = new V2exPresenter(this,mIndex);
         mV2exPresenter.loadData();
     }
 
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mV2exPresenter.refreshData();
+            }
+        });
     }
 
 
     @Override
     public void showData(int index) {
         if(index == mIndex) {
-            V2exMainViewItem v2exMainViewItem = new V2exMainViewItem(mContext, V2exDbUtils.get(index));
-            mRecyclerView.setAdapter(v2exMainViewItem);
-            v2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mV2exEntityList = V2exDbUtils.get(index);
+            mV2exMainViewItem = new V2exMainViewItem(mContext, mV2exEntityList);
+            mRecyclerView.setAdapter(mV2exMainViewItem);
+            mV2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(int position, Object data) {
                     mV2exPresenter.getDetail((V2exEntity) data);
@@ -63,9 +82,22 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
     @Override
     public void showDetail(V2exEntity v) {
-        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext);
-        v2exMainDetail.showDetail(v);
+        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext,v);
+        //v2exMainDetail.showDetail(v);
         MyWindowManager.replaceSubView(v2exMainDetail);
+    }
+
+    @Override
+    public void refreshData(int index, List<V2exEntity> v) {
+        LogUtils.v(TAG,"refreshData:"+v.size());
+        mSwipeRefreshLayout.setRefreshing(false);
+        if(mIndex == index&&v.size()>0){
+            for(int i = 0; i < v.size(); i++){
+                mV2exEntityList.add(i,v.get(i));
+            }
+            mV2exMainViewItem.notifyItemRangeInserted(0,v.size());
+            mV2exMainViewItem.notifyDataSetChanged();
+        }
     }
 
 

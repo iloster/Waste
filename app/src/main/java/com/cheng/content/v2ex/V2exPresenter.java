@@ -51,6 +51,7 @@ public class V2exPresenter {
                 mIV2exMainView.showData(mIndex);
             }
         });
+
     }
 
     /**
@@ -58,8 +59,35 @@ public class V2exPresenter {
      * @param
      */
     public void getDetail(V2exEntity v){
-//        V2exMainDetail v2exMainDetail = new V2exMainDetail(mCon)
         mIV2exMainView.showDetail(v);
+    }
+
+    /**
+     * 刷新数据
+     */
+    public void refreshData(){
+        LogUtils.v(TAG,"V2exPresenter:loadData");
+        String url = "";
+        if(mIndex == 1){
+            url = Constants.V2EX_URL_HOT;
+        }else{
+            url = Constants.V2EX_URL_LATEST;
+        }
+        HttpUtil.getInstance().enqueue(url, new CallBack() {
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onSuccess(String ret) {
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<V2exMainBean>>(){}.getType();
+                List<V2exMainBean> v2exMainBeanList = gson.fromJson(ret,type);
+                List<V2exEntity> list = V2exDbUtils.save(mIndex,v2exMainBeanList);
+                mIV2exMainView.refreshData(mIndex,list);
+            }
+        });
     }
 
 }

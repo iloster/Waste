@@ -38,13 +38,7 @@ public class TimeUtils {
         }else if(spaceTime<48*60*60*1000){
             return "一天之前";
         }else{
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            //帖子时间
-//            Date date = new Date(time);
-//            String res = simpleDateFormat.format(date);
-//            LogUtils.v(TAG,"time:"+time+"|res:"+res);
-//            return  res;
-            return  "ss";
+            return  res;
         }
 
     }
