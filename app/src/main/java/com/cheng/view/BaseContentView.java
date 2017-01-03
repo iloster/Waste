@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cheng.content.FloatContentMainView;
 import com.cheng.utils.LogUtils;
@@ -31,9 +32,11 @@ public class BaseContentView extends RelativeLayout{
     private Button mCloseBtn;
     private Button mBackBtn;
     private LinearLayout mContainLayout;
+    private TextView mContentTitle;
     private RelativeLayout mSubView;
 
     private List<View> mListView = new ArrayList<>();
+    private List<String> mTitleList = new ArrayList<>();
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
@@ -41,6 +44,7 @@ public class BaseContentView extends RelativeLayout{
 
         mCloseBtn = (Button)findViewById(R.id.closeBtn);
         mBackBtn = (Button)findViewById(R.id.backBtn);
+        mContentTitle = (TextView)findViewById(R.id.contentTitle);
 
         mSubView = (RelativeLayout) findViewById(R.id.subView);
 //        int width = windowManager.getDefaultDisplay().getWidth();
@@ -68,10 +72,12 @@ public class BaseContentView extends RelativeLayout{
         return mSubView;
     }
 
-    public void replaceView(View view) {
+    public void replaceView(View view,String title) {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
         mSubView.addView(view, params);
+        mContentTitle.setText(title);
         mListView.add(view);
+        mTitleList.add(title);
         if(mListView.size()>1){
             mBackBtn.setVisibility(VISIBLE);
         }else{
@@ -82,6 +88,9 @@ public class BaseContentView extends RelativeLayout{
     public void popView(){
         View view = mListView.remove(mListView.size() - 1);
         mSubView.removeView(view);
+
+        mTitleList.remove(mTitleList.size()-1);
+        mContentTitle.setText(mTitleList.get(mTitleList.size()-1));
         if(mListView.size() == 1){
             mBackBtn.setVisibility(INVISIBLE);
         }

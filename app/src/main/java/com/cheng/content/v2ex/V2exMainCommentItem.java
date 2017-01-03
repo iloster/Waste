@@ -85,10 +85,11 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
             V2exMainCommentBean v = mV2exMainCommentBeanList.get(position-1);
             if(position == 1){
+                vHolder.mHeadLayout.setVisibility(View.VISIBLE);
                 vHolder.mCommentItemHead.setVisibility(View.VISIBLE);
                 vHolder.mCommentItemHead.setText("总共"+(getItemCount()-1)+"个回复 | 直到"+TimeUtils.getNowTimeStr());
             }else{
-                vHolder.mCommentItemHead.setVisibility(View.GONE);
+                vHolder.mHeadLayout.setVisibility(View.GONE);
             }
             String url = "http:"+v.getMember().getAvatar_mini();
             vHolder.mCommentItemContent.setText(v.getContent());

@@ -29,7 +29,7 @@ public class FloatContentMainView extends BaseSubView {
             @Override
             public void onClick(View v) {
 //                mSubViewListener.replaceSubView(new V2exMainView(context));
-                MyWindowManager.replaceSubView(new V2exMainView(context));
+                MyWindowManager.replaceSubView(new V2exMainView(context),"V2EX");
             }
         });
     }

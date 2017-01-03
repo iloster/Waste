@@ -46,6 +46,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.theme_primary);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -84,7 +85,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     public void showDetail(V2exEntity v) {
         V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext,v);
         //v2exMainDetail.showDetail(v);
-        MyWindowManager.replaceSubView(v2exMainDetail);
+        MyWindowManager.replaceSubView(v2exMainDetail,"V2EX");
     }
 
     @Override

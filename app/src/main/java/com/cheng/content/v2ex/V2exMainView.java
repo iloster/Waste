@@ -39,8 +39,8 @@ public class V2exMainView extends BaseSubView{
 //        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mTabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        mTabLayout.addTab(mTabLayout.newTab().setText("最热"));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText("最新"));//添加tab选项卡
-        mTabLayout.addTab(mTabLayout.newTab().setText("热门"));//添加tab选项卡
         List<View> list = new ArrayList<>();
         View view = new V2exMainPagerView(mContext,1);
         View view1 = new V2exMainPagerView(mContext,2);
@@ -48,8 +48,8 @@ public class V2exMainView extends BaseSubView{
         list.add(view1);
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         List<String> titleList = new ArrayList<>();
-        titleList.add("最新");
         titleList.add("最热");
+        titleList.add("最新");
         V2exMainPagerAdapter v2exMainPager = new V2exMainPagerAdapter(mContext,list,titleList);
         mViewPager.setAdapter(v2exMainPager);
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。

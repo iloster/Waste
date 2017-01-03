@@ -133,11 +133,11 @@ public class MyWindowManager {
     }
 
 
-    public static void replaceSubView(View view){
+    public static void replaceSubView(View view,String title){
         if(mFloatContentView!=null){
             LogUtils.v(TAG,"replaceSubView");
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
-            mFloatContentView.replaceView(view);
+            mFloatContentView.replaceView(view,title);
         }else{
             Log.e(TAG,"mFloatContentView is Null");
         }

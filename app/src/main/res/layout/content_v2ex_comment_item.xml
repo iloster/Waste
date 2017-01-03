@@ -85,6 +85,6 @@
 <View
     android:layout_width="match_parent"
     android:layout_height="0.25dp"
-    android:layout_below="@id/comment_item_content"
+    android:id="@+id/lastDivider"
     android:background="@color/divider" />
 </LinearLayout>
