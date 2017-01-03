@@ -3,6 +3,8 @@ package com.cheng.content.DBMoment;
 import android.content.Context;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Button;
@@ -54,6 +56,10 @@ public class DBView extends BaseSubView{
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
     }
 
     private void loadData(){
@@ -86,6 +92,8 @@ public class DBView extends BaseSubView{
 
     private void showData(List<DBMainBean> list){
         LogUtils.v(TAG,"showData: size="+list.size());
+        DBMainItem dbMainItem = new DBMainItem(list);
+        mRecyclerView.setAdapter(dbMainItem);
     }
     private void showError(boolean flag){
         if(flag){

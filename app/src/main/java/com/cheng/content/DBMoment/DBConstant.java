@@ -14,4 +14,9 @@ public class DBConstant {
     // 获取文章具体内容
     // eg:https://moment.douban.com/api/post/100484
     public static final String DOUBAN_ARTICLE_DETAIL = "https://moment.douban.com/api/post/";
+
+    //item的样式
+    public static final int ITEM_TYPE1 = 10001;
+    public static final int ITEM_TYPE2 = 10002;
+    public static final int ITEM_TYPE3 = 10003;
 }
