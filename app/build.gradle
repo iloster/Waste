@@ -41,5 +41,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:22.2.0'
     compile 'org.greenrobot:greendao:3.2.0'
+    compile 'io.github.angebagui.mediumtextview:mediumtextview:1.0.1'
 
 }

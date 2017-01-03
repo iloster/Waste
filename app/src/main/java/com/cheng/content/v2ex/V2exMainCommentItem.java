@@ -1,8 +1,10 @@
 package com.cheng.content.v2ex;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,11 @@ import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
+
+import io.github.angebagui.mediumtextview.MediumTextView;
 
 /**
  * Created by cheng on 2017/1/2.
@@ -56,7 +62,24 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             vHolder.mTopicDetailName.setText(mV2exEntity.getUsername());
             vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
             vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
-            vHolder.mTopicDetailContent.setText(Html.fromHtml(mV2exEntity.getContent_rendered()));
+//            Spanned sp = Html.fromHtml(mV2exEntity.getContent_rendered(), new Html.ImageGetter() {
+//                @Override
+//                public Drawable getDrawable(String s) {
+//                    InputStream is = null;
+//                    LogUtils.v(TAG,"getDrawable:"+s);
+//                    try {
+//                        is = (InputStream) new URL(s).getContent();
+//                        Drawable d = Drawable.createFromStream(is,"src");
+//                        d.setBounds(0, 0, d.getIntrinsicWidth(),
+//                                d.getIntrinsicHeight());
+//                        is.close();
+//                        return d;
+//                    } catch (Exception e) {
+//                        return null;
+//                    }
+//                }
+//            },null);
+            vHolder.mTopicDetailContent.setText(mV2exEntity.getContent_rendered());
         }else {
 
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
@@ -133,7 +156,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         public TextView mTopicDetailName;
         public TextView mTopicDetailTime;
         public TextView mTopicDetailTitle;
-        public TextView mTopicDetailContent;
+        public MediumTextView mTopicDetailContent;
         public V2exMainDetailTopicHolder(View itemView) {
             super(itemView);
 
@@ -141,7 +164,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             mTopicDetailName = (TextView)itemView.findViewById(R.id.topic_detail_name);
             mTopicDetailTime = (TextView)itemView.findViewById(R.id.topic_detail_time);
             mTopicDetailTitle = (TextView)itemView.findViewById(R.id.topic_detail_title);
-            mTopicDetailContent = (TextView)itemView.findViewById(R.id.topic_detail_content);
+            mTopicDetailContent = (MediumTextView)itemView.findViewById(R.id.topic_detail_content);
 
         }
     }

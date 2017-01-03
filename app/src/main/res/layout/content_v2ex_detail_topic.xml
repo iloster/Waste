@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/detailLayout"
-    android:padding="8dp"
+    android:padding="0dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:id="@+id/topic_detail_icon"
-        android:background="@mipmap/ic_launcher" />
+        android:background="@mipmap/default_head" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,16 +37,19 @@
         android:id="@+id/topic_detail_title"
         android:layout_below="@id/topic_detail_icon"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:textColor="#de000000"
+        android:textStyle="bold"
         android:textSize="16sp"
         android:text="this is title"/>
-    <TextView
+    <io.github.angebagui.mediumtextview.MediumTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topic_detail_content"
         android:layout_below="@id/topic_detail_title"
         android:layout_marginTop="10dp"
-        android:textSize="14sp"
+        android:textSize="10sp"
         android:textColor="#ff000000"
         android:text="dsadasdadadaksbdlsbfhb"/>
 </RelativeLayout>
