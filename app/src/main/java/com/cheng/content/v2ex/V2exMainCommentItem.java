@@ -17,6 +17,10 @@ import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
 
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
@@ -67,19 +71,22 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
 //                public Drawable getDrawable(String s) {
 //                    InputStream is = null;
 //                    LogUtils.v(TAG,"getDrawable:"+s);
+//                    Drawable drawable = null;
+//                    URL url;
 //                    try {
-//                        is = (InputStream) new URL(s).getContent();
-//                        Drawable d = Drawable.createFromStream(is,"src");
-//                        d.setBounds(0, 0, d.getIntrinsicWidth(),
-//                                d.getIntrinsicHeight());
+//                        url = new URL(s);
+//                        drawable = Drawable.createFromStream(url.openStream(), "");  //获取网路图片
+//                        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+//                                drawable.getIntrinsicHeight());
 //                        is.close();
-//                        return d;
+//                        return drawable;
 //                    } catch (Exception e) {
 //                        return null;
 //                    }
 //                }
 //            },null);
-            vHolder.mTopicDetailContent.setText(mV2exEntity.getContent_rendered());
+//            vHolder.mTopicDetailContent.setText(sp);
+            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
         }else {
 
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
@@ -157,7 +164,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         public TextView mTopicDetailName;
         public TextView mTopicDetailTime;
         public TextView mTopicDetailTitle;
-        public MediumTextView mTopicDetailContent;
+        public HtmlTextView mTopicDetailContent;
         public V2exMainDetailTopicHolder(View itemView) {
             super(itemView);
 
@@ -165,7 +172,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             mTopicDetailName = (TextView)itemView.findViewById(R.id.topic_detail_name);
             mTopicDetailTime = (TextView)itemView.findViewById(R.id.topic_detail_time);
             mTopicDetailTitle = (TextView)itemView.findViewById(R.id.topic_detail_title);
-            mTopicDetailContent = (MediumTextView)itemView.findViewById(R.id.topic_detail_content);
+            mTopicDetailContent = (HtmlTextView)itemView.findViewById(R.id.topic_detail_content);
 
         }
     }
