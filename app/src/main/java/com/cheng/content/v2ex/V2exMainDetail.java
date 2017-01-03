@@ -6,7 +6,10 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cheng.config.Constants;
@@ -36,6 +39,8 @@ public class V2exMainDetail extends BaseSubView {
 
     private V2exEntity mV2exEntity;
     private RecyclerView mRecyclerView;
+    private LinearLayout mErrorLayout;
+    private Button mErrorBtn;
 
     public V2exMainDetail(Context context,V2exEntity v) {
         super(context);
@@ -49,9 +54,19 @@ public class V2exMainDetail extends BaseSubView {
     private void initUI(){
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        mErrorLayout = (LinearLayout)findViewById(R.id.errorLayout);
+        mErrorBtn = (Button)findViewById(R.id.errorBtn);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        mErrorBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showComment();
+            }
+        });
     }
 
 
@@ -61,12 +76,12 @@ public class V2exMainDetail extends BaseSubView {
         HttpUtil.getInstance().enqueue(mCommentUrl, new CallBack() {
             @Override
             public void onError() {
-
+                showError(true);
             }
 
             @Override
             public void onSuccess(String ret) {
-
+                showError(false);
                 Type type = new TypeToken<List<V2exMainCommentBean>>(){}.getType();
                 List<V2exMainCommentBean> list = new Gson().fromJson(ret,type);
                 LogUtils.v(TAG,"showComment success size:"+list.size());
@@ -75,6 +90,16 @@ public class V2exMainDetail extends BaseSubView {
                 mRecyclerView.setAdapter(v2exMainCommentItem);
             }
         });
+    }
+
+    private void showError(boolean flag){
+        if(flag){
+            mRecyclerView.setVisibility(GONE);
+            mErrorLayout.setVisibility(VISIBLE);
+        }else{
+            mRecyclerView.setVisibility(VISIBLE);
+            mErrorLayout.setVisibility(GONE);
+        }
     }
 
 }

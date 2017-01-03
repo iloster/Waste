@@ -11,4 +11,5 @@ public interface IV2exMainPagerView {
     void showLoading(boolean flag);
     void showDetail(V2exEntity v);
     void refreshData(int index,List<V2exEntity> v);
+    void showError();
 }

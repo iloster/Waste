@@ -39,7 +39,7 @@ public class V2exPresenter {
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override
             public void onError() {
-
+                mIV2exMainView.showError();
             }
 
             @Override

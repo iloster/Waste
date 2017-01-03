@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    android:layout_height="match_parent"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:padding="0dp"
     android:background="@color/white"
-    android:id="@+id/recyclerView"
-    android:clickable="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    
-</android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:id="@+id/errorLayout"
+        android:layout_centerInParent="true">
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/errorBtn"
+            android:background="@drawable/network_error_click">
+        </Button>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
+            android:text="获取数据失败，请检查网络连接"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="0dp"
+        android:background="@color/white"
+        android:id="@+id/recyclerView"
+        android:clickable="true"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
