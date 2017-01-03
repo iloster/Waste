@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.cheng.content.DBMoment.DBView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
@@ -28,8 +29,8 @@ public class FloatContentMainView extends BaseSubView {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mSubViewListener.replaceSubView(new V2exMainView(context));
-                MyWindowManager.replaceSubView(new V2exMainView(context),"V2EX");
+//                MyWindowManager.replaceSubView(new V2exMainView(context),"V2EX");
+                MyWindowManager.replaceSubView(new DBView(),"豆瓣一刻");
             }
         });
     }

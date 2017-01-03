@@ -51,4 +51,12 @@ public class TimeUtils {
         String res = simpleDateFormat.format(date);
         return res;
     }
+
+    public static String getDBTimerStr(){
+        long curTime = System.currentTimeMillis();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(curTime);
+        String res = simpleDateFormat.format(date);
+        return res;
+    }
 }
