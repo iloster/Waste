@@ -66,38 +66,19 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             vHolder.mTopicDetailName.setText(mV2exEntity.getUsername());
             vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
             vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
-//            Spanned sp = Html.fromHtml(mV2exEntity.getContent_rendered(), new Html.ImageGetter() {
-//                @Override
-//                public Drawable getDrawable(String s) {
-//                    InputStream is = null;
-//                    LogUtils.v(TAG,"getDrawable:"+s);
-//                    Drawable drawable = null;
-//                    URL url;
-//                    try {
-//                        url = new URL(s);
-//                        drawable = Drawable.createFromStream(url.openStream(), "");  //获取网路图片
-//                        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
-//                                drawable.getIntrinsicHeight());
-//                        is.close();
-//                        return drawable;
-//                    } catch (Exception e) {
-//                        return null;
-//                    }
-//                }
-//            },null);
-//            vHolder.mTopicDetailContent.setText(sp);
             vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
+            vHolder.mTopicDetailHead.setText("总共"+(getItemCount()-1)+"个回复  |  直到"+TimeUtils.getNowTimeStr());
         }else {
 
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
             V2exMainCommentBean v = mV2exMainCommentBeanList.get(position-1);
-            if(position == 1){
-                vHolder.mHeadLayout.setVisibility(View.VISIBLE);
-                vHolder.mCommentItemHead.setVisibility(View.VISIBLE);
-                vHolder.mCommentItemHead.setText("总共"+(getItemCount()-1)+"个回复 | 直到"+TimeUtils.getNowTimeStr());
-            }else{
+//            if(position == 1){
+//                vHolder.mHeadLayout.setVisibility(View.VISIBLE);
+//                vHolder.mCommentItemHead.setVisibility(View.VISIBLE);
+//                vHolder.mCommentItemHead.setText("总共"+(getItemCount()-1)+"个回复 | 直到"+TimeUtils.getNowTimeStr());
+//            }else{
                 vHolder.mHeadLayout.setVisibility(View.GONE);
-            }
+//            }
             String url = "http:"+v.getMember().getAvatar_mini();
             vHolder.mCommentItemContent.setText(v.getContent());
             Picasso.with(mContext).load(url).into(vHolder.mCommentItemIcon);
@@ -165,6 +146,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         public TextView mTopicDetailTime;
         public TextView mTopicDetailTitle;
         public HtmlTextView mTopicDetailContent;
+        public TextView mTopicDetailHead;
         public V2exMainDetailTopicHolder(View itemView) {
             super(itemView);
 
@@ -173,6 +155,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
             mTopicDetailTime = (TextView)itemView.findViewById(R.id.topic_detail_time);
             mTopicDetailTitle = (TextView)itemView.findViewById(R.id.topic_detail_title);
             mTopicDetailContent = (HtmlTextView)itemView.findViewById(R.id.topic_detail_content);
+            mTopicDetailHead = (TextView)itemView.findViewById(R.id.topic_detail_head);
 
         }
     }

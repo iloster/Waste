@@ -13,4 +13,11 @@ public class Constants {
     public static final String V2EX_URL_HOT = "https://www.v2ex.com/api/topics/hot.json";
     public static final String V2EX_URL_LATEST = "https://www.v2ex.com/api/topics/latest.json";
     public static final String V2EX_URL_REPLAY = "https://www.v2ex.com/api/replies/show.json?topic_id=";//329991";
+
+    // 获取最新新闻
+    public static final String ZHIHU_URL_LATEST = "http://news-at.zhihu.com/api/4/news/latest";
+    // 获取新闻详情
+    public static final String ZHIHU_URL_DETAIL = "http://news-at.zhihu.com/api/4/news/";
+    // 获取过往新闻
+    public static final String ZHIHU_URLDEFORE = "http://news.at.zhihu.com/api/4/news/before/";
 }

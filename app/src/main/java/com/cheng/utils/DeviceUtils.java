@@ -1,7 +1,11 @@
 package com.cheng.utils;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.WindowManager;
+
+import com.cheng.waste.WasteApplication;
 
 /**
  * Created by cheng on 2016/12/7.
@@ -20,5 +24,15 @@ public class DeviceUtils {
     public static int getHeight(){
         WindowManager wm = (WindowManager)mContext.getSystemService(mContext.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getHeight();
+    }
+
+    /**
+     * 判断网络是否连接
+     * @return
+     */
+    public static boolean isNetworkConnected(){
+        ConnectivityManager cm = (ConnectivityManager) WasteApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        return ni != null && ni.isConnectedOrConnecting();
     }
 }
