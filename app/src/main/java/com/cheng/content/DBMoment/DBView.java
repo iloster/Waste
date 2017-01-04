@@ -15,6 +15,7 @@ import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
@@ -60,6 +61,7 @@ public class DBView extends BaseSubView{
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
+
     }
 
     private void loadData(){
@@ -93,6 +95,12 @@ public class DBView extends BaseSubView{
     private void showData(List<DBMainBean> list){
         LogUtils.v(TAG,"showData: size="+list.size());
         DBMainItem dbMainItem = new DBMainItem(list);
+        dbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position, Object data) {
+                MyWindowManager.replaceSubView(new DBDetail((DBMainBean) data),"豆瓣一刻");
+            }
+        });
         mRecyclerView.setAdapter(dbMainItem);
     }
     private void showError(boolean flag){
@@ -106,4 +114,7 @@ public class DBView extends BaseSubView{
     }
 
 
+    public interface OnRecyclerViewItemClickListener{
+        public void onItemClick(int position,Object data);
+    }
 }

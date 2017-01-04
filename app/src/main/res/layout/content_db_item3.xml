@@ -9,7 +9,8 @@
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
     android:background="@color/white"
-    android:layout_marginBottom="5dp">
+    android:minHeight="80dp"
+    android:layout_marginBottom="8dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

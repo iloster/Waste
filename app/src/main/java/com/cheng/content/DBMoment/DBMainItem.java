@@ -24,6 +24,7 @@ public class DBMainItem extends RecyclerView.Adapter{
 
     private Context mContext;
     private List<DBMainBean> mDBMainBeanList;
+    private DBView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     public DBMainItem(List<DBMainBean> list){
         mContext = WasteApplication.getInstance();
         mDBMainBeanList = list;
@@ -35,14 +36,17 @@ public class DBMainItem extends RecyclerView.Adapter{
         if(viewType == DBConstant.ITEM_TYPE2){
             View view = LayoutInflater.from(mContext).inflate(R.layout.content_db_item2, parent, false);
             DBMainItemType2Holder holder = new DBMainItemType2Holder(view);
+            view.setOnClickListener(holder);
             return holder;
         }else if(viewType == DBConstant.ITEM_TYPE3){
             View view = LayoutInflater.from(mContext).inflate(R.layout.content_db_item3, parent, false);
             DBMainItemType3Holder holder = new DBMainItemType3Holder(view);
+            view.setOnClickListener(holder);
             return holder;
         }else{
             View view = LayoutInflater.from(mContext).inflate(R.layout.content_db_item1, parent, false);
             DBMainItemType1Holder holder = new DBMainItemType1Holder(view);
+            view.setOnClickListener(holder);
             return holder;
         }
     }
@@ -85,8 +89,10 @@ public class DBMainItem extends RecyclerView.Adapter{
         return mDBMainBeanList.get(position).getDisplay_style();
     }
 
-
-    class DBMainItemType1Holder extends RecyclerView.ViewHolder{
+    public void setItemClickListener(DBView.OnRecyclerViewItemClickListener onRecyclerViewItemClickListener){
+        mOnRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
+    }
+    class DBMainItemType1Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mDBItemTitle;
         public TextView mDBItemAbstract;
@@ -95,8 +101,13 @@ public class DBMainItem extends RecyclerView.Adapter{
             mDBItemTitle = (TextView)itemView.findViewById(R.id.db_item_title);
             mDBItemAbstract = (TextView)itemView.findViewById(R.id.db_item_abstract);
         }
+
+        @Override
+        public void onClick(View view) {
+            mOnRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),mDBMainBeanList.get(getAdapterPosition()));
+        }
     }
-    class DBMainItemType2Holder extends RecyclerView.ViewHolder{
+    class DBMainItemType2Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mDBItemTitle;
         public TextView mDBItemAbstract;
@@ -107,9 +118,14 @@ public class DBMainItem extends RecyclerView.Adapter{
             mDBItemAbstract = (TextView)itemView.findViewById(R.id.db_item_abstract);
             mDBItemIcon = (ImageView)itemView.findViewById(R.id.db_item_icon);
         }
+
+        @Override
+        public void onClick(View view) {
+            mOnRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),mDBMainBeanList.get(getAdapterPosition()));
+        }
     }
 
-    class DBMainItemType3Holder extends RecyclerView.ViewHolder{
+    class DBMainItemType3Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView mDBItemTitle;
         public ImageView mDBItemIcon1;
@@ -121,6 +137,11 @@ public class DBMainItem extends RecyclerView.Adapter{
             mDBItemIcon1 = (ImageView)itemView.findViewById(R.id.db_item_icon1);
             mDBItemIcon2 = (ImageView)itemView.findViewById(R.id.db_item_icon2);
             mDBItemIcon3 = (ImageView)itemView.findViewById(R.id.db_item_icon3);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mOnRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),mDBMainBeanList.get(getAdapterPosition()));
         }
     }
 }

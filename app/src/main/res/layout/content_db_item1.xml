@@ -9,7 +9,8 @@
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
     android:background="@color/white"
-    android:layout_marginBottom="5dp">
+    android:minHeight="100dp"
+    android:layout_marginBottom="8dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             android:layout_margin="5dp"
             android:textSize="12sp"
             android:textColor="@color/seconaary_text"
+            android:lineSpacingMultiplier="1.5"
             android:text="this is abstract"
             android:id="@+id/db_item_abstract"/>
     </LinearLayout>
