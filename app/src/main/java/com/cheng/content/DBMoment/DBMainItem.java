@@ -59,7 +59,7 @@ public class DBMainItem extends RecyclerView.Adapter{
             holder2.mDBItemTitle.setText(bean.getTitle());
             holder2.mDBItemAbstract.setText(bean.getAbstractX());
             String url = bean.getThumbs().get(0).getSmall().getUrl();
-            Picasso.with(mContext).load(url).placeholder(R.mipmap.db_default_image).resize(60,60).into(holder2.mDBItemIcon);
+            Picasso.with(mContext).load(url).placeholder(R.mipmap.db_default_image).resize(90,90).into(holder2.mDBItemIcon);
 
         }else if(bean.getDisplay_style() == DBConstant.ITEM_TYPE3){
             DBMainItemType3Holder holder3 = (DBMainItemType3Holder) holder;

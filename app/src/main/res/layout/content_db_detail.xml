@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text = "this is title"
             android:id="@+id/db_detail_title"/>
-        <TextView
+        <io.github.angebagui.mediumtextview.MediumTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/seconaary_text"

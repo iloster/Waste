@@ -24,7 +24,7 @@ public class DBDetail extends BaseSubView {
     private DBDetailBean mDbDetailBean;
     private DBMainBean mDbMainBean;
     private TextView mDBDetailTitle;
-    private TextView mDBDetailContent;
+    private MediumTextView mDBDetailContent;
 
     public DBDetail(DBMainBean dbMainBean) {
         super(WasteApplication.getInstance());
@@ -40,7 +40,7 @@ public class DBDetail extends BaseSubView {
 
     private void initUI(){
         mDBDetailTitle = (TextView)findViewById(R.id.db_detail_title);
-        mDBDetailContent = (TextView)findViewById(R.id.db_detail_content);
+        mDBDetailContent = (MediumTextView)findViewById(R.id.db_detail_content);
     }
 
     private void loadData(){
@@ -60,6 +60,14 @@ public class DBDetail extends BaseSubView {
         });
     }
     private void showData(){
-        mDBDetailContent.setText(mDbDetailBean.getContent());
+        //mDBDetailContent.setText(mDbDetailBean.getContent());
+        String content = mDbDetailBean.getContent();
+        String content1 = "";
+        for(int i = 0;i<mDbDetailBean.getPhotos().size();i++){
+            content = content.replace("id=\""+mDbDetailBean.getPhotos().get(i).getTag_name()+"\"","src="+mDbDetailBean.getPhotos().get(i).getLarge().getUrl());
+        }
+        content = content.replaceAll("<[/]*?(?!a|img|p)[^<>]*?>", "");
+        LogUtils.v(TAG,"content1:"+content);
+        mDBDetailContent.setText(content);
     }
 }
