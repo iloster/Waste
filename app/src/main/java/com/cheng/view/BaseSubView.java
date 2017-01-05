@@ -14,4 +14,8 @@ public class BaseSubView extends RelativeLayout{
         super(context);
     }
 
+    public interface OnRecyclerViewItemClickListener{
+        public void onItemClick(int position,Object data);
+    }
+
 }

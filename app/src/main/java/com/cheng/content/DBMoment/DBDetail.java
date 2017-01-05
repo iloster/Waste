@@ -2,6 +2,8 @@ package com.cheng.content.DBMoment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.cheng.http.CallBack;
@@ -24,9 +26,8 @@ public class DBDetail extends BaseSubView {
     private Context mContext;
     private DBDetailBean mDbDetailBean;
     private DBMainBean mDbMainBean;
-    private TextView mDBDetailTitle;
-    private MediumTextView mDBDetailContent;
-    private MultiHtmlTextView mTest;
+    private WebView mWebView;
+
 
     public DBDetail(DBMainBean dbMainBean) {
         super(WasteApplication.getInstance());
@@ -36,16 +37,12 @@ public class DBDetail extends BaseSubView {
         LayoutInflater.from(mContext).inflate(R.layout.content_db_detail,this);
 
         initUI();
-        //loadData();
+        loadData();
 
     }
 
     private void initUI(){
-        mDBDetailTitle = (TextView)findViewById(R.id.db_detail_title);
-        mDBDetailContent = (MediumTextView)findViewById(R.id.db_detail_content);
-
-        mTest = (MultiHtmlTextView)findViewById(R.id.test);
-        mTest.setText(mContext);
+        mWebView = (WebView)findViewById(R.id.webView);
     }
 
     private void loadData(){
@@ -65,14 +62,9 @@ public class DBDetail extends BaseSubView {
         });
     }
     private void showData(){
-        //mDBDetailContent.setText(mDbDetailBean.getContent());
-        String content = mDbDetailBean.getContent();
-        String content1 = "";
-        for(int i = 0;i<mDbDetailBean.getPhotos().size();i++){
-            content = content.replace("id=\""+mDbDetailBean.getPhotos().get(i).getTag_name()+"\"","src="+mDbDetailBean.getPhotos().get(i).getLarge().getUrl());
-        }
-        content = content.replaceAll("<[/]*?(?!a|img|p)[^<>]*?>", "");
-        LogUtils.v(TAG,"content1:"+content);
-        mDBDetailContent.setText(content);
+        mWebView.loadUrl(mDbDetailBean.getUrl());
+        WebSettings settings = mWebView.getSettings();
+        settings.setJavaScriptEnabled(false);
+        mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     }
 }

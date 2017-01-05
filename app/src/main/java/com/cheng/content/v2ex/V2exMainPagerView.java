@@ -45,8 +45,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
         mSwipeRefreshLayout.setRefreshing(true);
         mV2exPresenter = new V2exPresenter(this,mIndex);
-        //mV2exPresenter.loadData();
-        showError();
+        mV2exPresenter.loadData();
     }
 
     private void initUI(){
