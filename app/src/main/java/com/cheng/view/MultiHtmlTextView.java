@@ -10,7 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -45,22 +47,26 @@ public class MultiHtmlTextView extends RecyclerView {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         setLayoutManager(layoutManager);
-        setAdapter(new RecyclerViewItem(list));
+        setAdapter(new RecyclerViewItem());
     }
 
     private class RecyclerViewItem extends RecyclerView.Adapter{
 
-        public RecyclerViewItem(List<String> list) {
-
-        }
-
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LogUtils.v("sss","ss");
-            LinearLayout view = new LinearLayout(mContext);
+            RelativeLayout view = new RelativeLayout(mContext);
+
             TextView tv = new TextView(mContext);
             tv.setTag("tv");
-            view.addView(tv);
+            LayoutParams param1 = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+            view.addView(tv,param1);
+
+            LayoutParams param2 = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+            ImageView image = new ImageView(mContext);
+            image.setScaleType(ImageView.ScaleType.CENTER);
+            view.addView(image,param2);
+            
             RecycleHolder holder = new RecycleHolder(view);
             return holder;
         }
