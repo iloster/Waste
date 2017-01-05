@@ -20,5 +20,11 @@
             android:textColor="@color/seconaary_text"
             android:text="this is content"
             android:id="@+id/db_detail_content"/>
+        <com.cheng.view.MultiHtmlTextView
+            android:layout_height="100dp"
+            android:id="@+id/test"
+            android:layout_width="match_parent">
+
+        </com.cheng.view.MultiHtmlTextView>
     </LinearLayout>
 </ScrollView>

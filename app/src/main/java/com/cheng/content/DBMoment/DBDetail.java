@@ -8,6 +8,7 @@ import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.view.MultiHtmlTextView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ public class DBDetail extends BaseSubView {
     private DBMainBean mDbMainBean;
     private TextView mDBDetailTitle;
     private MediumTextView mDBDetailContent;
+    private MultiHtmlTextView mTest;
 
     public DBDetail(DBMainBean dbMainBean) {
         super(WasteApplication.getInstance());
@@ -34,13 +36,16 @@ public class DBDetail extends BaseSubView {
         LayoutInflater.from(mContext).inflate(R.layout.content_db_detail,this);
 
         initUI();
-        loadData();
+        //loadData();
 
     }
 
     private void initUI(){
         mDBDetailTitle = (TextView)findViewById(R.id.db_detail_title);
         mDBDetailContent = (MediumTextView)findViewById(R.id.db_detail_content);
+
+        mTest = (MultiHtmlTextView)findViewById(R.id.test);
+        mTest.setText(mContext);
     }
 
     private void loadData(){
