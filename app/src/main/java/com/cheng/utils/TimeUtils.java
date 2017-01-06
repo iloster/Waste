@@ -59,4 +59,11 @@ public class TimeUtils {
         String res = simpleDateFormat.format(date);
         return res;
     }
+
+    public static String getDBOffsetTimeStr(int offset){
+        Calendar  cal   =   Calendar.getInstance();
+        cal.add(Calendar.DATE,  offset*-1);
+        String res = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
+        return res;
+    }
 }

@@ -6,9 +6,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
@@ -26,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +38,7 @@ import java.util.List;
  * Created by dev on 2017/1/3.
  */
 
-public class DBView extends BaseSubView{
+public class DBView extends BaseSubView implements IDBView{
 
     private String TAG = "DBView";
     private LinearLayout mErrorLayout;
@@ -41,14 +46,21 @@ public class DBView extends BaseSubView{
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Context mContext;
-
+    private DBMainItem mDbMainItem;
+    private List<DBMainBean> mDBMainBeanList = new ArrayList<>();
+    private DBPresenter mPresenter;
+    private int mOffsetDay = 0;
+    private boolean mIsRefresh = false;
     public DBView() {
         super(WasteApplication.getInstance());
         mContext = WasteApplication.getInstance();
         LayoutInflater.from(mContext).inflate(R.layout.content_db_view,this);
 
         initUI();
-        loadData();
+        mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
+        mSwipeRefreshLayout.setRefreshing(true);
+        mPresenter = new DBPresenter(this);
+        mPresenter.loadData(TimeUtils.getDBTimerStr());
     }
 
     private void initUI(){
@@ -61,60 +73,74 @@ public class DBView extends BaseSubView{
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-
-    }
-
-    private void loadData(){
-        String url = DBConstant.DOUBAN_MOMENT + TimeUtils.getDBTimerStr();
-        LogUtils.v(TAG,"loadData:"+url);
-        HttpUtil.getInstance().enqueue(url, new CallBack() {
-            @Override
-            public void onError() {
-                showError(true);
-            }
-
-            @Override
-            public void onSuccess(String ret) {
-                showError(false);
-//                LogUtils.v(TAG,"loadData success:"+ret);
-                Gson gson = new Gson();
-                try {
-                    JSONObject jsonObject = new JSONObject(ret);
-                    String posts = jsonObject.getString("posts");
-                    Type type = new TypeToken<List<DBMainBean>>(){}.getType();
-                    List<DBMainBean> list = gson.fromJson(posts,type);
-                    showData(list);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
-
-    private void showData(List<DBMainBean> list){
-        LogUtils.v(TAG,"showData: size="+list.size());
-        DBMainItem dbMainItem = new DBMainItem(list);
-        dbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
+        mDbMainItem = new DBMainItem(mDBMainBeanList);
+        mDbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position, Object data) {
                 MyWindowManager.replaceSubView(new DBDetail((DBMainBean) data),"豆瓣一刻");
             }
         });
-        mRecyclerView.setAdapter(dbMainItem);
+        mRecyclerView.setAdapter(mDbMainItem);
+
+        mErrorBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.loadData(TimeUtils.getDBTimerStr());
+            }
+        });
+
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
+            int lastVisibleItem ;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mDbMainItem.getItemCount()){
+                    LogUtils.v(TAG,"下拉刷新");
+                    if(!mIsRefresh) {
+                        mIsRefresh = true;
+//                        mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
+                        mSwipeRefreshLayout.setRefreshing(true);
+                        mPresenter.loadData(TimeUtils.getDBOffsetTimeStr(mOffsetDay));
+                    }else{
+                        LogUtils.v(TAG,"数据还没有加载完");
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                //最后一个可见的ITEM
+                lastVisibleItem=layoutManager.findLastVisibleItemPosition();
+            }
+        });
+
     }
-    private void showError(boolean flag){
+
+    @Override
+    public void refreshData(List<DBMainBean> list) {
+        mSwipeRefreshLayout.setRefreshing(false);
+        Toast.makeText(mContext,"数据加载成功",Toast.LENGTH_SHORT).show();
+        mOffsetDay = mOffsetDay + 1;
+        mIsRefresh = false;
+        for(int i = 0; i < list.size(); i++){
+            mDBMainBeanList.add(i,list.get(i));
+        }
+        mDbMainItem.notifyItemRangeInserted(mDBMainBeanList.size(),mDBMainBeanList.size()+list.size());
+        mDbMainItem.notifyDataSetChanged();
+    }
+
+    public void showError(boolean flag){
+
+        mSwipeRefreshLayout.setRefreshing(false);
         if(flag){
             mSwipeRefreshLayout.setVisibility(GONE);
             mErrorLayout.setVisibility(VISIBLE);
+
         }else{
             mSwipeRefreshLayout.setVisibility(VISIBLE);
             mErrorLayout.setVisibility(GONE);
+            Toast.makeText(mContext,"数据加载成功",Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    public interface OnRecyclerViewItemClickListener{
-        public void onItemClick(int position,Object data);
-    }
 }
