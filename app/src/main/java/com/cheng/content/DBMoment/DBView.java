@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class DBView extends BaseSubView implements IDBView{
     private List<DBMainBean> mDBMainBeanList = new ArrayList<>();
     private DBPresenter mPresenter;
     private int mOffsetDay = 0;
+    private String mNowTimeStr = "";
     private boolean mIsRefresh = false;
     public DBView() {
         super(WasteApplication.getInstance());
@@ -60,6 +62,7 @@ public class DBView extends BaseSubView implements IDBView{
         mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
         mSwipeRefreshLayout.setRefreshing(true);
         mPresenter = new DBPresenter(this);
+        mNowTimeStr = TimeUtils.getDBTimerStr();
         mPresenter.loadData(TimeUtils.getDBTimerStr());
     }
 
@@ -89,6 +92,16 @@ public class DBView extends BaseSubView implements IDBView{
             }
         });
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(mNowTimeStr == TimeUtils.getDBTimerStr()) {
+                    mPresenter.loadData(TimeUtils.getDBTimerStr());
+                }else{
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
             int lastVisibleItem ;
             @Override
@@ -97,7 +110,7 @@ public class DBView extends BaseSubView implements IDBView{
                     LogUtils.v(TAG,"下拉刷新");
                     if(!mIsRefresh) {
                         mIsRefresh = true;
-//                        mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
+                       // mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
                         mSwipeRefreshLayout.setRefreshing(true);
                         mPresenter.loadData(TimeUtils.getDBOffsetTimeStr(mOffsetDay));
                     }else{
@@ -119,7 +132,7 @@ public class DBView extends BaseSubView implements IDBView{
     @Override
     public void refreshData(List<DBMainBean> list) {
         mSwipeRefreshLayout.setRefreshing(false);
-        Toast.makeText(mContext,"数据加载成功",Toast.LENGTH_SHORT).show();
+
         mOffsetDay = mOffsetDay + 1;
         mIsRefresh = false;
         for(int i = 0; i < list.size(); i++){
@@ -132,10 +145,13 @@ public class DBView extends BaseSubView implements IDBView{
     public void showError(boolean flag){
 
         mSwipeRefreshLayout.setRefreshing(false);
+        mIsRefresh = false;
         if(flag){
-            mSwipeRefreshLayout.setVisibility(GONE);
-            mErrorLayout.setVisibility(VISIBLE);
-
+            if(mDBMainBeanList.size() ==0 ) {
+                mSwipeRefreshLayout.setVisibility(GONE);
+                mErrorLayout.setVisibility(VISIBLE);
+            }
+            Toast.makeText(mContext,"数据加载失败",Toast.LENGTH_SHORT).show();
         }else{
             mSwipeRefreshLayout.setVisibility(VISIBLE);
             mErrorLayout.setVisibility(GONE);
