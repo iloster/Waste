@@ -12,8 +12,12 @@ import android.widget.RelativeLayout;
 public class BaseSubView extends RelativeLayout{
     public BaseSubView(Context context) {
         super(context);
+
     }
 
+    public void onRefreshClick(){
+
+    }
     public interface OnRecyclerViewItemClickListener{
         public void onItemClick(int position,Object data);
     }

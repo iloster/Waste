@@ -14,6 +14,9 @@ import com.cheng.content.FloatContentMainView;
 import com.cheng.utils.LogUtils;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
+import com.cheng.waste.WasteApplication;
+
+import org.jsoup.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,8 @@ public class BaseContentView extends RelativeLayout{
 
     private List<View> mListView = new ArrayList<>();
     private List<String> mTitleList = new ArrayList<>();
+    private View mErrorView;
+    private Button mErrorButton;
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
@@ -86,6 +91,7 @@ public class BaseContentView extends RelativeLayout{
     }
 
     public void popView(){
+        hideErrorView();
         View view = mListView.remove(mListView.size() - 1);
         mSubView.removeView(view);
 
@@ -96,5 +102,32 @@ public class BaseContentView extends RelativeLayout{
         }
     }
 
+    public BaseSubView getCurView(){
+        return (BaseSubView) mListView.get(mListView.size() - 1);
+    }
+
+    public void showErrorView(){
+        //显示errorview
+        mErrorView = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_error_view,null);
+        mErrorButton = (Button)mErrorView.findViewById(R.id.errorBtn);
+        mErrorButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseSubView curView = getCurView();
+                hideErrorView();
+                curView.onRefreshClick();
+            }
+        });
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mSubView.addView(mErrorView,params);
+        mErrorView.setVisibility(VISIBLE);
+    }
+    public void hideErrorView(){
+       // mErrorView.setVisibility(GONE);
+        if(mErrorView != null) {
+            mSubView.removeView(mErrorView);
+        }
+    }
 
 }

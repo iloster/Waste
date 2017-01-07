@@ -11,6 +11,8 @@ import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MultiHtmlTextView;
+import com.cheng.view.MyWebView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
@@ -26,7 +28,7 @@ public class DBDetail extends BaseSubView {
     private Context mContext;
     private DBDetailBean mDbDetailBean;
     private DBMainBean mDbMainBean;
-    private WebView mWebView;
+    private MyWebView mWebView;
 
 
     public DBDetail(DBMainBean dbMainBean) {
@@ -37,12 +39,19 @@ public class DBDetail extends BaseSubView {
         LayoutInflater.from(mContext).inflate(R.layout.content_db_detail,this);
 
         initUI();
-        loadData();
-
+        //loadData();
+        showData();
     }
 
     private void initUI(){
-        mWebView = (WebView)findViewById(R.id.webView);
+        mWebView = (MyWebView) findViewById(R.id.webView);
+        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+            @Override
+            public void onTimeout() {
+                LogUtils.v(TAG,"加载超时");
+                MyWindowManager.showErrorView();
+            }
+        });
     }
 
     private void loadData(){
@@ -50,7 +59,7 @@ public class DBDetail extends BaseSubView {
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override
             public void onError() {
-
+                MyWindowManager.showErrorView();
             }
 
             @Override
@@ -62,9 +71,14 @@ public class DBDetail extends BaseSubView {
         });
     }
     private void showData(){
-        mWebView.loadUrl(mDbDetailBean.getUrl());
+        mWebView.loadUrl(mDbMainBean.getUrl());
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(false);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+    }
+
+    @Override
+    public void onRefreshClick() {
+        showData();
     }
 }

@@ -143,4 +143,10 @@ public class MyWindowManager {
         }
     }
 
+    public static void showErrorView(){
+        if(mFloatContentView!=null){
+            mFloatContentView.showErrorView();
+        }
+    }
+
 }

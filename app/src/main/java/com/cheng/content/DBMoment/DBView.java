@@ -67,8 +67,6 @@ public class DBView extends BaseSubView implements IDBView{
     }
 
     private void initUI(){
-        mErrorLayout = (LinearLayout)findViewById(R.id.errorLayout);
-        mErrorBtn = (Button)findViewById(R.id.errorBtn);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
@@ -84,13 +82,6 @@ public class DBView extends BaseSubView implements IDBView{
             }
         });
         mRecyclerView.setAdapter(mDbMainItem);
-
-        mErrorBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.loadData(TimeUtils.getDBTimerStr());
-            }
-        });
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -147,16 +138,18 @@ public class DBView extends BaseSubView implements IDBView{
         mSwipeRefreshLayout.setRefreshing(false);
         mIsRefresh = false;
         if(flag){
-            if(mDBMainBeanList.size() ==0 ) {
-                mSwipeRefreshLayout.setVisibility(GONE);
-                mErrorLayout.setVisibility(VISIBLE);
-            }
             Toast.makeText(mContext,"数据加载失败",Toast.LENGTH_SHORT).show();
+            MyWindowManager.showErrorView();
+
         }else{
-            mSwipeRefreshLayout.setVisibility(VISIBLE);
-            mErrorLayout.setVisibility(GONE);
             Toast.makeText(mContext,"数据加载成功",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onRefreshClick(){
+        //mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
+        mSwipeRefreshLayout.setRefreshing(true);
+        mPresenter.loadData(TimeUtils.getDBTimerStr());
     }
 
 }
