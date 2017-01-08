@@ -81,4 +81,13 @@ public class DBDetail extends BaseSubView {
     public void onRefreshClick() {
         showData();
     }
+
+    public boolean onWebViewBack(){
+        if(mWebView.canGoBack()){
+            mWebView.goBack();
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -22,4 +22,11 @@ public class BaseSubView extends RelativeLayout{
         public void onItemClick(int position,Object data);
     }
 
+    /**
+     * 返回true表示浏览器的返回
+     * @return
+     */
+    public boolean onWebViewBack(){
+        return false;
+    }
 }

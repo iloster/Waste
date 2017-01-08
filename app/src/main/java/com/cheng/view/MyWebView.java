@@ -1,8 +1,10 @@
 package com.cheng.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -13,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.waste.R;
+import com.cheng.waste.WasteApplication;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,6 +33,7 @@ public class MyWebView extends WebView {
 
     private Timer timer;
     private OnWebViewListener mOnWebViewListener;
+    private boolean mLoadingFinish = false;
     public MyWebView(Context context, AttributeSet attrs) {
         super(context,attrs);
 
@@ -75,6 +79,7 @@ public class MyWebView extends WebView {
                 mProgressbar.setProgress(newProgress);
             }
             if(newProgress >= 60){
+                mLoadingFinish = true;
                 timer.cancel();
                 timer.purge();
             }
@@ -88,6 +93,7 @@ public class MyWebView extends WebView {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+            mLoadingFinish = false;
             timer = new Timer();
             TimerTask tt = new TimerTask() {
                 @Override
@@ -95,7 +101,7 @@ public class MyWebView extends WebView {
                         /*
                          * 超时后,首先判断页面加载进度,超时并且进度小于100,就执行超时后的动作
                          */
-                    if (getProgress() < 100) {
+                    if(!mLoadingFinish) {
                         Message msg = new Message();
                         msg.what = 1;
                         mHandler.sendMessage(msg);
@@ -110,9 +116,18 @@ public class MyWebView extends WebView {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mLoadingFinish = true;
             timer.cancel();
             timer.purge();
             LogUtils.v(TAG,"onPageFinished");
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+
+            return true;
+            //return super.shouldOverrideUrlLoading(view, url);
         }
 
 

@@ -10,8 +10,11 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * Created by cheng on 2017/1/6.
@@ -21,6 +24,7 @@ public class DBPresenter {
 
     private String TAG = "DBPresenter";
     private DBView mDBView;
+    private Call mCall;
     public DBPresenter(DBView dbView){
         mDBView = dbView;
     }
@@ -29,7 +33,7 @@ public class DBPresenter {
         String url = DBConstant.DOUBAN_MOMENT + timeStr;
         LogUtils.v(TAG, "loadData:" + url);
         if (DBDbUtil.get(timeStr).size() == 0) {
-            HttpUtil.getInstance().enqueue(url, new CallBack() {
+            mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
                 @Override
                 public void onError() {
                     LogUtils.v(TAG, "onError");
@@ -71,6 +75,15 @@ public class DBPresenter {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void release(){
+        LogUtils.v(TAG,"release");
+        try{
+            mCall.cancel();
+        }catch (Exception e){
+            LogUtils.v(TAG,"Exception:"+e.toString());
         }
     }
 }

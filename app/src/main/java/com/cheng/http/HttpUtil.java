@@ -71,7 +71,6 @@ public class HttpUtil {
                 .url(url)
                 .build();
         final CallBack mCallBack = callback;
-
         mOkHttpClient.newCall(request).enqueue(new Callback() {
 
             @Override
@@ -89,9 +88,42 @@ public class HttpUtil {
                 }
             }
         });
+
     }
 
 
+    /**
+     *
+     * @param service  jie 接口
+     * @param param  请求参数 为一个json字符串
+     * @param callback  请求回调
+     */
+    public Call enqueueEx(String url,CallBack callback){
+        Log.v("ZedLi","url:"+url);
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        final CallBack mCallBack = callback;
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                sendFailure(call, mCallBack);
+                Log.e("ZedLi","onFailure:"+e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    sendResponse(call, response.body().string(), mCallBack);
+                } else {
+                    sendFailure(call, mCallBack);
+                }
+            }
+        });
+        return call;
+    }
 
     private void sendFailure(Call call, final CallBack callback) {
         mDelivery.post(new Runnable() {

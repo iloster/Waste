@@ -92,13 +92,15 @@ public class BaseContentView extends RelativeLayout{
 
     public void popView(){
         hideErrorView();
-        View view = mListView.remove(mListView.size() - 1);
-        mSubView.removeView(view);
+        if(!getCurView().onWebViewBack()) {
+            View view = mListView.remove(mListView.size() - 1);
+            mSubView.removeView(view);
 
-        mTitleList.remove(mTitleList.size()-1);
-        mContentTitle.setText(mTitleList.get(mTitleList.size()-1));
-        if(mListView.size() == 1){
-            mBackBtn.setVisibility(INVISIBLE);
+            mTitleList.remove(mTitleList.size() - 1);
+            mContentTitle.setText(mTitleList.get(mTitleList.size() - 1));
+            if (mListView.size() == 1) {
+                mBackBtn.setVisibility(INVISIBLE);
+            }
         }
     }
 

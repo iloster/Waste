@@ -66,6 +66,12 @@ public class DBView extends BaseSubView implements IDBView{
         mPresenter.loadData(TimeUtils.getDBTimerStr());
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mPresenter.release();
+    }
+
     private void initUI(){
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -139,7 +145,9 @@ public class DBView extends BaseSubView implements IDBView{
         mIsRefresh = false;
         if(flag){
             Toast.makeText(mContext,"数据加载失败",Toast.LENGTH_SHORT).show();
-            MyWindowManager.showErrorView();
+            if(mDBMainBeanList.size() == 0) {
+                MyWindowManager.showErrorView();
+            }
 
         }else{
             Toast.makeText(mContext,"数据加载成功",Toast.LENGTH_SHORT).show();
