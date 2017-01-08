@@ -7,6 +7,6 @@ import java.util.List;
  */
 
 public interface IDBView {
-    void refreshData(List<DBMainBean> list);
+    void refreshData(List<DBMainBean> list,boolean flag);
     void showError(boolean flag);
 }

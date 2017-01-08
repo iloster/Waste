@@ -29,7 +29,7 @@ public class DBPresenter {
         mDBView = dbView;
     }
 
-    public void loadData(final String timeStr) {
+    public void loadData(final String timeStr, final boolean flag) {
         String url = DBConstant.DOUBAN_MOMENT + timeStr;
         LogUtils.v(TAG, "loadData:" + url);
         if (DBDbUtil.get(timeStr).size() == 0) {
@@ -53,7 +53,7 @@ public class DBPresenter {
                         }.getType();
                         List<DBMainBean> list = gson.fromJson(posts, type);
                         //将数据存入数据库
-                        mDBView.refreshData(list);
+                        mDBView.refreshData(list,flag);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -71,7 +71,7 @@ public class DBPresenter {
                 }.getType();
                 List<DBMainBean> list = gson.fromJson(posts, type);
                 //将数据存入数据库
-                mDBView.refreshData(list);
+                mDBView.refreshData(list,flag);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

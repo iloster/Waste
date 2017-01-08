@@ -63,7 +63,7 @@ public class DBView extends BaseSubView implements IDBView{
         mSwipeRefreshLayout.setRefreshing(true);
         mPresenter = new DBPresenter(this);
         mNowTimeStr = TimeUtils.getDBTimerStr();
-        mPresenter.loadData(TimeUtils.getDBTimerStr());
+        mPresenter.loadData(TimeUtils.getDBTimerStr(),true);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class DBView extends BaseSubView implements IDBView{
             @Override
             public void onRefresh() {
                 if(mNowTimeStr == TimeUtils.getDBTimerStr()) {
-                    mPresenter.loadData(TimeUtils.getDBTimerStr());
+                    mPresenter.loadData(TimeUtils.getDBTimerStr(),true);
                 }else{
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
@@ -109,7 +109,7 @@ public class DBView extends BaseSubView implements IDBView{
                         mIsRefresh = true;
                        // mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
                         mSwipeRefreshLayout.setRefreshing(true);
-                        mPresenter.loadData(TimeUtils.getDBOffsetTimeStr(mOffsetDay));
+                        mPresenter.loadData(TimeUtils.getDBOffsetTimeStr(mOffsetDay),false);
                     }else{
                         LogUtils.v(TAG,"数据还没有加载完");
                     }
@@ -127,18 +127,26 @@ public class DBView extends BaseSubView implements IDBView{
     }
 
     @Override
-    public void refreshData(List<DBMainBean> list) {
+    public void refreshData(List<DBMainBean> list,boolean flag) {
         mSwipeRefreshLayout.setRefreshing(false);
 
         mOffsetDay = mOffsetDay + 1;
         mIsRefresh = false;
         int orgLength = mDBMainBeanList.size();
         LogUtils.v(TAG,"refreshData orgLength: "+orgLength);
-        for(int i = 0; i < list.size(); i++){
-            mDBMainBeanList.add(orgLength+i,list.get(i));
+
+        if(flag){
+            for(int i = 0; i < list.size(); i++) {
+                mDBMainBeanList.add(i, list.get(i));
+            }
+            mDbMainItem.notifyItemRangeInserted(0,list.size());
+        }else {
+            for(int i = 0; i < list.size(); i++) {
+                mDBMainBeanList.add(orgLength + i, list.get(i));
+            }
+            mDbMainItem.notifyItemRangeInserted(orgLength,orgLength+list.size());
         }
 
-        mDbMainItem.notifyItemRangeInserted(orgLength,orgLength+list.size());
         mDbMainItem.notifyDataSetChanged();
     }
 
@@ -160,7 +168,7 @@ public class DBView extends BaseSubView implements IDBView{
     public void onRefreshClick(){
         //mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
         mSwipeRefreshLayout.setRefreshing(true);
-        mPresenter.loadData(TimeUtils.getDBTimerStr());
+        mPresenter.loadData(TimeUtils.getDBTimerStr(),true);
     }
 
 }
