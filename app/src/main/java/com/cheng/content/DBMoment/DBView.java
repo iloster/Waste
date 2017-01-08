@@ -133,9 +133,11 @@ public class DBView extends BaseSubView implements IDBView{
         mOffsetDay = mOffsetDay + 1;
         mIsRefresh = false;
         int orgLength = mDBMainBeanList.size();
+        LogUtils.v(TAG,"refreshData orgLength: "+orgLength);
         for(int i = 0; i < list.size(); i++){
-            mDBMainBeanList.add(i,list.get(i));
+            mDBMainBeanList.add(orgLength+i,list.get(i));
         }
+
         mDbMainItem.notifyItemRangeInserted(orgLength,orgLength+list.size());
         mDbMainItem.notifyDataSetChanged();
     }
