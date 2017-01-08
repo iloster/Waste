@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.cheng.content.DBMoment.DBView;
+import com.cheng.content.ZhihuDaily.DailyView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
@@ -66,6 +67,10 @@ public class FloatContentMainView extends BaseSubView {
                        MyWindowManager.replaceSubView(dbView,list.get(position));
                    }
                    break;
+                   case 3:{
+                       DailyView dailyView = new DailyView();
+                       MyWindowManager.replaceSubView(dailyView,list.get(position));
+                   }break;
                    default:break;
 
                }
