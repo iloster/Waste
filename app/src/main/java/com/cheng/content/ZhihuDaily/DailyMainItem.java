@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.squareup.picasso.Picasso;
@@ -22,6 +23,7 @@ public class DailyMainItem extends RecyclerView.Adapter {
 
     private String TAG = "DailyMainItem";
     private List<DailyMainBean.StoriesBean> mStoriesBeanList;
+    private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
 
     public DailyMainItem(List<DailyMainBean.StoriesBean> list){
         mStoriesBeanList = list;
@@ -30,6 +32,7 @@ public class DailyMainItem extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_daily_item,parent,false);
         DailyMainHolder holder = new DailyMainHolder(view);
+        view.setOnClickListener(holder);
         return holder;
     }
 
@@ -49,7 +52,10 @@ public class DailyMainItem extends RecyclerView.Adapter {
         return mStoriesBeanList.size();
     }
 
-    private class DailyMainHolder extends RecyclerView.ViewHolder{
+    public void setOnRecyclerViewItemClickListener(BaseSubView.OnRecyclerViewItemClickListener listener){
+        mOnRecyclerViewItemClickListener = listener;
+    }
+    private class DailyMainHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mDailyItemTitle;
         public ImageView mDailyItemIcon;
@@ -58,6 +64,11 @@ public class DailyMainItem extends RecyclerView.Adapter {
 
             mDailyItemIcon = (ImageView)itemView.findViewById(R.id.daily_item_icon);
             mDailyItemTitle = (TextView)itemView.findViewById(R.id.daily_item_title);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mOnRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),mStoriesBeanList.get(getAdapterPosition()));
         }
     }
 }

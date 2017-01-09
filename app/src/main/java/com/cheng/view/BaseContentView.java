@@ -50,10 +50,14 @@ public class BaseContentView extends RelativeLayout{
         mCloseBtn = (Button)findViewById(R.id.closeBtn);
         mBackBtn = (Button)findViewById(R.id.backBtn);
         mContentTitle = (TextView)findViewById(R.id.contentTitle);
-
+        mContainLayout = (LinearLayout) findViewById(R.id.containLayout);
         mSubView = (RelativeLayout) findViewById(R.id.subView);
-//        int width = windowManager.getDefaultDisplay().getWidth();
-//        int height = windowManager.getDefaultDisplay().getHeight()*3/4;
+
+        int width = windowManager.getDefaultDisplay().getWidth();
+        int height = windowManager.getDefaultDisplay().getHeight()*3/4;
+        mContainLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,height));
+
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
         mSubView.setLayoutParams(params);
 

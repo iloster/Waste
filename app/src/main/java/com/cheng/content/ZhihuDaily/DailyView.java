@@ -6,9 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
+import com.cheng.content.DBMoment.DBDetail;
 import com.cheng.content.DBMoment.DBMainBean;
 import com.cheng.content.DBMoment.IDBView;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
@@ -51,6 +53,14 @@ public class DailyView extends BaseSubView implements IDailyView{
 
         mDailyMainItem = new DailyMainItem(mStoriesBeanList);
         mRecyclerView.setAdapter(mDailyMainItem);
+        mDailyMainItem.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
+
+            @Override
+            public void onItemClick(int position, Object data) {
+                DailyDetail dailyDetail = new DailyDetail((DailyMainBean.StoriesBean)data);
+                MyWindowManager.replaceSubView(dailyDetail,"知乎日报");
+            }
+        });
 
     }
 
