@@ -62,6 +62,15 @@ public class DailyView extends BaseSubView implements IDailyView{
             }
         });
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //下拉刷新
+            }
+        });
+
+
+
     }
 
     @Override
