@@ -43,7 +43,7 @@ public class DailyMainItem extends RecyclerView.Adapter {
 
         h.mDailyItemTitle.setText(storiesBean.getTitle());
         String url = storiesBean.getImages().get(0);
-        LogUtils.v(TAG,"icon url: "+url);
+//        LogUtils.v(TAG,"icon url: "+url);
         Picasso.with(WasteApplication.getInstance()).load(url).resize(80,80).into(h.mDailyItemIcon);
     }
 

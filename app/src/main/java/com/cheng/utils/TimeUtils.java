@@ -66,4 +66,11 @@ public class TimeUtils {
         String res = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
         return res;
     }
+
+    public static String getDailyOffsetTimeStr(int offset){
+        Calendar  cal   =   Calendar.getInstance();
+        cal.add(Calendar.DATE,  (offset-1)*-1);
+        String res = new SimpleDateFormat( "yyyyMMdd ").format(cal.getTime());
+        return res;
+    }
 }

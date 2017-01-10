@@ -7,6 +7,6 @@ import java.util.List;
  */
 
 public interface IDailyView {
-    public void refreshData(List<DailyMainBean.StoriesBean> list);
-    public void showError();
+    public void refreshData(List<DailyMainBean.StoriesBean> list,boolean flag);
+    public void showError(boolean flag);
 }
