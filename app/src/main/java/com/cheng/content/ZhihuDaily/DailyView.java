@@ -160,7 +160,6 @@ public class DailyView extends BaseSubView implements IDailyView{
     }
 
     public void onRefreshClick(){
-        //下拉刷新
         mSwipeRefreshLayout.setRefreshing(true);
         String lastestStr = TimeUtils.getDailyOffsetTimeStr(0);
         mPresenter.loadData(lastestStr,true);
