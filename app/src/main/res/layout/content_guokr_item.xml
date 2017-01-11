@@ -20,8 +20,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="ssss"/>
+                android:textColor="@color/seconaary_text"
+                android:layout_margin="5dp"
+                android:text="source"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/seconaary_text"
+                android:layout_margin="5dp"
+                android:text="tag"/>
         </RelativeLayout>
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:padding="5dp">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:id="@+id/guokr_item_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/guokr_item_title"
+                android:layout_margin="5dp"
+                android:textColor="@color/primary_text"
+                android:layout_toLeftOf="@id/guokr_item_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/guokr_item_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@id/guokr_item_title"
+                android:layout_toLeftOf="@id/guokr_item_icon"
+                android:textColor="@color/seconaary_text"/>
+        </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

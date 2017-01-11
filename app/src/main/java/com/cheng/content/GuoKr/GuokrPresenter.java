@@ -2,6 +2,7 @@ package com.cheng.content.GuoKr;
 
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
+import com.cheng.utils.LogUtils;
 import com.google.gson.Gson;
 
 import okhttp3.Call;
@@ -12,6 +13,7 @@ import okhttp3.Call;
 
 public class GuokrPresenter {
 
+    private String TAG = "GuokrPresenter";
     private GuokrView mGuokrView;
     private Call mCall;
     public GuokrPresenter(GuokrView guokrView){
@@ -19,7 +21,7 @@ public class GuokrPresenter {
     }
 
     public void loadData(int offset, final boolean flag){
-        String url = "";
+        String url = GuokrConstant.GUOKR_ARTICLES + "0";
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
             public void onError() {
@@ -28,6 +30,7 @@ public class GuokrPresenter {
 
             @Override
             public void onSuccess(String ret) {
+                LogUtils.v(TAG,"ret:"+ret);
                 Gson gson = new Gson();
                 GuokrMainBean mainBean = gson.fromJson(ret,GuokrMainBean.class);
                 mGuokrView.refreshData(mainBean.getResult(),flag);

@@ -6,11 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
+import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class GuokrView extends BaseSubView implements IGuokrView{
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private GuokrPresenter mPresenter;
-    private List<GuokrMainBean.ResultBean> mResultBeanList;
+    private List<GuokrMainBean.ResultBean> mResultBeanList = new ArrayList<>();
     private GuokrMainItem mGuokrMainItem;
     private int mOffset = 0;
     public GuokrView() {
@@ -45,7 +47,7 @@ public class GuokrView extends BaseSubView implements IGuokrView{
 
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.recyclerView);
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -70,6 +72,7 @@ public class GuokrView extends BaseSubView implements IGuokrView{
 
     @Override
     public void refreshData(List<GuokrMainBean.ResultBean> list, boolean flag) {
+        LogUtils.v("refreshData","size:"+list.size());
         mSwipeRefreshLayout.setRefreshing(false);
         if(list.size()>0){
             if(flag){

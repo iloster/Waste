@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.cheng.content.DBMoment.DBView;
+import com.cheng.content.GuoKr.GuokrView;
 import com.cheng.content.ZhihuDaily.DailyView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.utils.LogUtils;
@@ -65,6 +66,11 @@ public class FloatContentMainView extends BaseSubView {
                    case 1:{
                        DBView dbView = new DBView();
                        MyWindowManager.replaceSubView(dbView,list.get(position));
+                   }
+                   break;
+                   case 2:{
+                       GuokrView guokrView = new GuokrView();
+                       MyWindowManager.replaceSubView(guokrView,list.get(position));
                    }
                    break;
                    case 3:{
