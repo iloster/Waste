@@ -54,9 +54,9 @@ public class DailyDetail extends BaseSubView{
     }
 
     private void showData(DailyDetailBean bean){
-//        String url = "http://mp.weixin.qq.com/s?src=3&timestamp=1484034185&ver=1&signature=K8tuG5VTr-yuJos9*TKTWvNWW5MJKudxkakBhxbN4yqAGo5yYoKm6Bz*SkdzlbgoNRhMD3on-Hsxr7-5K8zAe4KY4fja6VTwolDr8x3myjzGfKMJpYEJsEd7YxmcpzQ5yBu2HvmOzbeUIDLP*fpG-B-wGRkUgLH5ySDH5YD8W0k=";
-//        mWebView.loadUrl(url);
-        mWebView.loadUrl(bean.getShare_url());
+        String url = "http://mp.weixin.qq.com/s?src=3&timestamp=1484037817&ver=1&signature=dD*o2y-EZOQNBnKVktn4672aY-dGE5QQZgq-NOB1ZEnBxyXayeea6HP6brrbCXrwwetTo4XYkz9I3y5B8FdS9Db-JUixAduzOVcPS4Os474e8-tXSAln2l*gfnioc63HyFq0QW8D6fYCm1-5ex4jQgzu2OUSOzoLYoRMalq*AQM=";
+        mWebView.loadUrl(url);
+//        mWebView.loadUrl(bean.getShare_url());
     }
 
     public boolean onWebViewBack(){

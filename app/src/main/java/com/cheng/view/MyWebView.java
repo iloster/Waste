@@ -29,7 +29,7 @@ public class MyWebView extends WebView {
     private String TAG="MyWebView";
     private ProgressBar mProgressbar;
     private long timeout = 30000;
-    private Handler mHandler = new Handler();
+    private Handler mHandler;
 
     private Timer timer;
     private OnWebViewListener mOnWebViewListener;
@@ -50,7 +50,8 @@ public class MyWebView extends WebView {
         //getSettings().setSupportZoom(true);
         //getSettings().setBuiltInZoomControls(true);
         setWebViewClient(new MyWebViewClient());
-
+        getSettings().setJavaScriptEnabled(true);
+        getSettings().setBlockNetworkImage(false);
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {

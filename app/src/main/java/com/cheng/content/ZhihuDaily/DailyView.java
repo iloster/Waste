@@ -127,16 +127,16 @@ public class DailyView extends BaseSubView implements IDailyView{
                 //下拉刷新
                 for(int i = 0;i<list.size();i++){
                     mStoriesBeanList.add(i,list.get(i));
-                    mDailyMainItem.notifyItemRangeInserted(0,list.size());
                 }
+                mDailyMainItem.notifyItemRangeInserted(0,list.size());
             }else{
                 //上拉刷新
 
                 mOffsetDay = mOffsetDay + 1;
                 for(int i = 0; i<list.size();i++){
                     mStoriesBeanList.add(orgLenght + i,list.get(i));
-                    mDailyMainItem.notifyItemRangeInserted(orgLenght,orgLenght+list.size());
                 }
+                mDailyMainItem.notifyItemRangeInserted(orgLenght,orgLenght+list.size());
             }
 
             mDailyMainItem.notifyDataSetChanged();
