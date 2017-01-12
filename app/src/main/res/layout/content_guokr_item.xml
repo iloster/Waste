@@ -21,14 +21,20 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/seconaary_text"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/guokr_item_source"
                 android:text="source"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/seconaary_text"
-                android:layout_margin="5dp"
+                android:layout_marginRight="6dp"
+
+                android:id="@+id/guokr_item_tag"
+                android:background="#e0e0e0"
+                android:padding="5dp"
                 android:text="tag"/>
         </RelativeLayout>
         <RelativeLayout
@@ -45,6 +51,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/guokr_item_title"
                 android:layout_margin="5dp"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:lines="2"
                 android:textColor="@color/primary_text"
                 android:layout_toLeftOf="@id/guokr_item_icon"/>
             <TextView
@@ -54,6 +64,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="5dp"
+                android:ellipsize="end"
+                android:lines="2"
                 android:layout_below="@id/guokr_item_title"
                 android:layout_toLeftOf="@id/guokr_item_icon"
                 android:textColor="@color/seconaary_text"/>

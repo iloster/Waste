@@ -21,11 +21,11 @@ public class GuokrPresenter {
     }
 
     public void loadData(int offset, final boolean flag){
-        String url = GuokrConstant.GUOKR_ARTICLES + "0";
+        String url = GuokrConstant.GUOKR_ARTICLES + offset*20;
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
             public void onError() {
-
+                mGuokrView.showError();
             }
 
             @Override

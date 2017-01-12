@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
@@ -30,7 +31,8 @@ public class GuokrView extends BaseSubView implements IGuokrView{
     private GuokrPresenter mPresenter;
     private List<GuokrMainBean.ResultBean> mResultBeanList = new ArrayList<>();
     private GuokrMainItem mGuokrMainItem;
-    private int mOffset = 0;
+    private int mOffsetDay = 0;
+    private boolean mIsRefresh = false;
     public GuokrView() {
         super(WasteApplication.getInstance());
         mContext = WasteApplication.getInstance();
@@ -57,10 +59,44 @@ public class GuokrView extends BaseSubView implements IGuokrView{
         mRecyclerView.setAdapter(mGuokrMainItem);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
             @Override
             public void onRefresh() {
 //                下拉刷新
                 mPresenter.loadData(0,true);
+            }
+        });
+
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            int lastVisibleItem ;
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mGuokrMainItem.getItemCount()){
+                    LogUtils.v(TAG,"上拉刷新");
+                    if(!mIsRefresh) {
+                        mIsRefresh = true;
+                        mSwipeRefreshLayout.setRefreshing(true);
+                        mPresenter.loadData(mOffsetDay,false);
+                    }else{
+                        LogUtils.v(TAG,"数据还没有加载完");
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                //最后一个可见的ITEM
+                lastVisibleItem=layoutManager.findLastVisibleItemPosition();
+            }
+        });
+
+        mGuokrMainItem.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
+
+            @Override
+            public void onItemClick(int position, Object data) {
+                GuokrDetail guokrDetail = new GuokrDetail((GuokrMainBean.ResultBean)data);
+                MyWindowManager.replaceSubView(guokrDetail,"果壳精选");
             }
         });
     }
@@ -74,27 +110,30 @@ public class GuokrView extends BaseSubView implements IGuokrView{
     public void refreshData(List<GuokrMainBean.ResultBean> list, boolean flag) {
         LogUtils.v("refreshData","size:"+list.size());
         mSwipeRefreshLayout.setRefreshing(false);
+        mIsRefresh = false;
         if(list.size()>0){
-            if(flag){
+            mOffsetDay = mOffsetDay + 1;
+            if(flag) {
                 //下拉刷新  数据插到前面
                 //int orgLength = mResultBeanList.size();
-                for(int i = 0;i<list.size();i++){
-                    mResultBeanList.add(i,list.get(i));
+                for (int i = 0; i < list.size(); i++) {
+                    mResultBeanList.add(i, list.get(i));
                 }
-                mGuokrMainItem.notifyItemRangeChanged(0,list.size());
+                mGuokrMainItem.notifyItemRangeChanged(0, list.size());
+            }else{
+                int orgLength = mResultBeanList.size();
+                for(int i = 0;i<list.size();i++){
+                    mResultBeanList.add(orgLength+i,list.get(i));
+                }
+                mGuokrMainItem.notifyItemRangeChanged(orgLength,orgLength+list.size());
             }
-        }else{
-            int orgLength = mResultBeanList.size();
-            for(int i = 0;i<list.size();i++){
-                mResultBeanList.add(orgLength+i,list.get(i));
-            }
-            mGuokrMainItem.notifyItemRangeChanged(orgLength,orgLength+list.size());
+            mGuokrMainItem.notifyDataSetChanged();
         }
-        mGuokrMainItem.notifyDataSetChanged();
     }
 
     @Override
     public void showError() {
+        mIsRefresh = false;
         mSwipeRefreshLayout.setRefreshing(false);
         if(mResultBeanList.size()>0){
             Toast.makeText(mContext,"数据加载失败",Toast.LENGTH_SHORT).show();

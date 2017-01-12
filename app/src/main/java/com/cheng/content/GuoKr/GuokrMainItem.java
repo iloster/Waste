@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.squareup.picasso.Picasso;
@@ -21,6 +22,7 @@ import java.util.List;
 public class GuokrMainItem extends RecyclerView.Adapter{
 
     private List<GuokrMainBean.ResultBean> mList;
+    private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     public GuokrMainItem(List<GuokrMainBean.ResultBean> list){
         mList = list;
     }
@@ -29,6 +31,7 @@ public class GuokrMainItem extends RecyclerView.Adapter{
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_guokr_item,parent,false);
         GuokrMainItemHolder holder = new GuokrMainItemHolder(view);
+        view.setOnClickListener(holder);
         return holder;
     }
 
@@ -38,10 +41,14 @@ public class GuokrMainItem extends RecyclerView.Adapter{
 
         GuokrMainBean.ResultBean bean = mList.get(position);
         String url = bean.getHeadline_img_tb();
-        LogUtils.v("onBindViewHolder:","url"+url);
+        if(bean.getStyle().equals("calendar")){
+            url = bean.getImages().get(0);
+        }
         Picasso.with(WasteApplication.getInstance()).load(url).resize(120,90).into(h.mGuokrItemIcon);
         h.mGuokrItemTitle.setText(bean.getTitle());
-        h.mGuokrItemContent.setText(bean.getSummary());
+        h.mGuokrItemContent.setText(bean.getSummary()+"...");
+        h.mGuokrItemTag.setText(bean.getCategory());
+        h.mGuokrItemSource.setText(bean.getSource_name());
     }
 
     @Override
@@ -49,8 +56,14 @@ public class GuokrMainItem extends RecyclerView.Adapter{
         return mList.size();
     }
 
-    private class GuokrMainItemHolder extends RecyclerView.ViewHolder{
+    public void setOnRecyclerViewItemClickListener(BaseSubView.OnRecyclerViewItemClickListener listener){
+        mOnRecyclerViewItemClickListener = listener;
+    }
 
+    private class GuokrMainItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        public TextView mGuokrItemTag;
+        public TextView mGuokrItemSource;
         public TextView mGuokrItemTitle;
         public TextView mGuokrItemContent;
         public ImageView mGuokrItemIcon;
@@ -58,9 +71,16 @@ public class GuokrMainItem extends RecyclerView.Adapter{
         public GuokrMainItemHolder(View itemView) {
             super(itemView);
 
+            mGuokrItemTag = (TextView)itemView.findViewById(R.id.guokr_item_tag);
+            mGuokrItemSource = (TextView)itemView.findViewById(R.id.guokr_item_source);
             mGuokrItemTitle = (TextView)itemView.findViewById(R.id.guokr_item_title);
             mGuokrItemContent = (TextView)itemView.findViewById(R.id.guokr_item_content);
             mGuokrItemIcon = (ImageView)itemView.findViewById(R.id.guokr_item_icon);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mOnRecyclerViewItemClickListener.onItemClick(getAdapterPosition(),mList.get(getAdapterPosition()));
         }
     }
 
