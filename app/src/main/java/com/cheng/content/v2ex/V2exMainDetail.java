@@ -18,6 +18,7 @@ import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -47,7 +48,9 @@ public class V2exMainDetail extends BaseSubView {
         mContext = context;
         mV2exEntity = v;
         LayoutInflater.from(context).inflate(R.layout.content_v2ex_detail,this);
+
         initUI();
+
         showComment();
     }
 
@@ -93,6 +96,7 @@ public class V2exMainDetail extends BaseSubView {
     }
 
     private void showError(boolean flag){
+        MyWindowManager.hideLoading();
         if(flag){
             mRecyclerView.setVisibility(GONE);
             mErrorLayout.setVisibility(VISIBLE);

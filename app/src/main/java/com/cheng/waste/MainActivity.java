@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
+import com.cheng.utils.LogUtils;
 
 public class MainActivity extends Activity {
 
@@ -24,13 +25,16 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        initUtils();
+        printDeviceInfo();
         toSettings();
     }
-    public void initUtils(){
-        DeviceUtils.init(this.getApplicationContext());
-    }
 
+    private void printDeviceInfo(){
+        int screenWidth = DeviceUtils.getWidth();
+        int screenHeight = DeviceUtils.getHeight();
+        int dpi = DeviceUtils.getDpi();
+        LogUtils.v(TAG,"ScreenWidth:"+screenWidth+"|ScreenHeight:"+screenHeight+"|dpi:"+dpi);
+    }
     private void toSettings(){
         new Handler().postDelayed(new Runnable() {
             @Override

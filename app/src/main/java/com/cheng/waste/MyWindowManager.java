@@ -148,5 +148,15 @@ public class MyWindowManager {
             mFloatContentView.showErrorView();
         }
     }
-
+    public static void showLoading(){
+        if(mFloatContentView!=null){
+            LogUtils.v(TAG,"showLoading");
+            mFloatContentView.showLoadingView();
+        }
+    }
+    public static void hideLoading(){
+        if(mFloatContentView!=null){
+            mFloatContentView.hideLoadingView();
+        }
+    }
 }

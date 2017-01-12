@@ -42,6 +42,7 @@ public class BaseContentView extends RelativeLayout{
     private List<String> mTitleList = new ArrayList<>();
     private View mErrorView;
     private Button mErrorButton;
+    private View mLoadingView;
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
@@ -96,6 +97,7 @@ public class BaseContentView extends RelativeLayout{
 
     public void popView(){
         hideErrorView();
+        hideLoadingView();
         if(!getCurView().onWebViewBack()) {
             View view = mListView.remove(mListView.size() - 1);
             mSubView.removeView(view);
@@ -133,6 +135,22 @@ public class BaseContentView extends RelativeLayout{
        // mErrorView.setVisibility(GONE);
         if(mErrorView != null) {
             mSubView.removeView(mErrorView);
+        }
+    }
+
+    public void showLoadingView(){
+        LogUtils.v(TAG,"showLoadingView");
+        mLoadingView = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_loading_view,null);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mSubView.addView(mLoadingView,params);
+        mLoadingView.setVisibility(VISIBLE);
+    }
+
+    public void hideLoadingView(){
+        LogUtils.v(TAG,"hideLoadingView");
+        if(mLoadingView!=null){
+            mSubView.removeView(mLoadingView);
         }
     }
 

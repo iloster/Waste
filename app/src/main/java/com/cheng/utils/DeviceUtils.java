@@ -3,6 +3,7 @@ package com.cheng.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.cheng.waste.WasteApplication;
@@ -13,7 +14,7 @@ import com.cheng.waste.WasteApplication;
 
 public class DeviceUtils {
 
-    private static Context mContext;
+    private static Context mContext = WasteApplication.getInstance();
     public static void init(Context context){
         mContext =context;
     }
@@ -34,5 +35,14 @@ public class DeviceUtils {
         ConnectivityManager cm = (ConnectivityManager) WasteApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
         return ni != null && ni.isConnectedOrConnecting();
+    }
+
+    /**
+     * 获取屏幕dpi
+     * @return
+     */
+    public static int getDpi(){
+        DisplayMetrics metric = new DisplayMetrics();
+        return metric.densityDpi;
     }
 }

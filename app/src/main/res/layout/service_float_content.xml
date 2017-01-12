@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
             <Button
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/x35"
+                android:layout_height="@dimen/x35"
                 android:layout_margin="5dp"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/back_btn_click"
@@ -30,12 +30,12 @@
                  android:layout_centerInParent="true"
                  android:id="@+id/contentTitle"
                  android:textColor="#000000"
-                 android:textSize="16sp"
+                 android:textSize="19sp"
                  android:textStyle="bold"
                  android:text="title"/>
             <Button
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/x35"
+                android:layout_height="@dimen/x35"
                 android:background="@drawable/close_btn_click"
                 android:layout_margin="5dp"
                 android:id="@+id/closeBtn"
