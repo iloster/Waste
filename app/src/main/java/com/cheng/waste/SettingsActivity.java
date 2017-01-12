@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.cheng.utils.LogUtils;
 
@@ -47,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.preferences);
 
             CheckBoxPreference nightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
+            Preference winSizeShiftPre = (Preference)getPreferenceManager().findPreference("winSizeShiftPre");
             nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -54,6 +56,16 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
+            winSizeShiftPre.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Toast.makeText(WasteApplication.getInstance(),"click",Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
+
         }
     }
 }

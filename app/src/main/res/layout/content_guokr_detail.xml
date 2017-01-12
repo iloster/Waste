@@ -4,6 +4,6 @@
     android:id="@+id/webView"
     android:scrollbarStyle="outsideOverlay"
     android:scrollbars="vertical"
-    android:scrollbarSize="3dp"
+    android:scrollbarSize="@dimen/x3"
     android:scrollbarThumbVertical="@color/colorPrimary"
     xmlns:android="http://schemas.android.com/apk/res/android" />

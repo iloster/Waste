@@ -7,9 +7,9 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="2dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingBottom="@dimen/x2"
+        android:paddingLeft="@dimen/x5"
+        android:paddingRight="@dimen/x5"
         android:background="#eeeeee"
         android:id="@+id/swipeRefreshLayout">
         <android.support.v7.widget.RecyclerView
@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:scrollbarStyle="outsideOverlay"
             android:scrollbars="vertical"
-            android:scrollbarSize="3dp"
+            android:scrollbarSize="@dimen/x3"
             android:scrollbarThumbVertical="@color/colorPrimary"
             android:id="@+id/recyclerView">
         </android.support.v7.widget.RecyclerView>

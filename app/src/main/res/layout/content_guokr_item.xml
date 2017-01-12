@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="1dp"
-    android:layout_marginBottom="8dp"
+    card_view:cardCornerRadius="@dimen/x2"
+    card_view:cardElevation="@dimen/x2"
+    android:layout_marginBottom="@dimen/x8"
     android:clickable="true"
     android:focusable="true"
     android:background="@color/white">
@@ -21,8 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/seconaary_text"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginTop="@dimen/x5"
                 android:id="@+id/guokr_item_source"
                 android:text="source"/>
             <TextView
@@ -30,30 +30,32 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/seconaary_text"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="@dimen/x6"
 
                 android:id="@+id/guokr_item_tag"
                 android:background="#e0e0e0"
-                android:padding="5dp"
+                android:padding="@dimen/x5"
                 android:text="tag"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:padding="5dp">
+            android:layout_height="@dimen/x100"
+            android:padding="@dimen/x4">
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/x100"
                 android:layout_alignParentRight="true"
                 android:id="@+id/guokr_item_icon"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/guokr_item_title"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginRight="@dimen/x5"
+                android:layout_marginBottom="@dimen/x5"
                 android:ellipsize="end"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:lines="2"
                 android:textColor="@color/primary_text"
                 android:layout_toLeftOf="@id/guokr_item_icon"/>
@@ -61,11 +63,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/guokr_item_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="@dimen/x5"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginRight="@dimen/x5"
                 android:ellipsize="end"
-                android:lines="2"
+                android:maxLines="2"
                 android:layout_below="@id/guokr_item_title"
                 android:layout_toLeftOf="@id/guokr_item_icon"
                 android:textColor="@color/seconaary_text"/>
