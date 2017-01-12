@@ -101,6 +101,7 @@ public class GuokrView extends BaseSubView implements IGuokrView{
         });
     }
 
+
     public void onRefreshClick(){
         mSwipeRefreshLayout.setRefreshing(true);
         mPresenter.loadData(0,true);
@@ -116,10 +117,16 @@ public class GuokrView extends BaseSubView implements IGuokrView{
             if(flag) {
                 //下拉刷新  数据插到前面
                 //int orgLength = mResultBeanList.size();
-                for (int i = 0; i < list.size(); i++) {
-                    mResultBeanList.add(i, list.get(i));
+                List<GuokrMainBean.ResultBean> list1 = new ArrayList<>();
+                for(int i = 0;i<list.size();i++){
+                    if((!mResultBeanList.contains(i)) ||(list.get(i).getId() != mResultBeanList.get(i).getId())){
+                        list1.add(list.get(i));
+                    }
                 }
-                mGuokrMainItem.notifyItemRangeChanged(0, list.size());
+                for (int i = 0; i < list1.size(); i++) {
+                    mResultBeanList.add(i, list1.get(i));
+                }
+                mGuokrMainItem.notifyItemRangeChanged(0, list1.size());
             }else{
                 int orgLength = mResultBeanList.size();
                 for(int i = 0;i<list.size();i++){

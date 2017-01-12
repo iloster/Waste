@@ -62,7 +62,6 @@ public class MyWebView extends WebView {
         };
     }
 
-
     public void setWebViewListener(OnWebViewListener listener){
         mOnWebViewListener = listener;
     }
