@@ -44,7 +44,7 @@ public class GuokrMainItem extends RecyclerView.Adapter{
         if(bean.getStyle().equals("calendar")){
             url = bean.getImages().get(0);
         }
-        Picasso.with(WasteApplication.getInstance()).load(url).resize(120,90).into(h.mGuokrItemIcon);
+        Picasso.with(WasteApplication.getInstance()).load(url).placeholder(R.mipmap.default_cover_image).resize(120,90).into(h.mGuokrItemIcon);
         h.mGuokrItemTitle.setText(bean.getTitle());
         h.mGuokrItemContent.setText(bean.getSummary()+"...");
         h.mGuokrItemTag.setText(bean.getCategory());

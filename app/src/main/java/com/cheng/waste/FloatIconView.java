@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cheng.utils.LogUtils;
@@ -28,7 +29,7 @@ public class FloatIconView extends LinearLayout{
     private WindowManager windowManager;
     private WindowManager.LayoutParams mParams;
 
-    private Button mFloatBtn;
+    private ImageView mFloatBtn;
     private LinearLayout mFloatIconLayout;
     /**
      * 记录当前手指位置在屏幕上的横坐标值
@@ -66,7 +67,7 @@ public class FloatIconView extends LinearLayout{
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
         LayoutInflater.from(context).inflate(R.layout.service_float_icon, this);
 
-        mFloatBtn = (Button) findViewById(R.id.floatIconBtn);
+        mFloatBtn = (ImageView) findViewById(R.id.floatIconBtn);
         mFloatIconLayout = (LinearLayout)findViewById(R.id.floatIconLayout);
 
         mFloatBtn.setOnTouchListener(new OnTouchListener() {
