@@ -9,8 +9,8 @@
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
     android:background="@color/white"
-    android:minHeight="100dp"
-    android:layout_marginBottom="8dp">
+    android:minHeight="@dimen/x100"
+    android:layout_marginBottom="@dimen/x8">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,22 +18,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginRight="@dimen/x8"
             android:text="this is title"
-            android:textSize="17sp"
+            android:textSize="@dimen/sp17"
             android:textColor="@color/primary_text"
             android:textStyle="bold"
             android:id="@+id/db_item_title"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="5dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
+            android:layout_marginRight="@dimen/x8"
+            android:layout_marginBottom="@dimen/x5"
+            android:textSize="@dimen/sp13"
             android:textColor="@color/seconaary_text"
             android:lineSpacingMultiplier="1.5"
             android:text="this is abstract"

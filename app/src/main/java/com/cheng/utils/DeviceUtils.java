@@ -1,6 +1,7 @@
 package com.cheng.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
@@ -42,7 +43,18 @@ public class DeviceUtils {
      * @return
      */
     public static int getDpi(){
-        DisplayMetrics metric = new DisplayMetrics();
+        DisplayMetrics metric = mContext.getResources().getDisplayMetrics();
         return metric.densityDpi;
+    }
+
+    public static float getDensity(){
+        DisplayMetrics metric = mContext.getResources().getDisplayMetrics();
+        return metric.density;
+    }
+
+    public static int getScaleWidthDp(){
+        Configuration config = mContext.getResources().getConfiguration();
+        int smallestScreenWidth = config.smallestScreenWidthDp;
+       return smallestScreenWidth;
     }
 }

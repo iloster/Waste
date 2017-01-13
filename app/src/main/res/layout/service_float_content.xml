@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
             <Button
-                android:layout_width="@dimen/x35"
-                android:layout_height="@dimen/x35"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
                 android:layout_margin="5dp"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/back_btn_click"
@@ -34,10 +34,10 @@
                  android:textStyle="bold"
                  android:text="title"/>
             <Button
-                android:layout_width="@dimen/x35"
-                android:layout_height="@dimen/x35"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
                 android:background="@drawable/close_btn_click"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/x5"
                 android:id="@+id/closeBtn"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>

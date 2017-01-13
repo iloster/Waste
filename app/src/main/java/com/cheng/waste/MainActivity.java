@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         int screenWidth = DeviceUtils.getWidth();
         int screenHeight = DeviceUtils.getHeight();
         int dpi = DeviceUtils.getDpi();
-        LogUtils.v(TAG,"ScreenWidth:"+screenWidth+"|ScreenHeight:"+screenHeight+"|dpi:"+dpi);
+        LogUtils.v(TAG,"ScreenWidth:"+screenWidth+"|ScreenHeight:"+screenHeight+"|dpi:"+dpi+"|scaleWidth:"+DeviceUtils.getScaleWidthDp());
     }
     private void toSettings(){
         new Handler().postDelayed(new Runnable() {

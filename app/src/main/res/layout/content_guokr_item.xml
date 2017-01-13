@@ -55,7 +55,7 @@
                 android:layout_marginBottom="@dimen/x5"
                 android:ellipsize="end"
                 android:textStyle="bold"
-                android:textSize="17sp"
+                android:textSize="@dimen/sp17"
                 android:lines="2"
                 android:textColor="@color/primary_text"
                 android:layout_toLeftOf="@id/guokr_item_icon"/>
@@ -68,6 +68,7 @@
                 android:layout_marginRight="@dimen/x5"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:textSize="@dimen/sp13"
                 android:layout_below="@id/guokr_item_title"
                 android:layout_toLeftOf="@id/guokr_item_icon"
                 android:textColor="@color/seconaary_text"/>
