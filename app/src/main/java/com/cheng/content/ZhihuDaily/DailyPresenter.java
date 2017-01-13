@@ -38,9 +38,13 @@ public class DailyPresenter {
 
             @Override
             public void onSuccess(String ret) {
-                Gson gson = new Gson();
-                DailyMainBean dailyMainBean = gson.fromJson(ret,DailyMainBean.class);
-                mDailyView.refreshData(dailyMainBean.getStories(),flag);
+                try {
+                    Gson gson = new Gson();
+                    DailyMainBean dailyMainBean = gson.fromJson(ret, DailyMainBean.class);
+                    mDailyView.refreshData(dailyMainBean.getStories(), flag);
+                }catch (Exception e){
+                    mDailyView.showError(flag);
+                }
             }
         });
     }

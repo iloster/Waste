@@ -3,8 +3,10 @@ package com.cheng.content.GuoKr;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
@@ -30,6 +32,13 @@ public class GuokrDetail extends BaseSubView {
 
     private void initUI(){
         mWebView = (MyWebView)findViewById(R.id.webView);
+        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+            @Override
+            public void onTimeout() {
+//                LogUtils.v(TAG,"加载超时");
+                MyWindowManager.showErrorView();
+            }
+        });
     }
 
     private void showData(){

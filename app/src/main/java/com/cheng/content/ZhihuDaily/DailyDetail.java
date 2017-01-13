@@ -6,8 +6,10 @@ import android.webkit.WebView;
 
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
+import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
@@ -34,6 +36,14 @@ public class DailyDetail extends BaseSubView{
 
     private void initUI(){
         mWebView = (MyWebView)findViewById(R.id.webView);
+
+        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+            @Override
+            public void onTimeout() {
+//                LogUtils.v(TAG,"加载超时");
+                MyWindowManager.showErrorView();
+            }
+        });
     }
 
     private void loadData(){
