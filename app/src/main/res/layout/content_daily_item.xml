@@ -21,8 +21,7 @@
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
     android:layout_marginBottom="@dimen/x8"
-    android:clickable="true"
-    android:focusable="true"
+
     android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
