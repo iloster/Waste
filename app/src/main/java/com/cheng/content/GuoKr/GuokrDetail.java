@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
+import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -17,7 +18,7 @@ import com.cheng.waste.WasteApplication;
 public class GuokrDetail extends BaseSubView {
     private Context mContext;
     private GuokrMainBean.ResultBean mResultBean;
-    private MyWebView mWebView;
+    private MyWebViewEx mWebView;
 
     public GuokrDetail(GuokrMainBean.ResultBean resultBean) {
         super(WasteApplication.getInstance());
@@ -31,14 +32,14 @@ public class GuokrDetail extends BaseSubView {
     }
 
     private void initUI(){
-        mWebView = (MyWebView)findViewById(R.id.webView);
-        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
-            @Override
-            public void onTimeout() {
-//                LogUtils.v(TAG,"加载超时");
-                MyWindowManager.showErrorView();
-            }
-        });
+        mWebView = (MyWebViewEx)findViewById(R.id.webView);
+//        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+//            @Override
+//            public void onTimeout() {
+////                LogUtils.v(TAG,"加载超时");
+//                MyWindowManager.showErrorView();
+//            }
+//        });
     }
 
     private void showData(){

@@ -9,6 +9,7 @@ import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
+import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -21,7 +22,7 @@ import okhttp3.Call;
  */
 
 public class DailyDetail extends BaseSubView{
-    private MyWebView mWebView;
+    private MyWebViewEx mWebView;
     private Call mCall;
     private DailyMainBean.StoriesBean mStoriesBean;
     public DailyDetail(DailyMainBean.StoriesBean storiesBean) {
@@ -35,9 +36,9 @@ public class DailyDetail extends BaseSubView{
     }
 
     private void initUI(){
-        mWebView = (MyWebView)findViewById(R.id.webView);
+        mWebView = (MyWebViewEx)findViewById(R.id.webView);
 
-        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+        mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {
             @Override
             public void onTimeout() {
 //                LogUtils.v(TAG,"加载超时");

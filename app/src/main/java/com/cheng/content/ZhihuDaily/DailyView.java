@@ -2,6 +2,7 @@ package com.cheng.content.ZhihuDaily;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.cheng.content.DBMoment.DBDetail;
 import com.cheng.content.DBMoment.DBMainBean;
 import com.cheng.content.DBMoment.IDBView;
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -57,10 +59,13 @@ public class DailyView extends BaseSubView implements IDailyView{
     private void initUI(){
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
+        if(DeviceUtils.isTablet()){
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
+        }else {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+        }
 
         mDailyMainItem = new DailyMainItem(mStoriesBeanList);
         mRecyclerView.setAdapter(mDailyMainItem);

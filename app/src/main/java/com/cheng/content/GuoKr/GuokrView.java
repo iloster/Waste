@@ -1,11 +1,13 @@
 package com.cheng.content.GuoKr;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -51,9 +53,13 @@ public class GuokrView extends BaseSubView implements IGuokrView{
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+        if(DeviceUtils.isTablet()){
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
+        }else {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+        }
 
         mGuokrMainItem = new GuokrMainItem(mResultBeanList);
         mRecyclerView.setAdapter(mGuokrMainItem);

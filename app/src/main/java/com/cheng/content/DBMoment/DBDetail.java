@@ -12,6 +12,7 @@ import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MultiHtmlTextView;
 import com.cheng.view.MyWebView;
+import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -28,7 +29,7 @@ public class DBDetail extends BaseSubView {
     private Context mContext;
     private DBDetailBean mDbDetailBean;
     private DBMainBean mDbMainBean;
-    private MyWebView mWebView;
+    private MyWebViewEx mWebView;
 
 
     public DBDetail(DBMainBean dbMainBean) {
@@ -44,8 +45,8 @@ public class DBDetail extends BaseSubView {
     }
 
     private void initUI(){
-        mWebView = (MyWebView) findViewById(R.id.webView);
-        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+        mWebView = (MyWebViewEx) findViewById(R.id.webView);
+        mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {
             @Override
             public void onTimeout() {
                 LogUtils.v(TAG,"加载超时");
@@ -72,9 +73,9 @@ public class DBDetail extends BaseSubView {
     }
     private void showData(){
         mWebView.loadUrl(mDbMainBean.getUrl());
-        WebSettings settings = mWebView.getSettings();
-        settings.setJavaScriptEnabled(false);
-        mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+//        WebSettings settings = mWebView.getSettings();
+//        settings.setJavaScriptEnabled(false);
+//        mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     }
 
     @Override

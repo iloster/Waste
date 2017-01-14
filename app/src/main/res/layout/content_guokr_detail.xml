@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.cheng.view.MyWebView android:layout_width="match_parent"
+<com.cheng.view.MyWebViewEx android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/webView"
     android:scrollbarStyle="outsideOverlay"
