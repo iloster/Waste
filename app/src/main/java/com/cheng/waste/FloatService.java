@@ -49,7 +49,10 @@ public class FloatService extends Service {
         MyWindowManager.createFloatIconView(getApplicationContext());
     }
 
-
+    public void removeWaste(){
+        MyWindowManager.removeFloatContentView(WasteApplication.getInstance());
+        MyWindowManager.reomveFloatIconView(WasteApplication.getInstance());
+    }
 }
 
 

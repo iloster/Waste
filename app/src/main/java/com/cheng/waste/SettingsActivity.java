@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -26,9 +27,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         mSettingsFragment = new SettingsFragment();
         replaceFragment(R.id.settings_container, mSettingsFragment);
-
-        Intent intent = new Intent(SettingsActivity.this,FloatService.class);
-        startService(intent);
+        if(!DeviceUtils.isServiceRunning("com.cheng.waste.FloatService")) {
+            Intent intent = new Intent(SettingsActivity.this, FloatService.class);
+            startService(intent);
+        }else{
+            LogUtils.v(TAG,"service is running");
+        }
 
     }
 

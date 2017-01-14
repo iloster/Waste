@@ -1,5 +1,8 @@
 package com.cheng.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用于保存一些常量
  * Created by cheng on 2016/12/6.
@@ -45,4 +48,5 @@ public class Constants {
     // 获取文章具体内容
     // eg:https://moment.douban.com/api/post/100484
 //    public static final String DOUBAN_ARTICLE_DETAIL = "https://moment.douban.com/api/post/";
+
 }

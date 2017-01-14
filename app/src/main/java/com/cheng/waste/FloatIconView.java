@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.SpUtils;
 
 import java.lang.reflect.Field;
 
@@ -121,6 +122,8 @@ public class FloatIconView extends LinearLayout{
     private void updateViewPosition() {
         mParams.x = (int) (xInScreen - xInView);
         mParams.y = (int) (yInScreen - yInView);
+        SpUtils.setInt("posX",mParams.x);
+        SpUtils.setInt("posY",mParams.y);
         windowManager.updateViewLayout(this, mParams);
     }
 

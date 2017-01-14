@@ -1,5 +1,6 @@
 package com.cheng.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
@@ -15,6 +16,7 @@ import com.cheng.waste.WasteApplication;
 
 public class DeviceUtils {
 
+    private static String TAG = "DeviceUtils";
     private static Context mContext = WasteApplication.getInstance();
     public static void init(Context context){
         mContext =context;
@@ -56,5 +58,20 @@ public class DeviceUtils {
         Configuration config = mContext.getResources().getConfiguration();
         int smallestScreenWidth = config.smallestScreenWidthDp;
        return smallestScreenWidth;
+    }
+
+    public static boolean isServiceRunning(String name){
+        ActivityManager activityManager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        for(ActivityManager.RunningServiceInfo serviceInfo:activityManager.getRunningServices(Integer.MAX_VALUE)){
+            LogUtils.v(TAG,serviceInfo.service.getClassName());
+            if(serviceInfo.service.getClassName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isTablet() {
+        return (mContext.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 }

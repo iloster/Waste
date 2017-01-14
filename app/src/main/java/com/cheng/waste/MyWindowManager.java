@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,8 +88,13 @@ public class MyWindowManager {
                 mFloatIconViewParams.gravity = Gravity.LEFT | Gravity.TOP;
                 mFloatIconViewParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
                 mFloatIconViewParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                mFloatIconViewParams.x = windowManager.getDefaultDisplay().getWidth();
-                mFloatIconViewParams.y = windowManager.getDefaultDisplay().getHeight() / 2;
+                if(SpUtils.getInt("posX",-1)!=-1&&SpUtils.getInt("posY",-1)!=-1){
+                    mFloatIconViewParams.x = SpUtils.getInt("posX",0);
+                    mFloatIconViewParams.y = SpUtils.getInt("posY",0);
+                }else {
+                    mFloatIconViewParams.x = windowManager.getDefaultDisplay().getWidth();
+                    mFloatIconViewParams.y = windowManager.getDefaultDisplay().getHeight() / 2;
+                }
             }
             mFloatIconView.setParams(mFloatIconViewParams);
             windowManager.addView(mFloatIconView, mFloatIconViewParams);

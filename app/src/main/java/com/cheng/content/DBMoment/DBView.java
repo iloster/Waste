@@ -3,6 +3,7 @@ package com.cheng.content.DBMoment;
 import android.content.Context;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -72,14 +74,17 @@ public class DBView extends BaseSubView implements IDBView{
         mPresenter.release();
     }
 
-    private void initUI(){
+    private void initUI() {
 
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(OrientationHelper.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        if (DeviceUtils.isTablet()) {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
+        } else {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(OrientationHelper.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+        }
         mDbMainItem = new DBMainItem(mDBMainBeanList);
         mDbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
