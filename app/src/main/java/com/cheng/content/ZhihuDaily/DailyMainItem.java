@@ -24,6 +24,8 @@ public class DailyMainItem extends RecyclerView.Adapter {
     private String TAG = "DailyMainItem";
     private List<DailyMainBean.StoriesBean> mStoriesBeanList;
     private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
+    private int SHOW_TIME = 0;
+    private int HIDE_TIME = 1;
 
     public DailyMainItem(List<DailyMainBean.StoriesBean> list){
         mStoriesBeanList = list;
@@ -50,6 +52,17 @@ public class DailyMainItem extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mStoriesBeanList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0){
+            return SHOW_TIME;
+        }else{
+            DailyMainBean.StoriesBean bean1 = mStoriesBeanList.get(position);
+            DailyMainBean.StoriesBean bean2 = mStoriesBeanList.get(position-1);
+            return SHOW_TIME;
+        }
     }
 
     public void setOnRecyclerViewItemClickListener(BaseSubView.OnRecyclerViewItemClickListener listener){
