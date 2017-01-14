@@ -73,4 +73,14 @@ public class TimeUtils {
         String res = new SimpleDateFormat( "yyyyMMdd ").format(cal.getTime());
         return res;
     }
+
+    public static boolean isSameDay(long time1,long time2){
+        String timeStr1 = new SimpleDateFormat("yyMMdd").format(new Date(time1));
+        String timeStr2 = new SimpleDateFormat("yyMMdd").format(new Date(time2));
+        return timeStr1.equals(timeStr2);
+    }
+
+    public static String getTimeByFormat(long time,String formatstr){
+        return new SimpleDateFormat(formatstr).format(new Date(time));
+    }
 }

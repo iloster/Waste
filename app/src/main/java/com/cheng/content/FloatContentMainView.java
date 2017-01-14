@@ -49,9 +49,9 @@ public class FloatContentMainView extends BaseSubView {
 
     private void showIcon(){
         final List<String> list = new ArrayList<>();
-        list.add("v2ex");
-        list.add("豆瓣");
-        list.add("果壳");
+        list.add("V2EX");
+        list.add("豆瓣一刻");
+        list.add("果壳精选");
         list.add("知乎日报");
         FloatContentMainItem floatContentMainItem = new FloatContentMainItem(mContext,list);
         floatContentMainItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {

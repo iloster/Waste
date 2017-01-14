@@ -78,13 +78,11 @@ public class DBView extends BaseSubView implements IDBView{
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        if (DeviceUtils.isTablet()) {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
-        } else {
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-            layoutManager.setOrientation(OrientationHelper.VERTICAL);
-            mRecyclerView.setLayoutManager(layoutManager);
-        }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+
         mDbMainItem = new DBMainItem(mDBMainBeanList);
         mDbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override

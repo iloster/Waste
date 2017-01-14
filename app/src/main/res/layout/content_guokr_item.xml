@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text"
+        android:id="@+id/cardview_item_time"
+        android:layout_marginTop="@dimen/x8"
+        android:textSize="17sp"
+        android:layout_marginBottom="@dimen/x5"
+        android:text="今天" />
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     card_view:cardCornerRadius="@dimen/x2"
     card_view:cardElevation="@dimen/x2"
     android:layout_marginBottom="@dimen/x8"
-    android:clickable="true"
-    android:focusable="true"
+
     android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/cardview_item_click">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -75,3 +91,4 @@
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
+</LinearLayout>

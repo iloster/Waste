@@ -33,13 +33,13 @@ public class GuokrDetail extends BaseSubView {
 
     private void initUI(){
         mWebView = (MyWebViewEx)findViewById(R.id.webView);
-//        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
-//            @Override
-//            public void onTimeout() {
-////                LogUtils.v(TAG,"加载超时");
-//                MyWindowManager.showErrorView();
-//            }
-//        });
+        mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {
+            @Override
+            public void onTimeout() {
+//                LogUtils.v(TAG,"加载超时");
+                MyWindowManager.showErrorView();
+            }
+        });
     }
 
     private void showData(){

@@ -53,13 +53,11 @@ public class GuokrView extends BaseSubView implements IGuokrView{
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
 
-        if(DeviceUtils.isTablet()){
-            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
-        }else {
+
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(linearLayoutManager);
-        }
+
 
         mGuokrMainItem = new GuokrMainItem(mResultBeanList);
         mRecyclerView.setAdapter(mGuokrMainItem);
@@ -101,6 +99,7 @@ public class GuokrView extends BaseSubView implements IGuokrView{
 
             @Override
             public void onItemClick(int position, Object data) {
+                LogUtils.v(TAG,"onItemClick:"+position);
                 GuokrDetail guokrDetail = new GuokrDetail((GuokrMainBean.ResultBean)data);
                 MyWindowManager.replaceSubView(guokrDetail,"果壳精选");
             }

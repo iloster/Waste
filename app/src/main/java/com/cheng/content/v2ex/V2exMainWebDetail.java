@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
+import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -15,7 +16,7 @@ import com.cheng.waste.WasteApplication;
 
 public class V2exMainWebDetail extends BaseSubView {
     private Context mContext;
-    private MyWebView mWebView;
+    private MyWebViewEx mWebView;
     private V2exEntity mV2exEntity;
     public V2exMainWebDetail(Context context,V2exEntity v) {
         super(context);
@@ -28,8 +29,8 @@ public class V2exMainWebDetail extends BaseSubView {
     }
 
     public void initUI(){
-        mWebView = (MyWebView)findViewById(R.id.webView);
-        mWebView.setWebViewListener(new MyWebView.OnWebViewListener() {
+        mWebView = (MyWebViewEx)findViewById(R.id.webView);
+        mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {
             @Override
             public void onTimeout() {
                 MyWindowManager.showErrorView();

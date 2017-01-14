@@ -59,13 +59,11 @@ public class DailyView extends BaseSubView implements IDailyView{
     private void initUI(){
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        if(DeviceUtils.isTablet()){
-            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
-        }else {
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            mRecyclerView.setLayoutManager(layoutManager);
-        }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+
 
         mDailyMainItem = new DailyMainItem(mStoriesBeanList);
         mRecyclerView.setAdapter(mDailyMainItem);

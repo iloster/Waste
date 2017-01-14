@@ -2,6 +2,7 @@ package com.cheng.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -58,6 +59,8 @@ public class MyWebViewEx extends LinearLayout {
         setOrientation(VERTICAL);
         mProgressbar = new ProgressBar(mContext,null, android.R.attr.progressBarStyleHorizontal);
         mProgressbar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,5));
+        Drawable drawable = mContext.getResources().getDrawable(R.drawable.webview_progress);
+        mProgressbar.setProgressDrawable(drawable);
         this.addView(mProgressbar);
 
         mWebView = new WebView(mContext);
