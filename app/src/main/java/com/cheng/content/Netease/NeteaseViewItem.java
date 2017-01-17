@@ -40,7 +40,7 @@ public class NeteaseViewItem extends RecyclerView.Adapter{
         ItemHolder h = (ItemHolder)holder;
         NeteaseBean bean = mList.get(position);
 
-        Picasso.with(mContext).load(bean.getImgsrc()).resize(130,100).into(h.mNeteaseItemIcon);
+        Picasso.with(mContext).load(bean.getImgsrc()).resize(130,100).placeholder(R.mipmap.default_cover_image).into(h.mNeteaseItemIcon);
         h.mNeteaseItemTitle.setText(bean.getTitle());
         h.mNeteaseItemContent.setText(bean.getDigest());
         h.mNeteaseItemSource.setText("来源:"+bean.getSource());
