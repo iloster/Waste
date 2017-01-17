@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.cheng.content.DBMoment.DBView;
 import com.cheng.content.GuoKr.GuokrView;
+import com.cheng.content.Netease.NeteaseView;
 import com.cheng.content.ZhihuDaily.DailyView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.utils.LogUtils;
@@ -59,8 +60,10 @@ public class FloatContentMainView extends BaseSubView {
             public void onItemClick(int position, Object data) {
                switch (position){
                    case 0:{
-                       V2exMainView v2exMainView = new V2exMainView(mContext);
-                       MyWindowManager.replaceSubView(v2exMainView,list.get(position));
+//                       V2exMainView v2exMainView = new V2exMainView(mContext);
+//                       MyWindowManager.replaceSubView(v2exMainView,list.get(position));
+                       NeteaseView neteaseView = new NeteaseView();
+                       MyWindowManager.replaceSubView(neteaseView,list.get(position));
                    }
                    break;
                    case 1:{

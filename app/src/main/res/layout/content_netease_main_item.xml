@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/x8">
+        <ImageView
+            android:layout_width="@dimen/x120"
+            android:layout_height="@dimen/x100"
+            android:id="@+id/netease_item_icon"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/netease_item_icon"
+            android:text="this is title"
+            android:textColor="@color/primary_text"
+            android:textStyle="bold"
+            android:id="@+id/netease_item_title"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/netease_item_icon"
+            android:layout_below="@id/netease_item_title"
+            android:text="this is content"
+            android:textColor="@color/seconaary_text"
+            android:id="@+id/netease_item_content"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
