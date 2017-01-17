@@ -58,6 +58,8 @@ public class NeteaseView extends BaseSubView {
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(adapter);
 
+        NeteasePagerView pagerView = (NeteasePagerView) viewList.get(0);
+        pagerView.loadData();
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -67,8 +69,9 @@ public class NeteaseView extends BaseSubView {
             @Override
             public void onPageSelected(int position) {
                 LogUtils.v(TAG,"position:"+position);
-                NeteasePagerView pagerView =(NeteasePagerView)viewList.get(position);
-                pagerView.loadData(position);
+
+                NeteasePagerView pagerView = (NeteasePagerView) viewList.get(position);
+                pagerView.loadData();
             }
 
             @Override

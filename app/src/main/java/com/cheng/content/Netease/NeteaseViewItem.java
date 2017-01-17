@@ -40,9 +40,10 @@ public class NeteaseViewItem extends RecyclerView.Adapter{
         ItemHolder h = (ItemHolder)holder;
         NeteaseBean bean = mList.get(position);
 
-        Picasso.with(mContext).load(bean.getImgsrc()).resize(120,100).into(h.mNeteaseItemIcon);
+        Picasso.with(mContext).load(bean.getImgsrc()).resize(130,100).into(h.mNeteaseItemIcon);
         h.mNeteaseItemTitle.setText(bean.getTitle());
         h.mNeteaseItemContent.setText(bean.getDigest());
+        h.mNeteaseItemSource.setText("来源:"+bean.getSource());
     }
 
     @Override
@@ -55,6 +56,7 @@ public class NeteaseViewItem extends RecyclerView.Adapter{
         public ImageView mNeteaseItemIcon;
         public TextView mNeteaseItemTitle;
         public TextView mNeteaseItemContent;
+        public TextView mNeteaseItemSource;
 
         public ItemHolder(View itemView) {
             super(itemView);
@@ -62,6 +64,7 @@ public class NeteaseViewItem extends RecyclerView.Adapter{
             mNeteaseItemIcon = (ImageView)itemView.findViewById(R.id.netease_item_icon);
             mNeteaseItemTitle = (TextView)itemView.findViewById(R.id.netease_item_title);
             mNeteaseItemContent = (TextView)itemView.findViewById(R.id.netease_item_content);
+            mNeteaseItemSource = (TextView)itemView.findViewById(R.id.netease_item_source);
         }
     }
 }
