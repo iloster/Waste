@@ -7,17 +7,18 @@
     android:clickable="true">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/x120"
         android:padding="@dimen/x8">
         <ImageView
-            android:layout_width="@dimen/x120"
-            android:layout_height="@dimen/x100"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/x80"
             android:id="@+id/netease_item_icon"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/netease_item_icon"
             android:text="this is title"
+            android:maxLines="2"
             android:textColor="@color/primary_text"
             android:textStyle="bold"
             android:id="@+id/netease_item_title"/>
@@ -27,6 +28,7 @@
             android:layout_toRightOf="@id/netease_item_icon"
             android:layout_below="@id/netease_item_title"
             android:text="this is content"
+            android:maxLines="2"
             android:textColor="@color/seconaary_text"
             android:id="@+id/netease_item_content"/>
     </RelativeLayout>
