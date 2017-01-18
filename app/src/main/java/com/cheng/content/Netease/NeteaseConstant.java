@@ -15,4 +15,5 @@ public class NeteaseConstant {
     public static final int TAB_KEJI = 1;
     public static final int TAB_SHEHUI = 2;
 
+    public static final String HTML_STR = "<html><meta name=\"viewport\" content=\"width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/><body>%s</body></html>";
 }

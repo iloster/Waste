@@ -74,6 +74,7 @@ public class MyWebViewEx extends LinearLayout {
         mWebView.setWebViewClient(new MyWebViewClient());
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setBlockNetworkImage(false);
+        mWebView.getSettings().setUseWideViewPort(true);
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
