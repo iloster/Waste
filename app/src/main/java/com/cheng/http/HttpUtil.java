@@ -116,7 +116,11 @@ public class HttpUtil {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    sendResponse(call, response.body().string(), mCallBack);
+                    try {
+                        sendResponse(call, response.body().string(), mCallBack);
+                    }catch (IOException e){
+                        sendFailure(call, mCallBack);
+                    }
                 } else {
                     sendFailure(call, mCallBack);
                 }

@@ -3,12 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/x5"
     android:focusable="true"
     android:clickable="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/x8">
+        android:padding="@dimen/x8"
+        android:background="@drawable/cardview_item_click">
         <ImageView
             android:layout_width="@dimen/x130"
             android:layout_height="@dimen/x100"
@@ -22,30 +24,47 @@
             android:textColor="@color/primary_text"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
             android:id="@+id/netease_item_title"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/netease_item_icon"
             android:layout_below="@id/netease_item_title"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
             android:text="this is content"
             android:maxLines="2"
             android:textSize="13sp"
-            android:layout_marginTop="@dimen/x5"
-            android:layout_marginLeft="@dimen/x5"
             android:textColor="@color/seconaary_text"
+            android:ellipsize="end"
             android:id="@+id/netease_item_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
             android:layout_toRightOf="@id/netease_item_icon"
+            android:layout_alignParentBottom="true"
             android:layout_below="@id/netease_item_content"
+            android:id="@+id/netease_item_time"
+            android:textColor="@color/third_text"
+            android:ellipsize="end"
+            android:textSize="11sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/netease_item_time"
+            android:layout_below="@id/netease_item_content"
+            android:layout_alignParentBottom="true"
             android:id="@+id/netease_item_source"
             android:textSize="11sp"
             android:layout_marginTop="@dimen/x5"
-            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginLeft="@dimen/x8"
+            android:ellipsize="end"
+            android:lines="1"
             android:textColor="@color/third_text" />
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

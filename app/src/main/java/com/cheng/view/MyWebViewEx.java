@@ -99,6 +99,9 @@ public class MyWebViewEx extends LinearLayout {
         mWebView.goBack();
     }
 
+    public void loadData(String str){
+        mWebView.loadData(str,"text/html;charset=UTF-8", null);
+    }
     public void setWebViewListener(OnWebViewListener listener){
         mOnWebViewListener = listener;
     }

@@ -26,7 +26,7 @@ public class NeteaseView extends BaseSubView {
     private Context mContext;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-
+    final List<View> viewList = new ArrayList<>();
     public NeteaseView() {
         super(WasteApplication.getInstance());
 
@@ -44,7 +44,7 @@ public class NeteaseView extends BaseSubView {
         mTabLayout.addTab(mTabLayout.newTab().setText("科技"));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText("社会"));//添加tab选项卡
 
-        final List<View> viewList = new ArrayList<>();
+
         viewList.add(new NeteasePagerView(0));
         viewList.add(new NeteasePagerView(1));
         viewList.add(new NeteasePagerView(2));
@@ -63,7 +63,7 @@ public class NeteaseView extends BaseSubView {
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                LogUtils.v(TAG,"position:"+position+"|positionOffset:"+positionOffset+"|positionOffsetPixels:"+positionOffsetPixels);
+//                LogUtils.v(TAG,"position:"+position+"|positionOffset:"+positionOffset+"|positionOffsetPixels:"+positionOffsetPixels);
             }
 
             @Override
@@ -80,6 +80,12 @@ public class NeteaseView extends BaseSubView {
             }
         });
 
+    }
+
+    public void onRefreshClick(){
+        LogUtils.v(TAG,"onRefreshClick");
+        NeteasePagerView pagerView  = (NeteasePagerView) viewList.get(mViewPager.getCurrentItem());
+        pagerView.onRefreshClick();
     }
 
 
