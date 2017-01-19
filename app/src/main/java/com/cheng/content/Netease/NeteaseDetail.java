@@ -55,7 +55,7 @@ public class NeteaseDetail extends BaseSubView {
     }
 
     private void showData(){
-        String html = String.format(NeteaseConstant.HTML_STR,handlerHtml());
+        String html = NeteaseConstant.HTML_STR.replace("{body}",handlerHtml()).replace("{title}",mNeteaseDetailBean.getTitle()).replace("{source}",mNeteaseDetailBean.getSource()+"  "+mNeteaseDetailBean.getPtime());
         LogUtils.v(TAG,"showData:"+html);
         mWebView.loadData(html);
     }
@@ -68,8 +68,6 @@ public class NeteaseDetail extends BaseSubView {
         LogUtils.v(TAG,"handlerHtml:"+bodyStr);
         for (int i = 0 ; i<mNeteaseDetailBean.getImg().size();i++){
             String str1 = mNeteaseDetailBean.getImg().get(i).getRef();
-            String[] pixel = mNeteaseDetailBean.getImg().get(i).getPixel().split("*");
-
             String str2 = "<img src=\""+mNeteaseDetailBean.getImg().get(i).getSrc()+"\"/><br/>";
             bodyStr = bodyStr.replaceAll(str1,str2);
         }

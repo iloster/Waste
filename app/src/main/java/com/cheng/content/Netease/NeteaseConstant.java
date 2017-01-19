@@ -15,5 +15,18 @@ public class NeteaseConstant {
     public static final int TAB_KEJI = 1;
     public static final int TAB_SHEHUI = 2;
 
-    public static final String HTML_STR = "<html><meta name=\"viewport\" content=\"width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/><body>%s</body></html>";
+    public static final String HTML_STR = "<html><meta name=\"viewport\" content=\"width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"/> <style type=\"text/css\">\n" +
+            "        img {\n" +
+            "  max-width: 100%;\n" +
+            "  display: block;\n" +
+            "  margin: 1px auto;\n" +
+            "}\n" +
+            ".title {\n" +
+            "  line-height: 1.2em;\n" +
+            "  color: #000;\n" +
+            "  font-size: 22px;\n" +
+            "  margin: 20px 0 10px;\n" +
+            "  font-weight: bold;\n" +
+            "}\n" +
+            "    </style><body><p class=\"title\">{title}</p><p>{source}</p>{body}</body></html>";
 }

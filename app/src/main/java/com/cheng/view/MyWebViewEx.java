@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -61,11 +62,15 @@ public class MyWebViewEx extends LinearLayout {
         mProgressbar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,5));
         Drawable drawable = mContext.getResources().getDrawable(R.drawable.webview_progress);
         mProgressbar.setProgressDrawable(drawable);
+        mProgressbar.setProgress(10);
         this.addView(mProgressbar);
 
         mWebView = new WebView(mContext);
         mWebView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         this.addView(mWebView);
+
+//        mWebView.setVerticalScrollBarEnabled(true);
+//        mWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
         mWebView.setWebChromeClient(new MyWebChromeClient());
         //是否可以缩放
@@ -75,6 +80,7 @@ public class MyWebViewEx extends LinearLayout {
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setBlockNetworkImage(false);
         mWebView.getSettings().setUseWideViewPort(true);
+
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -103,6 +109,8 @@ public class MyWebViewEx extends LinearLayout {
     public void loadData(String str){
         mWebView.loadData(str,"text/html;charset=UTF-8", null);
     }
+
+
     public void setWebViewListener(OnWebViewListener listener){
         mOnWebViewListener = listener;
     }

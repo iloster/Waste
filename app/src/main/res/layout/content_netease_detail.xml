@@ -2,8 +2,5 @@
 <com.cheng.view.MyWebViewEx android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/webView"
-    android:scrollbarStyle="outsideOverlay"
-    android:scrollbars="vertical"
-    android:scrollbarSize="@dimen/x3"
-    android:scrollbarThumbVertical="@color/colorPrimary"
+
     xmlns:android="http://schemas.android.com/apk/res/android" />
