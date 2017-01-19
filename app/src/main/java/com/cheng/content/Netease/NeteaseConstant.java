@@ -11,6 +11,7 @@ public class NeteaseConstant {
 
     public static final String ARTICLE_URL = "http://apistudy-demoloster.rhcloud.com/netease/postid/%s";
 
+    public static final String PHOTO_URL = "http://c.m.163.com/photo/api/set/0001/2229221.json";
     public static final int TAB_TOUTIAO = 0;
     public static final int TAB_KEJI = 1;
     public static final int TAB_SHEHUI = 2;

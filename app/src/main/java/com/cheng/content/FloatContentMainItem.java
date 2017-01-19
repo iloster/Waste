@@ -40,14 +40,16 @@ public class FloatContentMainItem extends RecyclerView.Adapter {
         ItemHolder h = (ItemHolder)holder;
         h.name.setText(mList.get(position));
         if(position == 0) {
+            Picasso.with(mConext).load(R.mipmap.news).resize(48,48).into(h.icon);
+        }else if(position == 1) {
             Picasso.with(mConext).load(R.mipmap.v2ex).resize(48,48).into(h.icon);
 
-        }else if(position == 1){
+        }else if(position == 2){
             //h.icon.setImageResource(R.mipmap.douban);
             Picasso.with(mConext).load(R.mipmap.douban).resize(48,48).into(h.icon);
-        }else if (position == 2){
-            Picasso.with(mConext).load(R.mipmap.guokr).resize(48,48).into(h.icon);
         }else if (position == 3){
+            Picasso.with(mConext).load(R.mipmap.guokr).resize(48,48).into(h.icon);
+        }else if (position == 4){
             Picasso.with(mConext).load(R.mipmap.zhihu).resize(48,48).into(h.icon);
         }
 

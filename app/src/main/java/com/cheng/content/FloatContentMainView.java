@@ -50,6 +50,7 @@ public class FloatContentMainView extends BaseSubView {
 
     private void showIcon(){
         final List<String> list = new ArrayList<>();
+        list.add("新闻");
         list.add("V2EX");
         list.add("豆瓣一刻");
         list.add("果壳精选");
@@ -60,26 +61,30 @@ public class FloatContentMainView extends BaseSubView {
             public void onItemClick(int position, Object data) {
                switch (position){
                    case 0:{
-//                       V2exMainView v2exMainView = new V2exMainView(mContext);
-//                       MyWindowManager.replaceSubView(v2exMainView,list.get(position));
                        NeteaseView neteaseView = new NeteaseView();
                        MyWindowManager.replaceSubView(neteaseView,list.get(position));
+                   }break;
+                   case 1:{
+                       V2exMainView v2exMainView = new V2exMainView(mContext);
+                       MyWindowManager.replaceSubView(v2exMainView,list.get(position));
+
                    }
                    break;
-                   case 1:{
+                   case 2:{
                        DBView dbView = new DBView();
                        MyWindowManager.replaceSubView(dbView,list.get(position));
                    }
                    break;
-                   case 2:{
+                   case 3:{
                        GuokrView guokrView = new GuokrView();
                        MyWindowManager.replaceSubView(guokrView,list.get(position));
                    }
                    break;
-                   case 3:{
+                   case 4:{
                        DailyView dailyView = new DailyView();
                        MyWindowManager.replaceSubView(dailyView,list.get(position));
-                   }break;
+                   }
+                   break;
                    default:break;
 
                }
