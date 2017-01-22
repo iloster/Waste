@@ -37,6 +37,7 @@ public class BaseSubView extends RelativeLayout{
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mIsLeave = true;
+        LogUtils.v("BaseSubView","onDetachedFromWindow");
 
     }
 
