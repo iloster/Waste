@@ -30,4 +30,6 @@ public class NeteaseConstant {
             "  font-weight: bold;\n" +
             "}\n" +
             "    </style><body><p class=\"title\">{title}</p><p>{source}</p>{body}</body></html>";
+
+
 }
