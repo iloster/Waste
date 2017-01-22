@@ -88,5 +88,10 @@ public class NeteaseView extends BaseSubView {
         pagerView.onRefreshClick();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+    }
 
 }

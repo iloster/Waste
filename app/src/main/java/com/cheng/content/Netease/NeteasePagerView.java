@@ -199,4 +199,15 @@ public class NeteasePagerView extends BaseSubView{
         mSwipeRefreshLayout.setRefreshing(true);
         requestData(true);
     }
+
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(mCall!=null){
+            LogUtils.v(TAG,"onDetachedFromWindow");
+            mCall.cancel();
+        }
+
+    }
 }
