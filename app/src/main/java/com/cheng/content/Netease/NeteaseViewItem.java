@@ -47,7 +47,11 @@ public class NeteaseViewItem extends RecyclerView.Adapter{
         int height = (int)mContext.getResources().getDimension(R.dimen.x100);
         Picasso.with(mContext).load(bean.getImgsrc()).resize(width,height).placeholder(R.mipmap.default_cover_image).into(h.mNeteaseItemIcon);
         h.mNeteaseItemTitle.setText(bean.getTitle());
-        h.mNeteaseItemContent.setText(bean.getDigest()+"...");
+        if(bean.getPosttype() == NeteaseConstant.TYPE_PHOTO){
+            h.mNeteaseItemContent.setText("[图片]");
+        }else {
+            h.mNeteaseItemContent.setText(bean.getDigest() + "...");
+        }
         h.mNeteaseItemSource.setText(bean.getSource());
         h.mNeteaseItemTime.setText(bean.getPtime());
     }

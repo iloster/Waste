@@ -1,19 +1,25 @@
 package com.cheng.content.Netease;
 
+import java.util.List;
+
 /**
  * Created by dev on 2017/1/17.
  */
 
 public class NeteaseBean {
 
+
     /**
-     * title : 委内瑞拉新版纸币面世 即日起正式发行
+     * title : 看客特刊：八年白宫路 奥巴马时代落幕
      * digest :
      * source : 网易原创
-     * postid : PHOT240IL000100A
-     * imgsrc : http://cms-bucket.nosdn.127.net/448f522ca49b4e8393d378a401c96bdd20170117171052.jpeg
-     * ptime : 2017-01-17 17:12:01
+     * postid : PHOT2410Q00013R7
+     * imgsrc : http://cms-bucket.nosdn.127.net/aaca84f6fb4348c18bcb2db02fadf3ea20170120073427.jpeg
+     * ptime : 2017-01-20 07:35:18
      * boardid : photoview_bbs
+     * photoid : 2229274
+     * imgextra : [{"imgsrc":"http://cms-bucket.nosdn.127.net/9facacb8f09140bf9fa466affa382b0c20170120073426.jpeg"},{"imgsrc":"http://cms-bucket.nosdn.127.net/17796960841e43e2be28de4766feb52b20170120073426.jpeg"}]
+     * posttype : 2
      */
 
     private String title;
@@ -23,6 +29,9 @@ public class NeteaseBean {
     private String imgsrc;
     private String ptime;
     private String boardid;
+    private String photoid;
+    private int posttype;
+    private List<ImgextraBean> imgextra;
 
     public String getTitle() {
         return title;
@@ -78,5 +87,45 @@ public class NeteaseBean {
 
     public void setBoardid(String boardid) {
         this.boardid = boardid;
+    }
+
+    public String getPhotoid() {
+        return photoid;
+    }
+
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
+    }
+
+    public int getPosttype() {
+        return posttype;
+    }
+
+    public void setPosttype(int posttype) {
+        this.posttype = posttype;
+    }
+
+    public List<ImgextraBean> getImgextra() {
+        return imgextra;
+    }
+
+    public void setImgextra(List<ImgextraBean> imgextra) {
+        this.imgextra = imgextra;
+    }
+
+    public static class ImgextraBean {
+        /**
+         * imgsrc : http://cms-bucket.nosdn.127.net/9facacb8f09140bf9fa466affa382b0c20170120073426.jpeg
+         */
+
+        private String imgsrc;
+
+        public String getImgsrc() {
+            return imgsrc;
+        }
+
+        public void setImgsrc(String imgsrc) {
+            this.imgsrc = imgsrc;
+        }
     }
 }
