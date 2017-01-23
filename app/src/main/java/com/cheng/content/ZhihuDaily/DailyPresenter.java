@@ -6,6 +6,8 @@ import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
@@ -42,6 +44,13 @@ public class DailyPresenter {
                     Gson gson = new Gson();
                     DailyMainBean dailyMainBean = gson.fromJson(ret, DailyMainBean.class);
                     mDailyView.refreshData(dailyMainBean.getStories(), flag);
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                    Date date = sdf.parse(dailyMainBean.getDate());
+                    long timeStr = date.getTime();
+                    for(int i = 0;i<dailyMainBean.getStories().size();i++){
+                        dailyMainBean.getStories().get(i).setShowtime(timeStr);
+                    }
                 }catch (Exception e){
                     mDailyView.showError(flag);
                 }

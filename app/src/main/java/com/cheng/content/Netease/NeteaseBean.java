@@ -9,18 +9,6 @@ import java.util.List;
 public class NeteaseBean {
 
 
-    /**
-     * title : 看客特刊：八年白宫路 奥巴马时代落幕
-     * digest :
-     * source : 网易原创
-     * postid : PHOT2410Q00013R7
-     * imgsrc : http://cms-bucket.nosdn.127.net/aaca84f6fb4348c18bcb2db02fadf3ea20170120073427.jpeg
-     * ptime : 2017-01-20 07:35:18
-     * boardid : photoview_bbs
-     * photoid : 2229274
-     * imgextra : [{"imgsrc":"http://cms-bucket.nosdn.127.net/9facacb8f09140bf9fa466affa382b0c20170120073426.jpeg"},{"imgsrc":"http://cms-bucket.nosdn.127.net/17796960841e43e2be28de4766feb52b20170120073426.jpeg"}]
-     * posttype : 2
-     */
 
     private String title;
     private String digest;
@@ -31,6 +19,12 @@ public class NeteaseBean {
     private String boardid;
     private String photoid;
     private int posttype;
+
+    /**
+     * imgsrc : http://cms-bucket.nosdn.127.net/1bde1126c0a544609663f4430f14a19220170119204450.jpeg
+     */
+
+
     private List<ImgextraBean> imgextra;
 
     public String getTitle() {
@@ -114,9 +108,6 @@ public class NeteaseBean {
     }
 
     public static class ImgextraBean {
-        /**
-         * imgsrc : http://cms-bucket.nosdn.127.net/9facacb8f09140bf9fa466affa382b0c20170120073426.jpeg
-         */
 
         private String imgsrc;
 

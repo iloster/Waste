@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -35,6 +36,11 @@ public class DailyMainItem extends RecyclerView.Adapter {
         View view = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_daily_item,parent,false);
         DailyMainHolder holder = new DailyMainHolder(view);
         view.setOnClickListener(holder);
+        if(viewType==SHOW_TIME){
+            holder.mDailyItemTime.setVisibility(View.VISIBLE);
+        }else{
+            holder.mDailyItemTime.setVisibility(View.GONE);
+        }
         return holder;
     }
 
@@ -47,6 +53,13 @@ public class DailyMainItem extends RecyclerView.Adapter {
         String url = storiesBean.getImages().get(0);
 //        LogUtils.v(TAG,"icon url: "+url);
         Picasso.with(WasteApplication.getInstance()).load(url).placeholder(R.mipmap.default_cover_image).resize(80,80).into(h.mDailyItemIcon);
+        if(h.mDailyItemTime.getVisibility()==View.VISIBLE){
+            if(TimeUtils.isSameDay(storiesBean.getShowtime(),System.currentTimeMillis())){
+                h.mDailyItemTime.setText("今天");
+            }else {
+                h.mDailyItemTime.setText(TimeUtils.getTimeByFormat(storiesBean.getShowtime(),"yyyy-MM-dd"));
+            }
+        }
     }
 
     @Override
@@ -61,7 +74,7 @@ public class DailyMainItem extends RecyclerView.Adapter {
         }else{
             DailyMainBean.StoriesBean bean1 = mStoriesBeanList.get(position);
             DailyMainBean.StoriesBean bean2 = mStoriesBeanList.get(position-1);
-            return SHOW_TIME;
+            return bean1.getShowtime() == bean2.getShowtime()?HIDE_TIME:SHOW_TIME;
         }
     }
 
@@ -72,11 +85,13 @@ public class DailyMainItem extends RecyclerView.Adapter {
 
         public TextView mDailyItemTitle;
         public ImageView mDailyItemIcon;
+        public TextView mDailyItemTime;
         public DailyMainHolder(View itemView) {
             super(itemView);
 
             mDailyItemIcon = (ImageView)itemView.findViewById(R.id.daily_item_icon);
             mDailyItemTitle = (TextView)itemView.findViewById(R.id.daily_item_title);
+            mDailyItemTime = (TextView)itemView.findViewById(R.id.cardview_item_time);
         }
 
         @Override

@@ -64,7 +64,7 @@ public class DailyMainBean {
         private String ga_prefix;
         private String title;
         private List<String> images;
-
+        private long showtime;
         public int getType() {
             return type;
         }
@@ -103,6 +103,13 @@ public class DailyMainBean {
 
         public void setImages(List<String> images) {
             this.images = images;
+        }
+
+        public void setShowtime(long showtime){
+            this.showtime = showtime;
+        }
+        public long getShowtime(){
+            return this.showtime;
         }
     }
 

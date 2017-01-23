@@ -115,21 +115,23 @@ public class BaseContentView extends RelativeLayout{
     }
 
     public void showErrorView(){
-        //显示errorview
-        mErrorView = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_error_view,null);
-        mErrorButton = (Button)mErrorView.findViewById(R.id.errorBtn);
-        mErrorButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BaseSubView curView = getCurView();
-                hideErrorView();
-                curView.onRefreshClick();
-            }
-        });
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
-        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-        mSubView.addView(mErrorView,params);
-        mErrorView.setVisibility(VISIBLE);
+        if(!getCurView().getIsLeave()) {
+            //显示errorview
+            mErrorView = LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_error_view, null);
+            mErrorButton = (Button) mErrorView.findViewById(R.id.errorBtn);
+            mErrorButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BaseSubView curView = getCurView();
+                    hideErrorView();
+                    curView.onRefreshClick();
+                }
+            });
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+            params.addRule(RelativeLayout.CENTER_IN_PARENT);
+            mSubView.addView(mErrorView, params);
+            mErrorView.setVisibility(VISIBLE);
+        }
     }
     public void hideErrorView(){
        // mErrorView.setVisibility(GONE);

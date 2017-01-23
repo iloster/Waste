@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
@@ -145,6 +146,7 @@ public class NeteasePagerView extends BaseSubView{
     }
 
     public void showError(){
+        LogUtils.v(TAG,"showError");
         mIsRefresh = false;
         mSwipeRefreshLayout.setRefreshing(false);
         if(mNeteaseBeanList.size()>0){
@@ -198,5 +200,17 @@ public class NeteasePagerView extends BaseSubView{
         mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
         mSwipeRefreshLayout.setRefreshing(true);
         requestData(true);
+    }
+
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(mCall!=null){
+            LogUtils.v(TAG,"onDetachedFromWindow");
+            mCall.cancel();
+            LogUtils.v(TAG,"ss:"+mCall.isCanceled());
+        }
+
     }
 }
