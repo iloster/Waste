@@ -6,14 +6,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
-import com.cheng.view.MyGestureListener;
-import com.cheng.view.SystemGestureListener;
 
 import java.lang.reflect.Field;
 

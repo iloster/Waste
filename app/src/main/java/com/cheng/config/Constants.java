@@ -49,4 +49,7 @@ public class Constants {
     // eg:https://moment.douban.com/api/post/100484
 //    public static final String DOUBAN_ARTICLE_DETAIL = "https://moment.douban.com/api/post/";
 
+    public static final int WINSIZE_LITTLE = 1;
+    public static final int WINSIZE_FULLSCREEN = 2;
+    public static final String WINSIZE_SP_KEY = "winsize";
 }
