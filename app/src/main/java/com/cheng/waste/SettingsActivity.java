@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -116,9 +117,9 @@ public class SettingsActivity extends AppCompatActivity {
 
             int winSizeValue = SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
             if(winSizeValue == Constants.WINSIZE_LITTLE){
-                mWinSizeShiftPre.setSummary("全屏");
-            }else{
                 mWinSizeShiftPre.setSummary("3/4屏幕");
+            }else{
+                mWinSizeShiftPre.setSummary("全屏");
             }
 
             nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -140,8 +141,14 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         private void showDailog() {
-
             final View view1 = LayoutInflater.from(SettingsActivity.this).inflate(R.layout.activity_settings_winsize, null);
+            RadioGroup radioGroup = (RadioGroup) view1.findViewById(R.id.radioGroup);
+            if(SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE) == Constants.WINSIZE_LITTLE){
+                radioGroup.check(R.id.little);
+            }else{
+                radioGroup.check(R.id.large);
+            }
+
             final MaterialDialog mMaterialDialog = new MaterialDialog(SettingsActivity.this);
             mMaterialDialog.setTitle("选择合适的屏幕大小吧");
             mMaterialDialog.setPositiveButton("确定", new View.OnClickListener() {

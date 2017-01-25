@@ -10,8 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cheng.config.Constants;
 import com.cheng.content.FloatContentMainView;
 import com.cheng.utils.LogUtils;
+import com.cheng.utils.SpUtils;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -55,7 +57,13 @@ public class BaseContentView extends RelativeLayout{
         mSubView = (RelativeLayout) findViewById(R.id.subView);
 
         int width = windowManager.getDefaultDisplay().getWidth();
-        int height = windowManager.getDefaultDisplay().getHeight()*3/4;
+        int height = 0;
+        if(SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE) == Constants.WINSIZE_LITTLE){
+            height = windowManager.getDefaultDisplay().getHeight()*3/4;
+        }else{
+            height = windowManager.getDefaultDisplay().getHeight();
+        }
+
         mContainLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,height));
 
 
