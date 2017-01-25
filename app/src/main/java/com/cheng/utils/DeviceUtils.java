@@ -63,7 +63,7 @@ public class DeviceUtils {
     public static boolean isServiceRunning(String name){
         ActivityManager activityManager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE);
         for(ActivityManager.RunningServiceInfo serviceInfo:activityManager.getRunningServices(Integer.MAX_VALUE)){
-            LogUtils.v(TAG,serviceInfo.service.getClassName());
+//            LogUtils.v(TAG,serviceInfo.service.getClassName());
             if(serviceInfo.service.getClassName().equals(name)){
                 return true;
             }

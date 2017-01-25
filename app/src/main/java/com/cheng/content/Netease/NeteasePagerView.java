@@ -207,9 +207,9 @@ public class NeteasePagerView extends BaseSubView{
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if(mCall!=null){
-            LogUtils.v(TAG,"onDetachedFromWindow");
             mCall.cancel();
             LogUtils.v(TAG,"ss:"+mCall.isCanceled());
+
         }
 
     }

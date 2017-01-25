@@ -101,11 +101,11 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
     @Override
     public void showDetail(V2exEntity v) {
-//        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext,v);
-//        MyWindowManager.replaceSubView(v2exMainDetail,"V2EX");
-//        MyWindowManager.showLoading();
-        V2exMainWebDetail v2exMainWebDetail = new V2exMainWebDetail(mContext,v);
-        MyWindowManager.replaceSubView(v2exMainWebDetail,"V2EX");
+        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext,v);
+        MyWindowManager.replaceSubView(v2exMainDetail,"V2EX");
+        MyWindowManager.showLoading();
+//        V2exMainWebDetail v2exMainWebDetail = new V2exMainWebDetail(mContext,v);
+//        MyWindowManager.replaceSubView(v2exMainWebDetail,"V2EX");
     }
 
     @Override

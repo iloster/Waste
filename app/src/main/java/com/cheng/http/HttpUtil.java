@@ -94,8 +94,7 @@ public class HttpUtil {
 
     /**
      *
-     * @param service  jie 接口
-     * @param param  请求参数 为一个json字符串
+     * @param url  jie 接口
      * @param callback  请求回调
      */
     public Call enqueueEx(String url,CallBack callback){
@@ -109,7 +108,11 @@ public class HttpUtil {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                sendFailure(call, mCallBack);
+                if(!e.toString().contains("closed")) {
+                    if (mCallBack != null) {
+                        sendFailure(call, mCallBack);
+                    }
+                }
                 Log.e("ZedLi","onFailure:"+e.toString());
             }
 
