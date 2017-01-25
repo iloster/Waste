@@ -21,7 +21,7 @@ import java.lang.reflect.Field;
  * Created by cheng on 2016/12/7.
  */
 
-public class FloatIconView extends LinearLayout implements GestureDetector.OnGestureListener{
+public class FloatIconView extends LinearLayout{
 
     private String TAG = "FloatIconView";
     /**
@@ -107,6 +107,8 @@ public class FloatIconView extends LinearLayout implements GestureDetector.OnGes
                 return true;
             }
         });
+
+
     }
 
 
@@ -156,39 +158,4 @@ public class FloatIconView extends LinearLayout implements GestureDetector.OnGes
         MyWindowManager.createFloatContentView(getContext());
     }
 
-
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        LogUtils.v(TAG,"ssssss");
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
-        LogUtils.v(TAG,"ssssss");
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        LogUtils.v(TAG,"ssssss");
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        LogUtils.v(TAG,"ssssss");
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-        LogUtils.v(TAG,"ssssss");
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        LogUtils.v(TAG,"ssssss");
-        return false;
-    }
 }
