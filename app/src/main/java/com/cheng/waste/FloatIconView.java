@@ -1,6 +1,7 @@
 package com.cheng.waste;
 
 import android.content.Context;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.LinearLayout;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
+import com.cheng.view.MyGestureListener;
+import com.cheng.view.SystemGestureListener;
 
 import java.lang.reflect.Field;
 
@@ -18,7 +21,7 @@ import java.lang.reflect.Field;
  * Created by cheng on 2016/12/7.
  */
 
-public class FloatIconView extends LinearLayout{
+public class FloatIconView extends LinearLayout implements GestureDetector.OnGestureListener{
 
     private String TAG = "FloatIconView";
     /**
@@ -62,6 +65,7 @@ public class FloatIconView extends LinearLayout{
      */
     private float yInView;
 
+    private GestureDetector mGestureDetector;
     public FloatIconView(Context context) {
         super(context);
 
@@ -150,5 +154,41 @@ public class FloatIconView extends LinearLayout{
     private void openFloatContentView(){
         MyWindowManager.reomveFloatIconView(getContext());
         MyWindowManager.createFloatContentView(getContext());
+    }
+
+
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        LogUtils.v(TAG,"ssssss");
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+        LogUtils.v(TAG,"ssssss");
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        LogUtils.v(TAG,"ssssss");
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        LogUtils.v(TAG,"ssssss");
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+        LogUtils.v(TAG,"ssssss");
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        LogUtils.v(TAG,"ssssss");
+        return false;
     }
 }

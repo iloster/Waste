@@ -60,4 +60,5 @@ public class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
     public void setOnFlingListener(OnFlingListener mOnFlingListener) {
         this.mOnFlingListener = mOnFlingListener;
     }
+
 }

@@ -86,8 +86,8 @@ public class MyWindowManager {
                 mFloatIconViewParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                         | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
                 mFloatIconViewParams.gravity = Gravity.LEFT | Gravity.TOP;
-                mFloatIconViewParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
-                mFloatIconViewParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                mFloatIconViewParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+                mFloatIconViewParams.height = WindowManager.LayoutParams.MATCH_PARENT;
                 if(SpUtils.getInt("posX",-1)!=-1&&SpUtils.getInt("posY",-1)!=-1){
                     mFloatIconViewParams.x = SpUtils.getInt("posX",0);
                     mFloatIconViewParams.y = SpUtils.getInt("posY",0);
