@@ -16,9 +16,7 @@ public class Constants {
 
     public static final String URL = "http://srv.yue.fm/article/random?device_id=A99BDCA9-44B2-4F73-9EE1-DD0046AAD1F7";
 
-    public static final String V2EX_URL_HOT = "https://www.v2ex.com/api/topics/hot.json";
-    public static final String V2EX_URL_LATEST = "https://www.v2ex.com/api/topics/latest.json";
-    public static final String V2EX_URL_REPLAY = "https://www.v2ex.com/api/replies/show.json?topic_id=";//329991";
+
     public static final int WINSIZE_LITTLE = 1;
     public static final int WINSIZE_FULLSCREEN = 2;
     public static final String WINSIZE_SP_KEY = "winsize";

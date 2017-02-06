@@ -32,9 +32,9 @@ public class V2exPresenter {
         LogUtils.v(TAG,"V2exPresenter:loadData");
         String url = "";
         if(mIndex == 1){
-            url = Constants.V2EX_URL_HOT;
+            url = V2exConstants.V2EX_URL_HOT;
         }else{
-            url = Constants.V2EX_URL_LATEST;
+            url = V2exConstants.V2EX_URL_LATEST;
         }
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override
@@ -69,9 +69,9 @@ public class V2exPresenter {
         LogUtils.v(TAG,"V2exPresenter:loadData");
         String url = "";
         if(mIndex == 1){
-            url = Constants.V2EX_URL_HOT;
+            url = V2exConstants.V2EX_URL_HOT;
         }else{
-            url = Constants.V2EX_URL_LATEST;
+            url = V2exConstants.V2EX_URL_LATEST;
         }
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override

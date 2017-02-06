@@ -74,7 +74,7 @@ public class V2exMainDetail extends BaseSubView {
 
 
     public void showComment(){
-        mCommentUrl = Constants.V2EX_URL_REPLAY + mV2exEntity.getId();
+        mCommentUrl = V2exConstants.V2EX_URL_REPLAY + mV2exEntity.getId();
         LogUtils.v(TAG,"showComment: "+mCommentUrl);
         HttpUtil.getInstance().enqueue(mCommentUrl, new CallBack() {
             @Override
