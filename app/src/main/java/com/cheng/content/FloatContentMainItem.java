@@ -21,9 +21,9 @@ import java.util.List;
 
 public class FloatContentMainItem extends RecyclerView.Adapter {
    private Context mConext;
-    private List<String> mList;
+    private List<BlockItem> mList;
     private BaseSubView.OnRecyclerViewItemClickListener mListener;
-    public FloatContentMainItem(Context context, List<String> list){
+    public FloatContentMainItem(Context context, List<BlockItem> list){
         mConext = context;
         mList = list;
    }
@@ -38,20 +38,10 @@ public class FloatContentMainItem extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemHolder h = (ItemHolder)holder;
-        h.name.setText(mList.get(position));
-        if(position == 0) {
-            Picasso.with(mConext).load(R.mipmap.news).resize(48,48).into(h.icon);
-        }else if(position == 1) {
-            Picasso.with(mConext).load(R.mipmap.v2ex).resize(48,48).into(h.icon);
+        BlockItem item = mList.get(position);
+        h.name.setText(item.getName());
 
-        }else if(position == 2){
-            //h.icon.setImageResource(R.mipmap.douban);
-            Picasso.with(mConext).load(R.mipmap.douban).resize(48,48).into(h.icon);
-        }else if (position == 3){
-            Picasso.with(mConext).load(R.mipmap.guokr).resize(48,48).into(h.icon);
-        }else if (position == 4){
-            Picasso.with(mConext).load(R.mipmap.zhihu).resize(48,48).into(h.icon);
-        }
+        Picasso.with(mConext).load(item.getIcon()).resize(48,48).into(h.icon);
 
     }
 

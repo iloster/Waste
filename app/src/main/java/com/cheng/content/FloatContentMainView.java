@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.cheng.config.Constants;
 import com.cheng.content.DBMoment.DBView;
 import com.cheng.content.GuoKr.GuokrView;
 import com.cheng.content.Netease.NeteaseView;
@@ -49,40 +50,37 @@ public class FloatContentMainView extends BaseSubView {
     }
 
     private void showIcon(){
-        final List<String> list = new ArrayList<>();
-        list.add("新闻");
-        list.add("V2EX");
-        list.add("豆瓣一刻");
-        list.add("果壳精选");
-        list.add("知乎日报");
+        final List<BlockItem> list = new ArrayList<>();
+
+        for(int i = 0;i< Constants.BLOCK_COUNT; i++){
+            BlockItem blockItem = new BlockItem(i,Constants.BLOCK_NAMES[i],Constants.BLOCK_ICONS[i]);
+            list.add(blockItem);
+        }
         FloatContentMainItem floatContentMainItem = new FloatContentMainItem(mContext,list);
         floatContentMainItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position, Object data) {
-               switch (position){
-                   case 0:{
-                       NeteaseView neteaseView = new NeteaseView();
-                       MyWindowManager.replaceSubView(neteaseView,list.get(position));
-                   }break;
-                   case 1:{
+                BlockItem item = (BlockItem)data;
+               switch (item.getId()){
+                   case Constants.ID_V2EX:{
                        V2exMainView v2exMainView = new V2exMainView(mContext);
-                       MyWindowManager.replaceSubView(v2exMainView,list.get(position));
+                       MyWindowManager.replaceSubView(v2exMainView,item.getName());
 
                    }
                    break;
-                   case 2:{
+                   case Constants.ID_DBMOMENT:{
                        DBView dbView = new DBView();
-                       MyWindowManager.replaceSubView(dbView,list.get(position));
+                       MyWindowManager.replaceSubView(dbView,item.getName());
                    }
                    break;
-                   case 3:{
+                   case Constants.ID_GUOKR:{
                        GuokrView guokrView = new GuokrView();
-                       MyWindowManager.replaceSubView(guokrView,list.get(position));
+                       MyWindowManager.replaceSubView(guokrView,item.getName());
                    }
                    break;
-                   case 4:{
+                   case Constants.ID_ZHIHUDAILY:{
                        DailyView dailyView = new DailyView();
-                       MyWindowManager.replaceSubView(dailyView,list.get(position));
+                       MyWindowManager.replaceSubView(dailyView,item.getName());
                    }
                    break;
                    default:break;

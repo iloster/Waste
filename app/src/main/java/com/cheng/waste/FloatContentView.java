@@ -76,7 +76,7 @@ public class FloatContentView extends BaseContentView {
 //        });
         FloatContentMainView floatContentMainView = new FloatContentMainView(context);
 //        MyWindowManager.replaceSubView(floatContentMainView);
-        replaceView(floatContentMainView,"SnapTime");
+        replaceView(floatContentMainView,"零时");
     }
 
 
