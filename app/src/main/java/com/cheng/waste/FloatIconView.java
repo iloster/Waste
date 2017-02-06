@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 
@@ -62,7 +63,10 @@ public class FloatIconView extends LinearLayout{
      */
     private float yInView;
 
-    private GestureDetector mGestureDetector;
+    private long mPressdownTime;
+
+    private float xLastInScreen;
+    private float yLastInScreen;
     public FloatIconView(Context context) {
         super(context);
 
@@ -84,19 +88,40 @@ public class FloatIconView extends LinearLayout{
                         yDownInScreen = event.getRawY() - getStatusBarHeight();
                         xInScreen = event.getRawX();
                         yInScreen = event.getRawY() - getStatusBarHeight();
+                        mPressdownTime = System.currentTimeMillis();
                         break;
                     case MotionEvent.ACTION_MOVE:
                         xInScreen = event.getRawX();
                         yInScreen = event.getRawY() - getStatusBarHeight();
                         // 手指移动的时候更新小悬浮窗的位置
-                        updateViewPosition();
+                        updateViewPosition(true);
                         break;
                     case MotionEvent.ACTION_UP:
                         // 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
+
+                        LogUtils.v(TAG,"time:"+(System.currentTimeMillis()-mPressdownTime>1000));
                         if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
                             LogUtils.v(TAG,"click");
-                            openFloatContentView();
+                            if(System.currentTimeMillis()-mPressdownTime>1000) {
+                                mFloatIconLayout.setAlpha(0);
+                                xLastInScreen = xInScreen;
+                                yLastInScreen = yInScreen;
+                                xInScreen = DeviceUtils.getWidth();
+                                yInScreen = DeviceUtils.getHeight();
+                                updateViewPosition(false);
+                            }else {
+                                if(mFloatIconLayout.getAlpha() == 0){
+                                    xInScreen = xLastInScreen;
+                                    yInScreen = yLastInScreen;
+                                    updateViewPosition(false);
+                                    
+                                    mFloatIconLayout.setAlpha(1);
+                                }else{
+                                    openFloatContentView();
+                                }
+                            }
                         }
+
                         break;
                     default:
                         break;
@@ -104,6 +129,7 @@ public class FloatIconView extends LinearLayout{
                 return true;
             }
         });
+
 
 
     }
@@ -122,11 +148,13 @@ public class FloatIconView extends LinearLayout{
     /**
      * 更新小悬浮窗在屏幕中的位置。
      */
-    private void updateViewPosition() {
+    private void updateViewPosition(boolean flag) {
         mParams.x = (int) (xInScreen - xInView);
         mParams.y = (int) (yInScreen - yInView);
-        SpUtils.setInt("posX",mParams.x);
-        SpUtils.setInt("posY",mParams.y);
+        if(flag) {
+            SpUtils.setInt("posX", mParams.x);
+            SpUtils.setInt("posY", mParams.y);
+        }
         windowManager.updateViewLayout(this, mParams);
     }
 
