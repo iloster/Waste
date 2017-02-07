@@ -61,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
     public class SettingsFragment extends PreferenceFragment {
 
         private Preference mWinSizeShiftPre;
+        private CheckBoxPreference mLongPressPre;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,10 @@ public class SettingsActivity extends AppCompatActivity {
 
             CheckBoxPreference nightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
             mWinSizeShiftPre = (Preference) getPreferenceManager().findPreference("winSizeShiftPre");
+            mLongPressPre = (CheckBoxPreference)getPreferenceManager().findPreference("longPressPre");
+
+            boolean longPressFlag = SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true);
+            mLongPressPre.setChecked(longPressFlag);
 
             int winSizeValue = SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
             if(winSizeValue == Constants.WINSIZE_LITTLE){
@@ -83,7 +88,19 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
-
+           mLongPressPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+               @Override
+               public boolean onPreferenceChange(Preference preference, Object o) {
+                   boolean flag = (boolean)o;
+                   if(flag) {
+                       Toast.makeText(WasteApplication.getInstance(),"已开启",Toast.LENGTH_SHORT).show();
+                   }else{
+                       Toast.makeText(WasteApplication.getInstance(),"已关闭",Toast.LENGTH_SHORT).show();
+                   }
+                   SpUtils.setBoolean(Constants.LONGPRESS_SP_KEY,flag);
+                   return true;
+               }
+           });
             mWinSizeShiftPre.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {

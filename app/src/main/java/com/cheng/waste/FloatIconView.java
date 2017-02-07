@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.cheng.config.Constants;
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
@@ -102,7 +103,7 @@ public class FloatIconView extends LinearLayout{
                         LogUtils.v(TAG,"time:"+(System.currentTimeMillis()-mPressdownTime>1000));
                         if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
                             LogUtils.v(TAG,"click");
-                            if(System.currentTimeMillis()-mPressdownTime>1000) {
+                            if(SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true)&&System.currentTimeMillis()-mPressdownTime>500) {
                                 mFloatIconLayout.setAlpha(0);
                                 xLastInScreen = xInScreen;
                                 yLastInScreen = yInScreen;

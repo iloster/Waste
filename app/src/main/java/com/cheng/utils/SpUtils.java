@@ -34,4 +34,16 @@ public class SpUtils {
         editor.putFloat(key,value);
         editor.commit();
     }
+
+    public static void setBoolean(String key,boolean value){
+        SharedPreferences sp = WasteApplication.getInstance().getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(key,value);
+        editor.commit();
+    }
+
+    public static boolean getBoolean(String key,boolean defalutValue){
+        SharedPreferences sp = WasteApplication.getInstance().getSharedPreferences(SP_NAME,Context.MODE_PRIVATE);
+        return sp.getBoolean(key,defalutValue);
+    }
 }
