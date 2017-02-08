@@ -1,16 +1,12 @@
 package com.cheng.waste;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
-import android.net.Uri;
+
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
@@ -24,20 +20,19 @@ import com.cheng.config.Constants;
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import me.drakeet.materialdialog.MaterialDialog;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private static String TAG = "SettingsActivity";
-    private SettingsFragment mSettingsFragment;
+    public SettingsFragment mSettingsFragment;
 
+    public SettingsActivity(){
+
+    }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -54,102 +49,6 @@ public class SettingsActivity extends AppCompatActivity {
     private void replaceFragment(int viewId, Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(viewId, fragment).commit();
-    }
-
-    /**
-     * A placeholder fragment containing a settings view.
-     */
-    public class SettingsFragment extends PreferenceFragment {
-
-        private Preference mWinSizeShiftPre;
-        private CheckBoxPreference mLongPressPre;
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preferences);
-
-            CheckBoxPreference nightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
-            mWinSizeShiftPre = (Preference) getPreferenceManager().findPreference("winSizeShiftPre");
-            mLongPressPre = (CheckBoxPreference)getPreferenceManager().findPreference("longPressPre");
-
-            boolean longPressFlag = SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true);
-            mLongPressPre.setChecked(longPressFlag);
-
-            int winSizeValue = SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
-            if(winSizeValue == Constants.WINSIZE_LITTLE){
-                mWinSizeShiftPre.setSummary("3/4屏幕");
-            }else{
-                mWinSizeShiftPre.setSummary("全屏");
-            }
-
-            nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    boolean flag = (boolean)newValue;
-                    Toast.makeText(WasteApplication.getInstance(),"夜间模式:"+flag,Toast.LENGTH_SHORT).show();
-                    if(flag) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    }else{
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    }
-                    return true;
-                }
-            });
-           mLongPressPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-               @Override
-               public boolean onPreferenceChange(Preference preference, Object o) {
-                   boolean flag = (boolean)o;
-                   if(flag) {
-                       Toast.makeText(WasteApplication.getInstance(),"已开启",Toast.LENGTH_SHORT).show();
-                   }else{
-                       Toast.makeText(WasteApplication.getInstance(),"已关闭",Toast.LENGTH_SHORT).show();
-                   }
-                   SpUtils.setBoolean(Constants.LONGPRESS_SP_KEY,flag);
-                   return true;
-               }
-           });
-            mWinSizeShiftPre.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-//                    Toast.makeText(WasteApplication.getInstance(), "click", Toast.LENGTH_SHORT).show();
-                    showDailog();
-                    return true;
-                }
-            });
-        }
-
-
-        private void showDailog() {
-            final View view1 = LayoutInflater.from(SettingsActivity.this).inflate(R.layout.activity_settings_winsize, null);
-            RadioGroup radioGroup = (RadioGroup) view1.findViewById(R.id.radioGroup);
-            if(SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE) == Constants.WINSIZE_LITTLE){
-                radioGroup.check(R.id.little);
-            }else{
-                radioGroup.check(R.id.large);
-            }
-
-            final MaterialDialog mMaterialDialog = new MaterialDialog(SettingsActivity.this);
-            mMaterialDialog.setTitle("选择合适的屏幕大小吧");
-            mMaterialDialog.setPositiveButton("确定", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    RadioGroup radioGroup = (RadioGroup) view1.findViewById(R.id.radioGroup);
-                    if (radioGroup.getCheckedRadioButtonId() == R.id.little) {
-                        SpUtils.setInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
-                        mWinSizeShiftPre.setSummary("3/4屏幕");
-                    } else {
-                        SpUtils.setInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_FULLSCREEN);
-                        mWinSizeShiftPre.setSummary("全屏");
-                    }
-                    mMaterialDialog.dismiss();
-                }
-            });
-            mMaterialDialog.setContentView(view1);
-            mMaterialDialog.show();
-
-        }
-
     }
 
 

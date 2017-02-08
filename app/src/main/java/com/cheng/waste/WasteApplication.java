@@ -34,4 +34,8 @@ public class WasteApplication extends Application {
         DaoMaster daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
     }
+
+    public void shift(){
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    }
 }
