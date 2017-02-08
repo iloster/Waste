@@ -20,8 +20,8 @@ public class DailyConstant {
             "  margin: 1px auto;\n" +
             "}\n" +
             "p{" +
-            "text-indent: 2em;" +
-            "line-height:20pt;"+
+            "   text-indent: 2em;" +
+            "   line-height:20pt;"+
             "}" +
             ".title {\n" +
             "  line-height: 1.2em;\n" +
@@ -31,21 +31,21 @@ public class DailyConstant {
             "  font-weight: bold;\n" +
             "}\n" +
             ".images-content{ \n" +
-            "position: absolute; \n" +
-            "z-index: 1; \n" +
-            "left: 0; \n" +
-            "bottom:0; \n" +
-            "width: 100%; \n" +
-            "color: #fff; \n" +
-            "font-size: 23px;\n" +
-            "background: rgba(0,0,0,.7); \n" +
-            "height: auto; \n" +
+            "   position: absolute; \n" +
+            "   z-index: 1; \n" +
+            "   left: 0; \n" +
+            "   bottom:0; \n" +
+            "   width: 100%; \n" +
+            "   color: #fff; \n" +
+            "   font-size: 23px;\n" +
+            "   background: rgba(0,0,0,.7); \n" +
+            "   height: auto; \n" +
             "} \n" +
             ".images-wrapper{ \n" +
-            "width:100%; \n" +
-            "height:auto; \n" +
-            "position:relative; \n" +
-            "color: #ffe;"+
+            "   width:100%; \n" +
+            "   height:auto; \n" +
+            "   position:relative; \n" +
+            "   color: #ffe;"+
             "} " +
             " </style>" +
             "<body>" +

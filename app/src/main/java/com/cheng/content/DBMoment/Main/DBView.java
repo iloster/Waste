@@ -38,7 +38,7 @@ public class DBView extends BaseSubView implements IDBView {
     private DBMainItem mDbMainItem;
     private List<DBMainBean> mDBMainBeanList = new ArrayList<>();
     private DBPresenter mPresenter;
-    private int mOffsetDay = 0;
+    private int mOffsetDay = 1;
     private String mNowTimeStr = "";
     private boolean mIsRefresh = false;
     public DBView() {
@@ -94,7 +94,7 @@ public class DBView extends BaseSubView implements IDBView {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mDbMainItem.getItemCount()){
-                    LogUtils.v(TAG,"下拉刷新");
+                    LogUtils.v(TAG,"上拉刷新");
                     if(!mIsRefresh) {
                         mIsRefresh = true;
                        // mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);

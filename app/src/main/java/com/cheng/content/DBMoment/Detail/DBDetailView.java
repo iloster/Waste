@@ -15,17 +15,19 @@ import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 /**
  * Created by dev on 2017/1/4.
  */
 
-public class DBDetailView extends BaseSubView {
+public class DBDetailView extends BaseSubView implements IDBDetailView{
     private String TAG = "DBDetail";
     private Context mContext;
     private DBDetailBean mDbDetailBean;
     private DBMainBean mDbMainBean;
     private MyWebViewEx mWebView;
-
+    private DBDetailPresenter mPresenter;
 
     public DBDetailView(DBMainBean dbMainBean) {
         super(WasteApplication.getInstance());
@@ -35,8 +37,9 @@ public class DBDetailView extends BaseSubView {
         LayoutInflater.from(mContext).inflate(R.layout.content_db_detail,this);
 
         initUI();
-        //loadData();
-        showData();
+
+        mPresenter = new DBDetailPresenter(this);
+        mPresenter.loadData(dbMainBean);
     }
 
     private void initUI(){
@@ -50,32 +53,9 @@ public class DBDetailView extends BaseSubView {
         });
     }
 
-    private void loadData(){
-        String url = DBConstant.DOUBAN_ARTICLE_DETAIL+mDbMainBean.getId();
-        HttpUtil.getInstance().enqueue(url, new CallBack() {
-            @Override
-            public void onError() {
-                MyWindowManager.showErrorView();
-            }
-
-            @Override
-            public void onSuccess(String ret) {
-                Gson gson = new Gson();
-                mDbDetailBean = gson.fromJson(ret,DBDetailBean.class);
-                showData();
-            }
-        });
-    }
-    private void showData(){
-        mWebView.loadUrl(mDbMainBean.getUrl());
-//        WebSettings settings = mWebView.getSettings();
-//        settings.setJavaScriptEnabled(false);
-//        mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-    }
-
     @Override
     public void onRefreshClick() {
-        showData();
+
     }
 
     public boolean onWebViewBack(){
@@ -85,5 +65,29 @@ public class DBDetailView extends BaseSubView {
         }else{
             return false;
         }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public void showData(DBDetailBean bean) {
+        String content = bean.getContent();
+        List<DBDetailBean.PhotosBean> photosBeanList= bean.getPhotos();
+        for(int i = 0;i<photosBeanList.size();i++){
+            String reg1 = "<img id=\""+photosBeanList.get(i).getTag_name();
+            String reg2 = "<img src=\""+photosBeanList.get(i).getMedium().getUrl();
+            content = content.replaceAll(reg1,reg2);
+         }
+        LogUtils.v(TAG,"content:"+content);
+        String html = DBConstant.HTML_STR.replace("{body}",content);
+        mWebView.loadData(html);
+    }
+
+    @Override
+    public void showError() {
+        MyWindowManager.showErrorView();
     }
 }
