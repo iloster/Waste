@@ -1,5 +1,6 @@
-package com.cheng.content.GuoKr;
+package com.cheng.content.GuoKr.main;
 
+import com.cheng.content.GuoKr.GuokrConstant;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;

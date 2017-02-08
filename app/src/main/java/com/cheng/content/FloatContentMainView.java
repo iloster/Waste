@@ -6,13 +6,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.cheng.config.Constants;
 import com.cheng.content.DBMoment.DBView;
-import com.cheng.content.GuoKr.GuokrView;
-import com.cheng.content.Netease.NeteaseView;
+import com.cheng.content.GuoKr.main.GuokrView;
 import com.cheng.content.ZhihuDaily.DailyView;
 import com.cheng.content.v2ex.V2exMainView;
 import com.cheng.utils.LogUtils;

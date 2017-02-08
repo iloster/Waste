@@ -1,15 +1,13 @@
-package com.cheng.content.GuoKr;
+package com.cheng.content.GuoKr.main;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
-import com.cheng.utils.DeviceUtils;
+import com.cheng.content.GuoKr.Detail.GuokrDetailView;
 import com.cheng.utils.LogUtils;
-import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
@@ -22,7 +20,7 @@ import java.util.List;
  * Created by cheng on 2017/1/10.
  */
 
-public class GuokrView extends BaseSubView implements IGuokrView{
+public class GuokrView extends BaseSubView implements IGuokrView {
     private String TAG = "GuoKrView";
 
     private Context mContext;
@@ -100,8 +98,8 @@ public class GuokrView extends BaseSubView implements IGuokrView{
             @Override
             public void onItemClick(int position, Object data) {
                 LogUtils.v(TAG,"onItemClick:"+position);
-                GuokrDetail guokrDetail = new GuokrDetail((GuokrMainBean.ResultBean)data);
-                MyWindowManager.replaceSubView(guokrDetail,"果壳精选");
+                GuokrDetailView guokrDetailView = new GuokrDetailView((GuokrMainBean.ResultBean)data);
+                MyWindowManager.replaceSubView(guokrDetailView,"果壳精选");
             }
         });
     }
