@@ -17,6 +17,9 @@ public class DBConstant {
 
     //item的样式
     public static final int ITEM_TYPE1 = 10001;
+    public static final int ITEM_TYPE1_PLUS = 20001;
     public static final int ITEM_TYPE2 = 10002;
+    public static final int ITEM_TYPE2_PLUS = 20002;
     public static final int ITEM_TYPE3 = 10003;
+    public static final int ITEM_TYPE3_PLUS = 20003;
 }

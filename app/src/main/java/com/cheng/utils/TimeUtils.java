@@ -1,5 +1,6 @@
 package com.cheng.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -82,5 +83,18 @@ public class TimeUtils {
 
     public static String getTimeByFormat(long time,String formatstr){
         return new SimpleDateFormat(formatstr).format(new Date(time));
+    }
+
+    public static long getTimestamp(String timeStr,String formatstr){
+        SimpleDateFormat sdf = new SimpleDateFormat(formatstr);
+        Date d;
+        long l = 0;
+        try {
+            d = sdf.parse(timeStr);
+            l = d.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return l;
     }
 }
