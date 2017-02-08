@@ -4,17 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.cheng.content.GuoKr.GuokrConstant;
-import com.cheng.content.GuoKr.main.GuokrMainBean;
-import com.cheng.http.CallBack;
-import com.cheng.http.HttpUtil;
+import com.cheng.content.GuoKr.Main.GuokrMainBean;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
-import com.google.gson.Gson;
-
-import okhttp3.Call;
 
 /**
  * Created by dev on 2017/1/12.

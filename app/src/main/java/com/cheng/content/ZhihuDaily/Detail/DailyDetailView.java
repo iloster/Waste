@@ -1,14 +1,12 @@
-package com.cheng.content.ZhihuDaily;
+package com.cheng.content.ZhihuDaily.Detail;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.webkit.WebView;
 
+import com.cheng.content.ZhihuDaily.DailyConstant;
+import com.cheng.content.ZhihuDaily.Main.DailyMainBean;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
-import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
-import com.cheng.view.MyWebView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
@@ -21,11 +19,11 @@ import okhttp3.Call;
  * Created by dev on 2017/1/9.
  */
 
-public class DailyDetail extends BaseSubView{
+public class DailyDetailView extends BaseSubView{
     private MyWebViewEx mWebView;
     private Call mCall;
     private DailyMainBean.StoriesBean mStoriesBean;
-    public DailyDetail(DailyMainBean.StoriesBean storiesBean) {
+    public DailyDetailView(DailyMainBean.StoriesBean storiesBean) {
         super(WasteApplication.getInstance());
 
         LayoutInflater.from(WasteApplication.getInstance()).inflate(R.layout.content_db_detail,this);

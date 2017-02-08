@@ -1,6 +1,4 @@
-package com.cheng.content.GuoKr.main;
-
-import com.cheng.content.GuoKr.main.GuokrMainBean;
+package com.cheng.content.GuoKr.Main;
 
 import java.util.List;
 

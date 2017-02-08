@@ -1,6 +1,6 @@
-package com.cheng.content.ZhihuDaily;
+package com.cheng.content.ZhihuDaily.Main;
 
-import com.cheng.content.DBMoment.DBMainBean;
+import com.cheng.content.ZhihuDaily.DailyConstant;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import okhttp3.Call;
 

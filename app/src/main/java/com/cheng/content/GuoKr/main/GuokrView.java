@@ -1,4 +1,4 @@
-package com.cheng.content.GuoKr.main;
+package com.cheng.content.GuoKr.Main;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;

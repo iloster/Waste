@@ -1,17 +1,13 @@
-package com.cheng.content.ZhihuDaily;
+package com.cheng.content.ZhihuDaily.Main;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
-import com.cheng.content.DBMoment.DBDetail;
-import com.cheng.content.DBMoment.DBMainBean;
-import com.cheng.content.DBMoment.IDBView;
-import com.cheng.utils.DeviceUtils;
+import com.cheng.content.ZhihuDaily.Detail.DailyDetailView;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -19,7 +15,6 @@ import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +23,7 @@ import java.util.List;
  * Created by dev on 2017/1/8.
  */
 
-public class DailyView extends BaseSubView implements IDailyView{
+public class DailyView extends BaseSubView implements IDailyView {
     private String TAG = "Daily";
     private Context mContext;
 
@@ -71,8 +66,8 @@ public class DailyView extends BaseSubView implements IDailyView{
 
             @Override
             public void onItemClick(int position, Object data) {
-                DailyDetail dailyDetail = new DailyDetail((DailyMainBean.StoriesBean)data);
-                MyWindowManager.replaceSubView(dailyDetail,"知乎日报");
+                DailyDetailView dailyDetailView = new DailyDetailView((DailyMainBean.StoriesBean)data);
+                MyWindowManager.replaceSubView(dailyDetailView,"知乎日报");
             }
         });
 

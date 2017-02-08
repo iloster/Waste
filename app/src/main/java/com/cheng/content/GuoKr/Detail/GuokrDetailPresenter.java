@@ -1,9 +1,7 @@
 package com.cheng.content.GuoKr.Detail;
 
-import com.cheng.content.DBMoment.DBDetail;
-import com.cheng.content.DBMoment.DBDetailBean;
 import com.cheng.content.GuoKr.GuokrConstant;
-import com.cheng.content.GuoKr.main.GuokrMainBean;
+import com.cheng.content.GuoKr.Main.GuokrMainBean;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.google.gson.Gson;

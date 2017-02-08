@@ -1,4 +1,4 @@
-package com.cheng.content.GuoKr.main;
+package com.cheng.content.GuoKr.Main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cheng.content.GuoKr.main.GuokrMainBean;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
