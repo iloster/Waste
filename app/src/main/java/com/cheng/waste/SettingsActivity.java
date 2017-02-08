@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
@@ -85,6 +86,13 @@ public class SettingsActivity extends AppCompatActivity {
             nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean flag = (boolean)newValue;
+                    Toast.makeText(WasteApplication.getInstance(),"夜间模式:"+flag,Toast.LENGTH_SHORT).show();
+                    if(flag) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    }else{
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    }
                     return true;
                 }
             });

@@ -2,6 +2,7 @@ package com.cheng.waste;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.cheng.db.DaoMaster;
 import com.cheng.db.DaoSession;
@@ -21,6 +22,7 @@ public class WasteApplication extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         instance = this;
         initDB();
     }
