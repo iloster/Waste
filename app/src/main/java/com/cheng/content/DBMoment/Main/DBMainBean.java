@@ -1,4 +1,4 @@
-package com.cheng.content.DBMoment;
+package com.cheng.content.DBMoment.Main;
 
 import com.google.gson.annotations.SerializedName;
 

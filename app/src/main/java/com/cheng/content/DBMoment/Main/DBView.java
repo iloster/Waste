@@ -1,38 +1,24 @@
-package com.cheng.content.DBMoment;
+package com.cheng.content.DBMoment.Main;
 
 import android.content.Context;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.cheng.http.CallBack;
-import com.cheng.http.HttpUtil;
-import com.cheng.utils.DeviceUtils;
+import com.cheng.content.DBMoment.Detail.DBDetailView;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +27,7 @@ import java.util.List;
  * Created by dev on 2017/1/3.
  */
 
-public class DBView extends BaseSubView implements IDBView{
+public class DBView extends BaseSubView implements IDBView {
 
     private String TAG = "DBView";
     private LinearLayout mErrorLayout;
@@ -87,7 +73,8 @@ public class DBView extends BaseSubView implements IDBView{
         mDbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position, Object data) {
-                MyWindowManager.replaceSubView(new DBDetail((DBMainBean) data),"豆瓣一刻");
+                LogUtils.v(TAG,"onItemClick");
+                MyWindowManager.replaceSubView(new DBDetailView((DBMainBean) data),"豆瓣一刻");
             }
         });
         mRecyclerView.setAdapter(mDbMainItem);

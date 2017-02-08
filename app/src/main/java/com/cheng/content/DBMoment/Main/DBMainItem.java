@@ -1,4 +1,4 @@
-package com.cheng.content.DBMoment;
+package com.cheng.content.DBMoment.Main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,16 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.cheng.utils.LogUtils;
+import com.cheng.content.DBMoment.DBConstant;
+import com.cheng.content.DBMoment.Main.DBMainBean;
 import com.cheng.utils.TimeUtils;
+import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class DBMainItem extends RecyclerView.Adapter{
     private String TAG = "DBMainItem";
     private Context mContext;
     private List<DBMainBean> mDBMainBeanList;
-    private DBView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
+    private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     public DBMainItem(List<DBMainBean> list){
         mContext = WasteApplication.getInstance();
         mDBMainBeanList = list;
@@ -139,7 +138,7 @@ public class DBMainItem extends RecyclerView.Adapter{
         }
     }
 
-    public void setItemClickListener(DBView.OnRecyclerViewItemClickListener onRecyclerViewItemClickListener){
+    public void setItemClickListener(BaseSubView.OnRecyclerViewItemClickListener onRecyclerViewItemClickListener){
         mOnRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
     }
     class DBMainItemType1Holder extends RecyclerView.ViewHolder implements View.OnClickListener{

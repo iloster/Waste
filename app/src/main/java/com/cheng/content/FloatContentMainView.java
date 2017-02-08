@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.cheng.config.Constants;
-import com.cheng.content.DBMoment.DBView;
+import com.cheng.content.DBMoment.Main.DBView;
 import com.cheng.content.GuoKr.Main.GuokrView;
 import com.cheng.content.ZhihuDaily.Main.DailyView;
 import com.cheng.content.v2ex.V2exMainView;

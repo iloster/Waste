@@ -1,30 +1,25 @@
-package com.cheng.content.DBMoment;
+package com.cheng.content.DBMoment.Detail;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.TextView;
 
+import com.cheng.content.DBMoment.DBConstant;
+import com.cheng.content.DBMoment.Main.DBMainBean;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
-import com.cheng.view.MultiHtmlTextView;
-import com.cheng.view.MyWebView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
 
-import io.github.angebagui.mediumtextview.MediumTextView;
-
 /**
  * Created by dev on 2017/1/4.
  */
 
-public class DBDetail extends BaseSubView {
+public class DBDetailView extends BaseSubView {
     private String TAG = "DBDetail";
     private Context mContext;
     private DBDetailBean mDbDetailBean;
@@ -32,7 +27,7 @@ public class DBDetail extends BaseSubView {
     private MyWebViewEx mWebView;
 
 
-    public DBDetail(DBMainBean dbMainBean) {
+    public DBDetailView(DBMainBean dbMainBean) {
         super(WasteApplication.getInstance());
         LogUtils.v(TAG,"DBDetail");
         mDbMainBean = dbMainBean;
