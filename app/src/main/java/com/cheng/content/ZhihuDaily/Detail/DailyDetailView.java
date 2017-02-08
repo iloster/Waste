@@ -19,10 +19,11 @@ import okhttp3.Call;
  * Created by dev on 2017/1/9.
  */
 
-public class DailyDetailView extends BaseSubView{
+public class DailyDetailView extends BaseSubView implements IDailyDetailView{
     private MyWebViewEx mWebView;
     private Call mCall;
     private DailyMainBean.StoriesBean mStoriesBean;
+    private DailyDetailPresenter mPresenter;
     public DailyDetailView(DailyMainBean.StoriesBean storiesBean) {
         super(WasteApplication.getInstance());
 
@@ -30,7 +31,10 @@ public class DailyDetailView extends BaseSubView{
 
         mStoriesBean = storiesBean;
         initUI();
-        loadData();
+
+        mPresenter = new DailyDetailPresenter(this);
+        mPresenter.loadData(storiesBean);
+
     }
 
     private void initUI(){
@@ -39,33 +43,9 @@ public class DailyDetailView extends BaseSubView{
         mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {
             @Override
             public void onTimeout() {
-//                LogUtils.v(TAG,"加载超时");
                 MyWindowManager.showErrorView();
             }
         });
-    }
-
-    private void loadData(){
-        String url = DailyConstant.Daily_URL_DETAIL + mStoriesBean.getId();
-        mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
-            @Override
-            public void onError() {
-
-            }
-
-            @Override
-            public void onSuccess(String ret) {
-                Gson gson = new Gson();
-                DailyDetailBean bean = gson.fromJson(ret,DailyDetailBean.class);
-                showData(bean);
-            }
-        });
-    }
-
-    private void showData(DailyDetailBean bean){
-//        String url = "http://mp.weixin.qq.com/s?src=3&timestamp=1484037817&ver=1&signature=dD*o2y-EZOQNBnKVktn4672aY-dGE5QQZgq-NOB1ZEnBxyXayeea6HP6brrbCXrwwetTo4XYkz9I3y5B8FdS9Db-JUixAduzOVcPS4Os474e8-tXSAln2l*gfnioc63HyFq0QW8D6fYCm1-5ex4jQgzu2OUSOzoLYoRMalq*AQM=";
-//        mWebView.loadUrl(url);
-        mWebView.loadUrl(bean.getShare_url());
     }
 
     public boolean onWebViewBack(){
@@ -75,5 +55,23 @@ public class DailyDetailView extends BaseSubView{
         }else{
             return false;
         }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mPresenter.release();
+    }
+
+    @Override
+    public void showData(DailyDetailBean bean) {
+        String body = bean.getBody();
+        String html = DailyConstant.HTML_STR.replace("{imageurl}",bean.getImage()).replace("{title}",bean.getTitle()).replace("{body}",body);
+        mWebView.loadData(html);
+    }
+
+    @Override
+    public void showError() {
+
     }
 }

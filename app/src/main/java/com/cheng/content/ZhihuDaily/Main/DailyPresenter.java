@@ -29,7 +29,7 @@ public class DailyPresenter {
      * @param timeStr
      */
     public void loadData(String timeStr, final boolean flag){
-        String url = DailyConstant.Daily_URL_BEFORE + timeStr;
+        String url = DailyConstant.DAILY_URL_BEFORE + timeStr;
         LogUtils.v(TAG,"loadData url:"+url);
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
