@@ -20,11 +20,15 @@
     <color name="theme_bg">#eeeeee</color>
 
     <!--背景颜色-->
-    <color name="bg">#EEEEEE</color>
-
+    <color name="bg">#FFFFFF</color>
+    <color name="dialog_bg">#FFFFFF</color>
+    <color name="view_bg">#EEEEEE</color>
     <!--卡片背景颜色-->
-    <color name="card_bg_normal">#FFFFFF</color>
-    <color name="card_bg_clicked">#EEEEEE</color>
+    <color name="cardview_normal">#FFFFFF</color>
+    <color name="cardview_clicked">#EEEEEE</color>
 
     <!--listView-->
+    <color name="listview_item_normal">#FFFFFF</color>
+    <color name="listview_item_click">#EEEEEE</color>
+
 </resources>

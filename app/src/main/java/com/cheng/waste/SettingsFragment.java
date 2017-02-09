@@ -4,10 +4,12 @@ package com.cheng.waste;
  * Created by cheng on 2017/2/8.
  */
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,28 +89,30 @@ public  class SettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 //                    Toast.makeText(WasteApplication.getInstance(), "click", Toast.LENGTH_SHORT).show();
-                showDailog();
+                showDialog();
                 return true;
             }
         });
     }
 
 
-    private void showDailog() {
-        final View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.activity_settings_winsize, null);
-        RadioGroup radioGroup = (RadioGroup) view1.findViewById(R.id.radioGroup);
+    private void showDialog(){
+        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.activity_settings_winsize, null);
+        RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
         if(SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE) == Constants.WINSIZE_LITTLE){
             radioGroup.check(R.id.little);
         }else{
             radioGroup.check(R.id.large);
         }
 
-        final MaterialDialog mMaterialDialog = new MaterialDialog(this.getActivity());
-        mMaterialDialog.setTitle("选择合适的屏幕大小吧");
-        mMaterialDialog.setPositiveButton("确定", new View.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity(),R.style.MyDialog);
+//        builder.setTitle("设置悬浮内容框大小");
+        builder.setCustomTitle(LayoutInflater.from(getActivity()).inflate(R.layout.activity_settings_winsize_title,null));
+        builder.setView(view);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                RadioGroup radioGroup = (RadioGroup) view1.findViewById(R.id.radioGroup);
+            public void onClick(DialogInterface dialogInterface, int i) {
+                RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
                 if (radioGroup.getCheckedRadioButtonId() == R.id.little) {
                     SpUtils.setInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
                     mWinSizeShiftPre.setSummary("3/4屏幕");
@@ -116,12 +120,9 @@ public  class SettingsFragment extends PreferenceFragment {
                     SpUtils.setInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_FULLSCREEN);
                     mWinSizeShiftPre.setSummary("全屏");
                 }
-                mMaterialDialog.dismiss();
             }
         });
-        mMaterialDialog.setContentView(view1);
-        mMaterialDialog.show();
-
+        builder.show();
     }
 
 }

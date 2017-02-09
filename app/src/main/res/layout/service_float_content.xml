@@ -9,12 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape"
         android:id="@+id/containLayout"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bg"
             android:padding="5dp">
             <Button
                 android:layout_width="@dimen/x30"
@@ -46,6 +46,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/bg"
             android:id="@+id/subView">
         </RelativeLayout>
 

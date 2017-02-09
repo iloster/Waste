@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     android:clickable="true"
-    android:background="#eeeeee"
+    android:background="@color/view_bg"
     android:id="@+id/recyclerView">
 
 

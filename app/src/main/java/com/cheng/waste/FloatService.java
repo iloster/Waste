@@ -32,6 +32,7 @@ public class FloatService extends Service {
     public void onCreate() {
 //        super.onCreate();
         LogUtils.v(TAG, "=======onCreate======");
+
         showFloatIcon();
     }
 
