@@ -4,8 +4,10 @@ import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.cheng.config.Constants;
 import com.cheng.db.DaoMaster;
 import com.cheng.db.DaoSession;
+import com.cheng.utils.SpUtils;
 
 /**
  * Created by cheng on 2016/12/29.
@@ -22,9 +24,10 @@ public class WasteApplication extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
         instance = this;
         initDB();
+        AppCompatDelegate.setDefaultNightMode(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)?AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     private void initDB(){
@@ -35,7 +38,4 @@ public class WasteApplication extends Application {
         daoSession = daoMaster.newSession();
     }
 
-    public void shift(){
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-    }
 }

@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cheng.config.Constants;
+import com.cheng.content.DBMoment.Detail.DBDetailBean;
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
@@ -34,22 +35,24 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+//        if(savedInstanceState==null) {
+            setContentView(R.layout.activity_settings);
 
-        mSettingsFragment = new SettingsFragment();
-        replaceFragment(R.id.settings_container, mSettingsFragment);
-        if (!DeviceUtils.isServiceRunning("com.cheng.waste.FloatService")) {
-            Intent intent = new Intent(SettingsActivity.this, FloatService.class);
-            startService(intent);
-        } else {
-            LogUtils.v(TAG, "service is running");
-        }
+            mSettingsFragment = new SettingsFragment();
+            replaceFragment(R.id.settings_container, mSettingsFragment);
+            if (!DeviceUtils.isServiceRunning("com.cheng.waste.FloatService")) {
+                Intent intent = new Intent(SettingsActivity.this, FloatService.class);
+                startService(intent);
+            } else {
+                LogUtils.v(TAG, "service is running");
+            }
+//        }
     }
+
 
     private void replaceFragment(int viewId, Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(viewId, fragment).commit();
     }
-
 
 }

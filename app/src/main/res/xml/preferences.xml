@@ -28,15 +28,15 @@
         <PreferenceCategory
             android:layout="@layout/preference_category_widget"
             android:title="关于">
+
+            <Preference
+                android:layout="@layout/preference_item"
+                android:summary="v1.0.0"
+                android:title="当前版本"/>
             <Preference
                 android:layout="@layout/preference_item"
                 android:title="应用介绍"
                 android:summary="零时可悬浮在其他app之上，在播放广告，加载视频，观看直播的间隙，可以打开浏览新闻文章。"
                 android:key="appIntro"/>
-            <Preference
-                android:layout="@layout/preference_item"
-                android:summary="v1.0.0"
-                android:title="当前版本"/>
-
         </PreferenceCategory>
 </PreferenceScreen>

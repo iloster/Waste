@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cheng.config.Constants;
+import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -26,13 +27,14 @@ public  class SettingsFragment extends PreferenceFragment {
 
     private Preference mWinSizeShiftPre;
     private CheckBoxPreference mLongPressPre;
-
+    private static String TAG = "SettingsActivity";
     public SettingsFragment(){
 
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         addPreferencesFromResource(R.xml.preferences);
 
         CheckBoxPreference nightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
@@ -41,7 +43,6 @@ public  class SettingsFragment extends PreferenceFragment {
 
         boolean longPressFlag = SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true);
         mLongPressPre.setChecked(longPressFlag);
-
         int winSizeValue = SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
         if(winSizeValue == Constants.WINSIZE_LITTLE){
             mWinSizeShiftPre.setSummary("3/4屏幕");
@@ -49,11 +50,17 @@ public  class SettingsFragment extends PreferenceFragment {
             mWinSizeShiftPre.setSummary("全屏");
         }
 
+        if(!SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)){
+            nightShiftPre.setChecked(false);
+        }else{
+            nightShiftPre.setChecked(true);
+        }
         nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 boolean flag = (boolean)newValue;
-                Toast.makeText(WasteApplication.getInstance(),"夜间模式:"+flag,Toast.LENGTH_SHORT).show();
+                SpUtils.setBoolean(Constants.NIGHTSHIFT_SP_KEY,flag);
+//                Toast.makeText(WasteApplication.getInstance(),"夜间模式:"+flag,Toast.LENGTH_SHORT).show();
                 if(flag) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }else{
