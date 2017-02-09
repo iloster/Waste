@@ -18,4 +18,13 @@
     <color name="divider">#BDBDBD</color>
 
     <color name="theme_bg">#eeeeee</color>
+
+    <!--背景颜色-->
+    <color name="bg">#EEEEEE</color>
+
+    <!--卡片背景颜色-->
+    <color name="card_bg_normal">#FFFFFF</color>
+    <color name="card_bg_clicked">#EEEEEE</color>
+
+    <!--listView-->
 </resources>
