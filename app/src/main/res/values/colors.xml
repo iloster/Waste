@@ -24,6 +24,11 @@
     <color name="bg">#FFFFFF</color>
     <color name="dialog_bg">#FFFFFF</color>
     <color name="view_bg">#EEEEEE</color>
+
+    <!---->
+    <color name="content_bg">#FFFFFF</color>
+    <color name="content_title_bg">#FFFFFF</color>
+    <!--end-->
     <!--卡片背景颜色-->
     <color name="cardview_normal">#FFFFFF</color>
     <color name="cardview_clicked">#EEEEEE</color>

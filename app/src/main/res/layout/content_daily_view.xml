@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/view_bg"
     android:layout_height="match_parent">
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -10,7 +10,7 @@
         android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="#eeeeee"
+        android:background="@color/view_bg"
         android:id="@+id/swipeRefreshLayout">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

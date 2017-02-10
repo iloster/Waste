@@ -7,13 +7,14 @@
     android:focusable="true"
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
-    android:background="@color/cardview_normal"
+    card_view:cardBackgroundColor ="@color/cardview_normal"
     android:layout_marginBottom="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@color/cardview_normal"
         android:minHeight="80dp">
         <ImageView
             android:layout_width="30dp"

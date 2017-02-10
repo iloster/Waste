@@ -16,18 +16,22 @@
     <color name="primary_text">#AAAAAA</color>
     <color name="seconaary_text">#616161</color>
     <color name="third_text">#535353</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="divider">#222222</color>
 
     <color name="theme_bg">#eeeeee</color>
 
     <color name="trans_bg">#00FFFFFF</color>
     <!--背景颜色-->
-    <color name="bg">#212A2F</color>
+    <color name="bg">#222222</color>
+
     <color name="dialog_bg">#424242</color>
     <color name="view_bg">#212A2F</color>
-
+    <!---->
+    <color name="content_bg">#343434</color>
+    <color name="content_title_bg">#2C2C2C</color>
+    <!--end-->
     <!--卡片背景颜色-->
-    <color name="cardview_normal">#666666</color>
+    <color name="cardview_normal">#404040</color>
     <color name="cardview_clicked">#216B74FF</color>
 
     <!--listView-->

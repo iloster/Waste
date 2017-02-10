@@ -5,7 +5,7 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:background="@drawable/cardview_item_click">
+   >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,10 +23,11 @@
     card_view:cardElevation="1dp"
     android:layout_marginBottom="@dimen/x8"
 
-    android:background="@color/white">
+    card_view:cardBackgroundColor="@color/cardview_normal">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/cardview_item_click"
         >
         <ImageView
             android:layout_width="@dimen/x90"

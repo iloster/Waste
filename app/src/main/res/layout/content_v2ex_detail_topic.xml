@@ -21,7 +21,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="3dp"
         android:textSize="15sp"
-        android:textColor="#de000000"
+        android:textColor="@color/primary_text"
         android:text="name"/>
     <TextView
         android:layout_width="wrap_content"
@@ -30,6 +30,7 @@
         android:layout_below="@id/topic_detail_name"
         android:id="@+id/topic_detail_time"
         android:layout_marginLeft="10dp"
+        android:textColor="@color/seconaary_text"
         android:text="dads"/>
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:textColor="#de000000"
+        android:textColor="@color/primary_text"
         android:textStyle="bold"
         android:textSize="15sp"
         android:text="this is title"/>
@@ -50,7 +51,7 @@
         android:layout_below="@id/topic_detail_title"
         android:layout_marginTop="10dp"
         android:textSize="13sp"
-        android:textColor="#ff000000"
+        android:textColor="@color/primary_text"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:lineSpacingMultiplier="1.2"
@@ -64,12 +65,12 @@
         android:id="@+id/topic_detail_head"
         android:layout_below="@id/topic_detail_content"
         android:textSize="11sp"
-        android:textColor="#000000"
+        android:textColor="@color/primary_text"
         android:layout_marginTop="20dp"
         android:text="53个回复"/>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.25dp"
+        android:layout_height="0.5dp"
         android:layout_below="@id/topic_detail_head"
         android:background="@color/divider" />
 </RelativeLayout>

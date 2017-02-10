@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/x8">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,9 +23,8 @@
 
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="1dp"
-    android:background="@color/white"
     android:minHeight="@dimen/x100"
-    android:layout_marginBottom="@dimen/x8">
+    card_view:cardBackgroundColor="@color/cardview_normal">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

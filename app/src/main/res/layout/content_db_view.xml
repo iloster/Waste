@@ -10,7 +10,7 @@
         android:paddingBottom="@dimen/x2"
         android:paddingLeft="@dimen/x5"
         android:paddingRight="@dimen/x5"
-        android:background="#eeeeee"
+        android:background="@color/view_bg"
         android:id="@+id/swipeRefreshLayout">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
