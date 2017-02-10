@@ -19,6 +19,7 @@
 
     <color name="theme_bg">#eeeeee</color>
 
+    <color name="trans_bg">#45000000</color>
     <!--背景颜色-->
     <color name="bg">#FFFFFF</color>
     <color name="dialog_bg">#FFFFFF</color>
@@ -29,6 +30,6 @@
 
     <!--listView-->
     <color name="listview_item_normal">#FFFFFF</color>
-    <color name="listview_item_click">#EEEEEE</color>
+    <color name="listview_item_clicked">#EEEEEE</color>
 
 </resources>
