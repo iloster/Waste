@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -64,9 +65,9 @@ public class MyWebViewEx extends LinearLayout {
         mProgressbar.setProgressDrawable(drawable);
         mProgressbar.setProgress(10);
         this.addView(mProgressbar);
-
         mWebView = new WebView(mContext);
         mWebView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        mWebView.setBackgroundColor(getResources().getColor(R.color.view_bg));
         this.addView(mWebView);
 
 //        mWebView.setVerticalScrollBarEnabled(true);
@@ -80,6 +81,8 @@ public class MyWebViewEx extends LinearLayout {
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setBlockNetworkImage(false);
         mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        mWebView.addJavascriptInterface(mContext,"android");
 
         mHandler = new Handler(){
             @Override
