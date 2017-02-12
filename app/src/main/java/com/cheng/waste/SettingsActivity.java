@@ -21,10 +21,11 @@ import com.cheng.content.DBMoment.Detail.DBDetailBean;
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
+import com.cheng.view.BaseAppCompatActivity;
 
 import me.drakeet.materialdialog.MaterialDialog;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseAppCompatActivity {
 
     private static String TAG = "SettingsActivity";
     public SettingsFragment mSettingsFragment;

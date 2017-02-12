@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
+import com.cheng.view.BaseActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private final String TAG = "MainActivity";
     private TextView tv;
