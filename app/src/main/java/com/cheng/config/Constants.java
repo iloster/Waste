@@ -33,6 +33,6 @@ public class Constants {
 //    public static final String NAME_DBMOMENT ="豆瓣一刻";
 //    public static final String NAME_GUOKR = "果壳";
 //    public static final String NAME_ZHIHUDAILT ="知乎日报";
-    public static final String[] BLOCK_NAMES = {"v2ex","豆瓣一刻","果壳精选","知乎日报"};
+    public static final String[] BLOCK_NAMES = {"V2EX","豆瓣一刻","果壳精选","知乎日报"};
     public static final int[] BLOCK_ICONS = {R.mipmap.v2ex,R.mipmap.douban,R.mipmap.guokr,R.mipmap.zhihu};
 }

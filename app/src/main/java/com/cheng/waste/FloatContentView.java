@@ -76,7 +76,7 @@ public class FloatContentView extends BaseContentView {
 //        });
         FloatContentMainView floatContentMainView = new FloatContentMainView(context);
 //        MyWindowManager.replaceSubView(floatContentMainView);
-        replaceView(floatContentMainView,"零时");
+        replaceView(floatContentMainView,getResources().getString(R.string.app_name));
     }
 
 
