@@ -8,6 +8,7 @@ import com.cheng.config.Constants;
 import com.cheng.db.DaoMaster;
 import com.cheng.db.DaoSession;
 import com.cheng.utils.SpUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by cheng on 2016/12/29.
@@ -24,7 +25,13 @@ public class WasteApplication extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
-
+        //加入内存泄漏检测机制
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
         instance = this;
         initDB();
         AppCompatDelegate.setDefaultNightMode(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)?AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);

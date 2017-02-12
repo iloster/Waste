@@ -53,6 +53,11 @@ public class GuokrDetailView extends BaseSubView implements IGuokrDetailView{
         }
     }
 
+    @Override
+    public void onRefreshClick() {
+        mPresenter.loadData(mResultBean);
+    }
+
     private void initUI(){
         mWebView = (MyWebViewEx)findViewById(R.id.webView);
         mWebView.setWebViewListener(new MyWebViewEx.OnWebViewListener() {

@@ -18,6 +18,7 @@ public class BaseSubView extends RelativeLayout{
 
     }
 
+
     public void onRefreshClick(){
 
     }

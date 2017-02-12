@@ -66,6 +66,12 @@ public class DailyDetailView extends BaseSubView implements IDailyDetailView{
     }
 
     @Override
+    public void onRefreshClick() {
+//        super.onRefreshClick();
+        mPresenter.loadData(mStoriesBean);
+    }
+
+    @Override
     public void showData(DailyDetailBean bean) {
         String body = bean.getBody();
         String html = DailyConstant.HTML_STR.replace("{imageurl}",bean.getImage()).replace("{title}",bean.getTitle()).replace("{body}",body);
@@ -79,6 +85,6 @@ public class DailyDetailView extends BaseSubView implements IDailyDetailView{
 
     @Override
     public void showError() {
-
+        MyWindowManager.showErrorView();
     }
 }

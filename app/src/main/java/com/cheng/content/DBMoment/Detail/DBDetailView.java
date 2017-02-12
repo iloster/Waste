@@ -57,7 +57,7 @@ public class DBDetailView extends BaseSubView implements IDBDetailView{
 
     @Override
     public void onRefreshClick() {
-
+        mPresenter.loadData(mDbMainBean);
     }
 
     public boolean onWebViewBack(){
