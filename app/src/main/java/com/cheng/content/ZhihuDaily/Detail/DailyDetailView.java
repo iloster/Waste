@@ -2,10 +2,12 @@ package com.cheng.content.ZhihuDaily.Detail;
 
 import android.view.LayoutInflater;
 
+import com.cheng.config.Constants;
 import com.cheng.content.ZhihuDaily.DailyConstant;
 import com.cheng.content.ZhihuDaily.Main.DailyMainBean;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
+import com.cheng.utils.SpUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
@@ -67,6 +69,11 @@ public class DailyDetailView extends BaseSubView implements IDailyDetailView{
     public void showData(DailyDetailBean bean) {
         String body = bean.getBody();
         String html = DailyConstant.HTML_STR.replace("{imageurl}",bean.getImage()).replace("{title}",bean.getTitle()).replace("{body}",body);
+        if(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)){
+            html = html.replace("{css}",DailyConstant.HTML_CSS_NIGHT);
+        }else{
+            html = html.replace("{css}",DailyConstant.HTML_CSS_DAY);
+        }
         mWebView.loadData(html);
     }
 

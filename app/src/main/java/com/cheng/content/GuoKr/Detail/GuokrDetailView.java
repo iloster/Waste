@@ -3,8 +3,10 @@ package com.cheng.content.GuoKr.Detail;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.cheng.config.Constants;
 import com.cheng.content.GuoKr.GuokrConstant;
 import com.cheng.content.GuoKr.Main.GuokrMainBean;
+import com.cheng.utils.SpUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
@@ -74,6 +76,11 @@ public class GuokrDetailView extends BaseSubView implements IGuokrDetailView{
         String title = bean.getResult().get(0).getTitle();
         String author = bean.getResult().get(0).getAuthor();
         String html = GuokrConstant.HTML_STR.replace("{title}",title).replace("{source}",author).replace("{body}",content);
+        if(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)){
+            html = html.replace("{css}",GuokrConstant.HTML_CSS_NIGHT);
+        }else{
+            html = html.replace("{css}",GuokrConstant.HTML_CSS_DAY);
+        }
         mWebView.loadData(html);
     }
 

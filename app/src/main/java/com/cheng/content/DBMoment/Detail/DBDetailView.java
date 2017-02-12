@@ -85,6 +85,11 @@ public class DBDetailView extends BaseSubView implements IDBDetailView{
          }
         LogUtils.v(TAG,"content:"+content);
         String html = DBConstant.HTML_STR.replace("{body}",content);
+        if(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)){
+            html = html.replace("{css}",DBConstant.HTML_CSS_NIGHT);
+        }else{
+            html = html.replace("{css}",DBConstant.HTML_CSS_DAY);
+        }
         mWebView.loadData(html);
     }
 
