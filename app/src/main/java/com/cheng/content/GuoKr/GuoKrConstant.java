@@ -28,16 +28,16 @@ public class GuokrConstant {
             "   text-indent: 0em;" +
             "  line-height: 1.2em;\n" +
             "  color: #AAAAAA;\n" +
-            "  font-size: 24px;\n" +
+            "  font-size: 20px;\n" +
             "  margin: 20px 0 10px;\n" +
             "  font-weight: bold;\n" +
             "}\n" +
             ".source{" +
-            " font-size:22px;"+
+            " font-size:19px;"+
             " color:#616161" +
             "}"+
             ".content{" +
-            "   font-size: 20px;" +
+            "   font-size: 18px;" +
             "   color:#616161; "+
             "}"+
             "</style>";
@@ -58,16 +58,16 @@ public class GuokrConstant {
             "   text-indent: 0em;" +
             "  line-height: 1.2em;\n" +
             "  color: #000;\n" +
-            "  font-size: 24px;\n" +
+            "  font-size: 20px;\n" +
             "  margin: 20px 0 10px;\n" +
             "  font-weight: bold;\n" +
             "}\n" +
             ".source{" +
-            " font-size:22px;"+
+            " font-size:19px;"+
             " color:#000" +
             "}"+
             ".content{" +
-            "   font-size: 20px;" +
+            "   font-size: 18px;" +
             "}"+
             "</style>";
     public static final String HTML_STR =

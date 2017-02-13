@@ -36,19 +36,19 @@ public class DailyConstant {
             "   padding-left:10px;" +
             "   padding-right:10px;" +
             "   text-indent: 0em;"+
-            "   font-size: 24px;" +
+            "   font-size: 20px;" +
             "}"+
             ".author{" +
              "   color:#000;" +
-             "   font-size: 22px;\n" +
+             "   font-size: 19px;\n" +
              "}"+
              ".question{" +
              "   color:#000;" +
-             "   font-size: 24px;\n" +
+             "   font-size: 20px;\n" +
               "}"+
              ".content{" +
              "   color:#000;" +
-             "   font-size: 22px;\n" +
+             "   font-size: 18px;\n" +
              "}"+
             ".images-content{ \n" +
             "   position: absolute; \n" +
@@ -91,19 +91,19 @@ public class DailyConstant {
                     "   padding-left:10px;" +
                     "   padding-right:10px;" +
                     "   text-indent: 0em;"+
-                    "   font-size: 24px;\n" +
+                    "   font-size: 20px;\n" +
                     "}"+
                     ".author{" +
                     "   color:#616161;" +
-                    "   font-size: 22px;\n" +
+                    "   font-size: 19px;\n" +
                     "}"+
                     ".question{" +
                      "   color:#AAAAAA;" +
-                    "   font-size: 24px;\n" +
+                    "   font-size: 20px;\n" +
                      "}"+
                     ".content{" +
                     "   color:#616161;" +
-                    "   font-size: 22px;\n" +
+                    "   font-size: 18px;\n" +
                     "}"+
                     ".images-content{ \n" +
                     "   position: absolute; \n" +

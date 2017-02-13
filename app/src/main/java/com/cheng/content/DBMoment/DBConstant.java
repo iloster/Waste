@@ -44,7 +44,7 @@ public class DBConstant {
                     "   text-indent: 0em;" +
                     "  line-height: 1.2em;\n" +
                     "  color: #000;\n" +
-                    "  font-size: 26px;\n" +
+                    "  font-size: 22px;\n" +
                     "  margin: 20px 0 10px;\n" +
                     "  font-weight: bold;\n" +
                     "}\n" +
@@ -69,14 +69,14 @@ public class DBConstant {
                     //            "   text-overflow : clip | ellipsis" +
                     "}" +
                     "#content{" +
-                    "   font-size: 20px;" +
+                    "   font-size: 18px;" +
                     "   color:#616161; "+
                     "}"+
                     "#title {\n" +
                     "   text-indent: 0em;" +
                     "  line-height: 1.2em;\n" +
                     "  color: #AAAAAA;\n" +
-                    "  font-size: 26px;\n" +
+                    "  font-size: 20px;\n" +
                     "  margin: 20px 0 10px;\n" +
                     "  font-weight: bold;\n" +
                     "}\n" +
