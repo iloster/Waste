@@ -2,6 +2,7 @@ package com.cheng.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.cheng.config.Constants;
 import com.cheng.content.FloatContentMainView;
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 import com.cheng.waste.MyWindowManager;
@@ -45,6 +47,12 @@ public class BaseContentView extends RelativeLayout{
     private View mErrorView;
     private Button mErrorButton;
     private View mLoadingView;
+
+    private float xLastInView;
+    private float yLastInView;
+    private float xCurInView;
+    private float yCurInView;
+
     public BaseContentView(Context context) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
@@ -67,7 +75,7 @@ public class BaseContentView extends RelativeLayout{
         mContainLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,height));
 
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MATCH_PARENT,MATCH_PARENT);
         mSubView.setLayoutParams(params);
 
         mCloseBtn.setOnClickListener(new OnClickListener() {
@@ -84,6 +92,31 @@ public class BaseContentView extends RelativeLayout{
                 popView();
             }
         });
+
+//        mContainLayout.setOnTouchListener(new OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()){
+//                    case MotionEvent.ACTION_DOWN:
+//                        xLastInView = event.getX();
+//                        yLastInView = event.getY();
+//                        break;
+//                    case MotionEvent.ACTION_MOVE:
+//                        xCurInView = event.getX();
+//                        yCurInView = event.getY();
+//                        int dx = (int)(xCurInView - xLastInView);
+//                        int dy = (int)(yCurInView - yLastInView);
+//                        MarginLayoutParams margin=new MarginLayoutParams(mContainLayout.getLayoutParams());
+//                        margin.setMargins(dx,dy, dx+margin.width, dy+margin.height);
+//                        LayoutParams params1 = new LayoutParams(margin);
+//                        mContainLayout.setLayoutParams(params1);
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
     }
 
     public RelativeLayout getSubViewContainer(){

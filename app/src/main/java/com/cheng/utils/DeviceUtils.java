@@ -12,6 +12,8 @@ import android.view.WindowManager;
 
 import com.cheng.waste.WasteApplication;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by cheng on 2016/12/7.
  */
@@ -98,6 +100,22 @@ public class DeviceUtils {
             return  0;
         }
 
+    }
+
+    public static int  getStatusBarHeight() {
+        int statusBarHeight = 0;
+        if (statusBarHeight == 0) {
+            try {
+                Class<?> c = Class.forName("com.android.internal.R$dimen");
+                Object o = c.newInstance();
+                Field field = c.getField("status_bar_height");
+                int x = (Integer) field.get(o);
+                statusBarHeight = mContext.getResources().getDimensionPixelSize(x);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return statusBarHeight;
     }
 
 }
