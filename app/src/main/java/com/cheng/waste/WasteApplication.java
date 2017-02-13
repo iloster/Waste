@@ -46,10 +46,6 @@ public class WasteApplication extends Application {
         LeakCanary.install(this);
     }
 
-    private void initBugly(){
-        //正式为false ，测试环境为true
-        Bugly.init(getApplicationContext(), "1be8278f1a", true);
-    }
 
     private void initDB(){
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, DATABASE_NAME, null);
@@ -59,4 +55,8 @@ public class WasteApplication extends Application {
         daoSession = daoMaster.newSession();
     }
 
+        private void initBugly(){
+        //正式为false ，测试环境为true
+        Bugly.init(getApplicationContext(), "1be8278f1a", true);
+    }
 }

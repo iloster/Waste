@@ -22,6 +22,7 @@ import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 import com.cheng.view.BaseAppCompatActivity;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -43,7 +44,7 @@ public class SettingsActivity extends BaseAppCompatActivity {
             mSettingsFragment = new SettingsFragment();
             replaceFragment(R.id.settings_container, mSettingsFragment);
             if (!DeviceUtils.isServiceRunning("com.cheng.waste.FloatService")) {
-                Intent intent = new Intent(SettingsActivity.this, FloatService.class);
+                Intent intent = new Intent(WasteApplication.getInstance(), FloatService.class);
                 startService(intent);
             } else {
                 LogUtils.v(TAG, "service is running");
