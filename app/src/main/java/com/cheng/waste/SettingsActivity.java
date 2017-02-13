@@ -22,6 +22,7 @@ import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 import com.cheng.view.BaseAppCompatActivity;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import me.drakeet.materialdialog.MaterialDialog;
 

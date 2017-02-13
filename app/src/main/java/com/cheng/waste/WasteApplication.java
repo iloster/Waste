@@ -9,6 +9,7 @@ import com.cheng.db.DaoMaster;
 import com.cheng.db.DaoSession;
 import com.cheng.utils.SpUtils;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Created by cheng on 2016/12/29.
@@ -26,15 +27,26 @@ public class WasteApplication extends Application {
         // TODO Auto-generated method stub
         super.onCreate();
         //加入内存泄漏检测机制
+        initLeakCanary();
+        //加入Bugly统计
+        initBugly();
+        instance = this;
+        initDB();
+        AppCompatDelegate.setDefaultNightMode(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)?AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+    private void initLeakCanary(){
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
             return;
         }
         LeakCanary.install(this);
-        instance = this;
-        initDB();
-        AppCompatDelegate.setDefaultNightMode(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)?AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+    private void initBugly(){
+        //正式为false ，测试环境为true
+        CrashReport.initCrashReport(getApplicationContext(), "1be8278f1a", true);
     }
 
     private void initDB(){
