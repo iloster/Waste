@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatDelegate;
 import com.cheng.config.Constants;
 import com.cheng.db.DaoMaster;
 import com.cheng.db.DaoSession;
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.SpUtils;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 
 /**
@@ -26,11 +28,11 @@ public class WasteApplication extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
+        instance = this;
         //加入内存泄漏检测机制
         initLeakCanary();
         //加入Bugly统计
         initBugly();
-        instance = this;
         initDB();
         AppCompatDelegate.setDefaultNightMode(SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)?AppCompatDelegate.MODE_NIGHT_YES:AppCompatDelegate.MODE_NIGHT_NO);
     }
@@ -46,7 +48,7 @@ public class WasteApplication extends Application {
 
     private void initBugly(){
         //正式为false ，测试环境为true
-        CrashReport.initCrashReport(getApplicationContext(), "1be8278f1a", true);
+        Bugly.init(getApplicationContext(), "1be8278f1a", true);
     }
 
     private void initDB(){

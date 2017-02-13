@@ -2,6 +2,8 @@ package com.cheng.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -74,4 +76,28 @@ public class DeviceUtils {
     public static boolean isTablet() {
         return (mContext.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
+
+    public static String getVersionName(){
+        PackageManager pm = mContext.getPackageManager();
+        try {
+            PackageInfo info = pm.getPackageInfo(mContext.getPackageName(),0);
+            return info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "0";
+        }
+    }
+
+    public static int getVersionCode(){
+        PackageManager pm = mContext.getPackageManager();
+        try {
+            PackageInfo info = pm.getPackageInfo(mContext.getPackageName(),0);
+            return info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return  0;
+        }
+
+    }
+
 }
