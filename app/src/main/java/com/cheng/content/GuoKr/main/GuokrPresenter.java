@@ -33,8 +33,13 @@ public class GuokrPresenter {
             public void onSuccess(String ret) {
                 LogUtils.v(TAG,"ret:"+ret);
                 Gson gson = new Gson();
-                GuokrMainBean mainBean = gson.fromJson(ret,GuokrMainBean.class);
-                mGuokrView.refreshData(mainBean.getResult(),flag);
+                try {
+                    GuokrMainBean mainBean = gson.fromJson(ret, GuokrMainBean.class);
+                    mGuokrView.refreshData(mainBean.getResult(),flag);
+                }catch (Exception e){
+                    mGuokrView.showError();
+                }
+
             }
         });
     }

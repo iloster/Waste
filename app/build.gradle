@@ -18,11 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    greendao{
+    greendao {
         schemaVersion 4
         daoPackage 'com.cheng.db'
         targetGenDir 'src/main/java'
     }
+
 }
 
 dependencies {
