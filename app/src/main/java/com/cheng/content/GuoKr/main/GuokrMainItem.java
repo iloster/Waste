@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
@@ -57,10 +58,12 @@ public class GuokrMainItem extends RecyclerView.Adapter{
         h.mGuokrItemTag.setText(bean.getCategory());
         h.mGuokrItemSource.setText(bean.getSource_name());
         if(h.mGuokrItemTime.getVisibility()==View.VISIBLE){
-            if(TimeUtils.isSameDay(new Long(bean.getDate_picked())*1000,System.currentTimeMillis())){
+//            LogUtils.v("DataPicked",bean.getDate_picked().substring(0,9));
+
+            if(TimeUtils.isSameDay(Long.parseLong(bean.getDate_picked().substring(0,9))*10000,System.currentTimeMillis())){
                 h.mGuokrItemTime.setText("今天");
             }else {
-                h.mGuokrItemTime.setText(TimeUtils.getTimeByFormat(new Long(bean.getDate_picked())*1000,"yyyy-MM-dd"));
+                h.mGuokrItemTime.setText(TimeUtils.getTimeByFormat(new Long(bean.getDate_picked().substring(0,9))*10000,"yyyy-MM-dd"));
             }
         }
     }
@@ -77,7 +80,7 @@ public class GuokrMainItem extends RecyclerView.Adapter{
         }else{
             GuokrMainBean.ResultBean bean1 = mList.get(position);
             GuokrMainBean.ResultBean bean2 = mList.get(position-1);
-            return TimeUtils.isSameDay(new Long(bean1.getDate_picked())*1000,new Long(bean2.getDate_picked())*1000)?HIDE_TIME:SHOW_TIME;
+            return TimeUtils.isSameDay(new Long(bean1.getDate_picked().substring(0,9))*10000,new Long(bean2.getDate_picked().substring(0,9))*10000)?HIDE_TIME:SHOW_TIME;
         }
 
     }

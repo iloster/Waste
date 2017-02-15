@@ -37,6 +37,7 @@ public class GuokrPresenter {
                     GuokrMainBean mainBean = gson.fromJson(ret, GuokrMainBean.class);
                     mGuokrView.refreshData(mainBean.getResult(),flag);
                 }catch (Exception e){
+                    LogUtils.v(TAG,"Exception:"+e.toString());
                     mGuokrView.showError();
                 }
 

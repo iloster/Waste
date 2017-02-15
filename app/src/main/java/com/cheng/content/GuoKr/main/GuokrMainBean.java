@@ -1,5 +1,7 @@
 package com.cheng.content.GuoKr.Main;
 
+import com.cheng.utils.LogUtils;
+
 import java.util.List;
 
 /**
@@ -93,7 +95,7 @@ public class GuokrMainBean {
         private SourceDataBean source_data;
         private String headline_img_tb;
         private String link_v2;
-        private int date_picked;
+        private String date_picked;
         private boolean is_top;
         private String link;
         private String headline_img;
@@ -211,11 +213,11 @@ public class GuokrMainBean {
             this.link_v2 = link_v2;
         }
 
-        public int getDate_picked() {
+        public String getDate_picked() {
             return date_picked;
         }
 
-        public void setDate_picked(int date_picked) {
+        public void setDate_picked(String date_picked) {
             this.date_picked = date_picked;
         }
 
