@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cheng.common.NetworkDection;
+import com.cheng.common.NetworkInterface;
 import com.cheng.config.Constants;
 import com.cheng.content.FloatContentMainView;
 import com.cheng.utils.DeviceUtils;
@@ -31,7 +33,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
  * Created by cheng on 2016/12/20.
  */
 
-public class BaseContentView extends RelativeLayout{
+public class BaseContentView extends RelativeLayout implements NetworkInterface{
     private String TAG = "FloatContentView";
 
     private WindowManager windowManager;
@@ -48,6 +50,7 @@ public class BaseContentView extends RelativeLayout{
     private Button mErrorButton;
     private View mLoadingView;
 
+    private NetworkDection mNetworkDection;
     private float xLastInView;
     private float yLastInView;
     private float xCurInView;
@@ -92,7 +95,8 @@ public class BaseContentView extends RelativeLayout{
                 popView();
             }
         });
-
+        mNetworkDection = new NetworkDection(this);
+        mNetworkDection.start();
 //        mContainLayout.setOnTouchListener(new OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -196,4 +200,14 @@ public class BaseContentView extends RelativeLayout{
         }
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mNetworkDection.stop();
+    }
+
+    @Override
+    public void refreshNetworkSpeed(long rev, long snd) {
+        LogUtils.v(TAG,"rev:"+rev+"| snd:"+snd);
+    }
 }
