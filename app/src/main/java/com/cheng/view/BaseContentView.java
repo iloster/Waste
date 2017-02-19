@@ -50,6 +50,9 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
     private Button mErrorButton;
     private View mLoadingView;
 
+    private TextView mSpeedDownloadTxt;
+    private TextView mSpeedUploadTxt;
+
     private NetworkDection mNetworkDection;
     private float xLastInView;
     private float yLastInView;
@@ -66,6 +69,9 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
         mContentTitle = (TextView)findViewById(R.id.contentTitle);
         mContainLayout = (LinearLayout) findViewById(R.id.containLayout);
         mSubView = (RelativeLayout) findViewById(R.id.subView);
+
+        mSpeedDownloadTxt = (TextView)findViewById(R.id.speedDownloadTxt);
+        mSpeedUploadTxt = (TextView)findViewById(R.id.speedUploadTxt);
 
         int width = windowManager.getDefaultDisplay().getWidth();
         int height = 0;
@@ -136,7 +142,7 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
         if(mListView.size()>1){
             mBackBtn.setVisibility(VISIBLE);
         }else{
-            mBackBtn.setVisibility(INVISIBLE);
+            mBackBtn.setVisibility(GONE);
         }
     }
 
@@ -150,7 +156,7 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
             mTitleList.remove(mTitleList.size() - 1);
             mContentTitle.setText(mTitleList.get(mTitleList.size() - 1));
             if (mListView.size() == 1) {
-                mBackBtn.setVisibility(INVISIBLE);
+                mBackBtn.setVisibility(GONE);
             }
         }
     }
@@ -209,5 +215,7 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
     @Override
     public void refreshNetworkSpeed(long rev, long snd) {
         LogUtils.v(TAG,"rev:"+rev+"| snd:"+snd);
+        mSpeedDownloadTxt.setText(String.format("%3.2f kb/s",rev/1024.0));
+        mSpeedUploadTxt.setText(String.format("%3.2f kb/s",snd/1024.0));
     }
 }

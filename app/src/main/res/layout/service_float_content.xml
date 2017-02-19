@@ -24,6 +24,34 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/back_btn_click"
                 android:id="@+id/backBtn"/>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@id/backBtn"
+                android:id="@+id/speedDownloadImg"
+                android:background="@mipmap/speed_download"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/speedDownloadTxt"
+                android:textSize="11sp"
+                android:textColor="@color/seconaary_text"
+                android:layout_toRightOf="@id/speedDownloadImg"/>
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@id/speedDownloadImg"
+                android:id="@+id/speedUploadImg"
+                android:layout_toRightOf="@id/backBtn"
+                android:background="@mipmap/speed_upload"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/speedUploadImg"
+                android:layout_below="@id/speedDownloadTxt"
+                android:textSize="11sp"
+                android:textColor="@color/seconaary_text"
+                android:id="@+id/speedUploadTxt"/>
              <TextView
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"

@@ -41,7 +41,7 @@ public class NetworkUtils {
     public static long getSndTraffic(){
         long sndTraffic = -1;
         if(TrafficStats.getTotalRxBytes()!=UNSUPPORTED){
-            return TrafficStats.getTotalRxBytes();
+            return TrafficStats.getTotalTxBytes();
         }
         PackageManager pm = WasteApplication.getInstance().getPackageManager();
         List<ApplicationInfo> applicationInfos = pm.getInstalledApplications(0);
