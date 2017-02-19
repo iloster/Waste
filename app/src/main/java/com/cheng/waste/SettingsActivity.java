@@ -63,7 +63,7 @@ public class SettingsActivity extends BaseAppCompatActivity {
 
     private void initBugly(){
         //正式为false ，测试环境为true
-        Bugly.init(getApplicationContext(), "1be8278f1a", true);
+        Bugly.init(WasteApplication.getInstance(), "1be8278f1a", true);
     }
 
 }
