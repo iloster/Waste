@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/speedDownloadTxt"
                 android:textSize="11sp"
+                android:text="0kb/s"
                 android:textColor="@color/seconaary_text"
                 android:layout_toRightOf="@id/speedDownloadImg"/>
             <ImageView
@@ -50,6 +51,7 @@
                 android:layout_toRightOf="@id/speedUploadImg"
                 android:layout_below="@id/speedDownloadTxt"
                 android:textSize="11sp"
+                android:text="0kb/s"
                 android:textColor="@color/seconaary_text"
                 android:id="@+id/speedUploadTxt"/>
              <TextView

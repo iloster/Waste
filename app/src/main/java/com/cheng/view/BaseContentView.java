@@ -215,7 +215,7 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
     @Override
     public void refreshNetworkSpeed(long rev, long snd) {
         LogUtils.v(TAG,"rev:"+rev+"| snd:"+snd);
-        mSpeedDownloadTxt.setText(String.format("%3.2f kb/s",rev/1024.0));
-        mSpeedUploadTxt.setText(String.format("%3.2f kb/s",snd/1024.0));
+        mSpeedDownloadTxt.setText(String.format("%3.2fkb/s",rev/1024.0));
+        mSpeedUploadTxt.setText(String.format("%3.2fkb/s",snd/1024.0));
     }
 }
