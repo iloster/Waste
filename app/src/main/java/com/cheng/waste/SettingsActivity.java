@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -45,6 +46,7 @@ public class SettingsActivity extends BaseAppCompatActivity {
 
         mSettingsFragment = new SettingsFragment();
         replaceFragment(R.id.settings_container, mSettingsFragment);
+        checkFloatPermisson();
         if (!DeviceUtils.isServiceRunning("com.cheng.waste.FloatService")) {
             Intent intent = new Intent(WasteApplication.getInstance(), FloatService.class);
             startService(intent);
@@ -64,6 +66,17 @@ public class SettingsActivity extends BaseAppCompatActivity {
     private void initBugly(){
         //正式为false ，测试环境为true
         Bugly.init(WasteApplication.getInstance(), "1be8278f1a", true);
+    }
+
+    private void checkFloatPermisson(){
+        PackageManager pm = getPackageManager();
+        boolean permission = (PackageManager.PERMISSION_GRANTED ==
+                pm.checkPermission("android.permission.SYSTEM_ALERT_WINDOW", "packageName"));
+        if (permission) {
+            Toast.makeText(SettingsActivity.this,"有这个权限",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(SettingsActivity.this,"没有有这个权限",Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

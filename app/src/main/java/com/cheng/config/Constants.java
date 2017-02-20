@@ -22,6 +22,7 @@ public class Constants {
     public static final String WINSIZE_SP_KEY = "winsize";
     public static final String LONGPRESS_SP_KEY = "longpress";
     public static final String NIGHTSHIFT_SP_KEY = "nightshift";
+    public static final String SHOWSPEED_SP_KEY = "showspeed";
 
     public static final int BLOCK_COUNT = 4;
     public static final int ID_V2EX = 0;

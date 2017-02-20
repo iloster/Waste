@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
 
     private TextView mSpeedDownloadTxt;
     private TextView mSpeedUploadTxt;
+    private ImageView mSpeedDownloadImg;
+    private ImageView mSpeedUploadImg;
 
     private NetworkDection mNetworkDection;
     private float xLastInView;
@@ -72,6 +75,8 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
 
         mSpeedDownloadTxt = (TextView)findViewById(R.id.speedDownloadTxt);
         mSpeedUploadTxt = (TextView)findViewById(R.id.speedUploadTxt);
+        mSpeedDownloadImg = (ImageView)findViewById(R.id.speedDownloadImg);
+        mSpeedUploadImg = (ImageView)findViewById(R.id.speedUploadImg);
 
         int width = windowManager.getDefaultDisplay().getWidth();
         int height = 0;
@@ -101,8 +106,21 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
                 popView();
             }
         });
-        mNetworkDection = new NetworkDection(this);
-        mNetworkDection.start();
+        if(SpUtils.getBoolean(Constants.SHOWSPEED_SP_KEY,false)) {
+            //显示网速
+            mSpeedUploadImg.setVisibility(VISIBLE);
+            mSpeedDownloadImg.setVisibility(VISIBLE);
+            mSpeedDownloadTxt.setVisibility(VISIBLE);
+            mSpeedUploadTxt.setVisibility(VISIBLE);
+
+            mNetworkDection = new NetworkDection(this);
+            mNetworkDection.start();
+        }else{
+            mSpeedUploadImg.setVisibility(GONE);
+            mSpeedDownloadImg.setVisibility(GONE);
+            mSpeedDownloadTxt.setVisibility(GONE);
+            mSpeedUploadTxt.setVisibility(GONE);
+        }
 //        mContainLayout.setOnTouchListener(new OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -209,7 +227,9 @@ public class BaseContentView extends RelativeLayout implements NetworkInterface{
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mNetworkDection.stop();
+        if(mNetworkDection !=null) {
+            mNetworkDection.stop();
+        }
     }
 
     @Override

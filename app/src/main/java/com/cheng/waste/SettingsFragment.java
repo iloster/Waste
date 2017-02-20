@@ -27,8 +27,11 @@ import me.drakeet.materialdialog.MaterialDialog;
  */
 public  class SettingsFragment extends PreferenceFragment {
 
+    private CheckBoxPreference mNightShiftPre;
     private Preference mWinSizeShiftPre;
     private CheckBoxPreference mLongPressPre;
+    private CheckBoxPreference mShowSpeedPre;
+
     private static String TAG = "SettingsActivity";
     public SettingsFragment(){
 
@@ -39,12 +42,14 @@ public  class SettingsFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.preferences);
 
-        CheckBoxPreference nightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
+        mNightShiftPre = (CheckBoxPreference) getPreferenceManager().findPreference("nightShiftPre");
         mWinSizeShiftPre = (Preference) getPreferenceManager().findPreference("winSizeShiftPre");
         mLongPressPre = (CheckBoxPreference)getPreferenceManager().findPreference("longPressPre");
+        mShowSpeedPre = (CheckBoxPreference)getPreferenceManager().findPreference("showSpeedPre");
 
         boolean longPressFlag = SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true);
         mLongPressPre.setChecked(longPressFlag);
+        //修改窗口大小
         int winSizeValue = SpUtils.getInt(Constants.WINSIZE_SP_KEY,Constants.WINSIZE_LITTLE);
         if(winSizeValue == Constants.WINSIZE_LITTLE){
             mWinSizeShiftPre.setSummary("3/4屏幕");
@@ -52,12 +57,17 @@ public  class SettingsFragment extends PreferenceFragment {
             mWinSizeShiftPre.setSummary("全屏");
         }
 
+        //夜间模式
         if(!SpUtils.getBoolean(Constants.NIGHTSHIFT_SP_KEY,false)){
-            nightShiftPre.setChecked(false);
+            mNightShiftPre.setChecked(false);
         }else{
-            nightShiftPre.setChecked(true);
+            mNightShiftPre.setChecked(true);
         }
-        nightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+
+        boolean showSpeedFlag = SpUtils.getBoolean(Constants.SHOWSPEED_SP_KEY,false);
+        mShowSpeedPre.setChecked(showSpeedFlag);
+
+        mNightShiftPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 boolean flag = (boolean)newValue;
@@ -72,6 +82,7 @@ public  class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
         mLongPressPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
@@ -85,11 +96,26 @@ public  class SettingsFragment extends PreferenceFragment {
                 return true;
             }
         });
+
         mWinSizeShiftPre.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
 //                    Toast.makeText(WasteApplication.getInstance(), "click", Toast.LENGTH_SHORT).show();
                 showDialog();
+                return true;
+            }
+        });
+
+        mShowSpeedPre.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object o) {
+                boolean flag = (boolean)o;
+                if(flag){
+                    Toast.makeText(WasteApplication.getInstance(),"已开启网速显示",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(WasteApplication.getInstance(),"已关闭网速显示",Toast.LENGTH_SHORT).show();
+                }
+                SpUtils.setBoolean(Constants.SHOWSPEED_SP_KEY,flag);
                 return true;
             }
         });

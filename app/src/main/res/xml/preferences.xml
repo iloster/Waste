@@ -10,11 +10,18 @@
                 android:title="夜间模式"
                 android:key="nightShiftPre"
                 android:defaultValue="false"/>
+
             <CheckBoxPreference
                 android:layout="@layout/preference_item"
                 android:title="长按icon隐藏"
                 android:key="longPressPre"
                 android:summary="长按悬浮icon即可隐藏，点击屏幕右下角，悬浮icon就会出现"
+                android:defaultValue="true"/>
+
+            <CheckBoxPreference
+                android:layout="@layout/preference_item"
+                android:title="显示网速"
+                android:key="showSpeedPre"
                 android:defaultValue="true"/>
             <Preference
                 android:layout="@layout/preference_item"
