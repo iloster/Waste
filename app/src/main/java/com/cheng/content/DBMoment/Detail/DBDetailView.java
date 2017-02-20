@@ -10,6 +10,7 @@ import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
+import com.cheng.utils.StringUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
@@ -90,7 +91,7 @@ public class DBDetailView extends BaseSubView implements IDBDetailView{
         }else{
             html = html.replace("{css}",DBConstant.HTML_CSS_DAY);
         }
-        mWebView.loadData(html);
+        mWebView.loadData(StringUtils.filterTagA(html));
     }
 
     @Override

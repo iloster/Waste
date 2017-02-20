@@ -132,7 +132,7 @@ public class MyWebViewEx extends LinearLayout {
                 }
                 mProgressbar.setProgress(newProgress);
             }
-            if(newProgress >= 60){
+            if(newProgress >= 30){
                 mLoadingFinish = true;
                 timer.cancel();
                 timer.purge();
