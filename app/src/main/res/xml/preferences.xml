@@ -38,6 +38,7 @@
 
             <Preference
                 android:layout="@layout/preference_item"
+                android:key="versionNamePre"
                 android:summary="v1.0.0"
                 android:title="当前版本"/>
             <Preference

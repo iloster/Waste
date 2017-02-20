@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cheng.config.Constants;
+import com.cheng.utils.DeviceUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.SpUtils;
 
@@ -31,6 +32,7 @@ public  class SettingsFragment extends PreferenceFragment {
     private Preference mWinSizeShiftPre;
     private CheckBoxPreference mLongPressPre;
     private CheckBoxPreference mShowSpeedPre;
+    private Preference mVersionNamePre;
 
     private static String TAG = "SettingsActivity";
     public SettingsFragment(){
@@ -46,6 +48,8 @@ public  class SettingsFragment extends PreferenceFragment {
         mWinSizeShiftPre = (Preference) getPreferenceManager().findPreference("winSizeShiftPre");
         mLongPressPre = (CheckBoxPreference)getPreferenceManager().findPreference("longPressPre");
         mShowSpeedPre = (CheckBoxPreference)getPreferenceManager().findPreference("showSpeedPre");
+        mVersionNamePre = (Preference)getPreferenceManager().findPreference("versionNamePre");
+        mVersionNamePre.setSummary("v"+ DeviceUtils.getVersionName());
 
         boolean longPressFlag = SpUtils.getBoolean(Constants.LONGPRESS_SP_KEY,true);
         mLongPressPre.setChecked(longPressFlag);
