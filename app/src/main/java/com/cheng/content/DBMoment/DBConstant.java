@@ -38,7 +38,7 @@ public class DBConstant {
                     //            "   text-overflow : clip | ellipsis" +
                     "}" +
                     "#content{" +
-                    "   font-size: 20px;"+
+                    "   font-size: 18px;"+
                     "}"+
                     "#title {\n" +
                     "   text-indent: 0em;" +
