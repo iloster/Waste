@@ -7,6 +7,7 @@ import com.cheng.config.Constants;
 import com.cheng.content.GuoKr.GuokrConstant;
 import com.cheng.content.GuoKr.Main.GuokrMainBean;
 import com.cheng.utils.SpUtils;
+import com.cheng.utils.StringUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
@@ -86,7 +87,7 @@ public class GuokrDetailView extends BaseSubView implements IGuokrDetailView{
         }else{
             html = html.replace("{css}",GuokrConstant.HTML_CSS_DAY);
         }
-        mWebView.loadData(html);
+        mWebView.loadData(StringUtils.filterGuokr(html));
     }
 
     @Override

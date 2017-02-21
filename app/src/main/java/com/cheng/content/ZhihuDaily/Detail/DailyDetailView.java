@@ -8,6 +8,7 @@ import com.cheng.content.ZhihuDaily.Main.DailyMainBean;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.SpUtils;
+import com.cheng.utils.StringUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebViewEx;
 import com.cheng.waste.MyWindowManager;
@@ -80,7 +81,7 @@ public class DailyDetailView extends BaseSubView implements IDailyDetailView{
         }else{
             html = html.replace("{css}",DailyConstant.HTML_CSS_DAY);
         }
-        mWebView.loadData(html);
+        mWebView.loadData(StringUtils.filterDaily(html));
     }
 
     @Override

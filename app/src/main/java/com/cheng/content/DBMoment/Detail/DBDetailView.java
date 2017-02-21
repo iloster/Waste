@@ -91,7 +91,7 @@ public class DBDetailView extends BaseSubView implements IDBDetailView{
         }else{
             html = html.replace("{css}",DBConstant.HTML_CSS_DAY);
         }
-        mWebView.loadData(StringUtils.filterTagA(html));
+        mWebView.loadData(StringUtils.filterDB(html));
     }
 
     @Override
