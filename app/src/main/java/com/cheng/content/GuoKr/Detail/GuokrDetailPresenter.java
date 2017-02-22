@@ -14,9 +14,9 @@ import okhttp3.Call;
 
 public class GuokrDetailPresenter {
 
-    private GuokrDetailView mGuokrDetailView;
+    private GuokrDetailViewEx mGuokrDetailView;
     private Call mCall;
-    public GuokrDetailPresenter(GuokrDetailView guokrDetailView){
+    public GuokrDetailPresenter(GuokrDetailViewEx guokrDetailView){
         mGuokrDetailView = guokrDetailView;
     }
 

@@ -31,8 +31,8 @@ public class GuokrDetailView extends BaseSubView implements IGuokrDetailView{
         LayoutInflater.from(mContext).inflate(R.layout.content_guokr_detail,this);
 
         initUI();
-        mPresenter = new GuokrDetailPresenter(this);
-        mPresenter.loadData(mResultBean);
+//        mPresenter = new GuokrDetailPresenter(this);
+//        mPresenter.loadData(mResultBean);
         MyWindowManager.showLoading();
 //        showData();
 

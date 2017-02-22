@@ -55,7 +55,7 @@ public class DBDetailAdapter extends RecyclerView.Adapter {
             h.contentTxt.setVisibility(View.GONE);
             String url = DBStringUtils.getImgSrc(str);
 //            LogUtils.v(TAG,"url:"+url);
-            Picasso.with(mContext).load(url).into(h.image);
+            Picasso.with(mContext).load(url).placeholder(R.mipmap.default_cover_image).into(h.image);
         }else if(str.startsWith("<title")){
             h.image.setVisibility(View.GONE);
             h.titleTxt.setVisibility(View.VISIBLE);
