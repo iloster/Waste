@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.cheng.content.GuoKr.Detail.GuokrDetailView;
+import com.cheng.content.GuoKr.Detail.GuokrDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
@@ -98,8 +99,9 @@ public class GuokrView extends BaseSubView implements IGuokrView {
             @Override
             public void onItemClick(int position, Object data) {
                 LogUtils.v(TAG,"onItemClick:"+position);
-                GuokrDetailView guokrDetailView = new GuokrDetailView((GuokrMainBean.ResultBean)data);
+                GuokrDetailViewEx guokrDetailView = new GuokrDetailViewEx((GuokrMainBean.ResultBean)data);
                 MyWindowManager.replaceSubView(guokrDetailView,"果壳精选");
+                MyWindowManager.showLoading();
             }
         });
     }

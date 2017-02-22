@@ -5,10 +5,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
+import com.cheng.content.GuoKr.GuokrStringUtils;
 import com.cheng.content.GuoKr.Main.GuokrMainBean;
+import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
+
+import java.util.List;
 
 /**
  * Created by cheng on 2017/2/22.
@@ -42,7 +47,16 @@ public class GuokrDetailViewEx extends BaseSubView implements IGuokrDetailView{
 
     @Override
     public void showData(GuokrDetailBean bean) {
-
+        MyWindowManager.hideLoading();
+        String content = bean.getResult().get(0).getContent();
+        String title = bean.getResult().get(0).getTitle();
+        String author = bean.getResult().get(0).getAuthor();
+        String time = TimeUtils.getTimeByFormat(new Long(bean.getResult().get(0).getDate_picked())*1000,"yyyy-MM-dd HH:MM");
+        List<String> list = GuokrStringUtils.splitHtml(content);
+        list.add(0,"<title>"+title+"</title>");
+        list.add(1,"<time>"+time+" "+author+"</time>");
+        GuokrDetailAdapter adapter = new GuokrDetailAdapter(list);
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
