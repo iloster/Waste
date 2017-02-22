@@ -3,10 +3,12 @@ package com.cheng.content.DBMoment.Detail;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cheng.content.DBMoment.DBStringUtils;
@@ -47,19 +49,39 @@ public class DBDetailAdapter extends RecyclerView.Adapter {
         ItemHolder h = (ItemHolder)holder;
         String str = mList.get(position);
         if(str.startsWith("<img")){
+            h.titleTxt.setVisibility(View.GONE);
+            h.timeTxt.setVisibility(View.GONE);
             h.image.setVisibility(View.VISIBLE);
-            h.tv.setVisibility(View.GONE);
-            String url = DBStringUtils.getImgUrl(str);
-            LogUtils.v(TAG,"url:"+url);
+            h.contentTxt.setVisibility(View.GONE);
+            String url = DBStringUtils.getImgSrc(str);
+//            LogUtils.v(TAG,"url:"+url);
             Picasso.with(mContext).load(url).into(h.image);
-        }else {
+        }else if(str.startsWith("<title")){
             h.image.setVisibility(View.GONE);
+            h.titleTxt.setVisibility(View.VISIBLE);
+            h.timeTxt.setVisibility(View.GONE);
+            h.contentTxt.setVisibility(View.GONE);
+
+            h.titleTxt.setText(DBStringUtils.getTitle(str));
+
+        }else if(str.startsWith("<time")){
+            h.image.setVisibility(View.GONE);
+            h.titleTxt.setVisibility(View.GONE);
+            h.timeTxt.setVisibility(View.VISIBLE);
+            h.contentTxt.setVisibility(View.GONE);
+
+            h.timeTxt.setText(DBStringUtils.getTime(str));
+        } else{
+            h.image.setVisibility(View.GONE);
+            h.titleTxt.setVisibility(View.GONE);
+            h.timeTxt.setVisibility(View.GONE);
             String txt = DBStringUtils.getText(str);
+//                LogUtils.v(TAG,"txt:"+txt);
             if(txt!=null) {
-                h.tv.setText("\t\t\t\t" + DBStringUtils.getText(str));
-                h.tv.setVisibility(View.VISIBLE);
+                h.contentTxt.setText("\t\t\t\t" + DBStringUtils.getText(str));
+                h.contentTxt.setVisibility(View.VISIBLE);
             }else{
-                h.tv.setVisibility(View.GONE);
+                h.contentTxt.setVisibility(View.GONE);
             }
         }
     }
@@ -71,11 +93,15 @@ public class DBDetailAdapter extends RecyclerView.Adapter {
 
     private class ItemHolder extends RecyclerView.ViewHolder{
 
-        public TextView tv;
+        public TextView titleTxt;
+        public TextView timeTxt;
+        public TextView contentTxt;
         public ImageView image;
         public ItemHolder(View itemView) {
             super(itemView);
-            tv = (TextView)itemView.findViewById(R.id.text);
+            titleTxt = (TextView)itemView.findViewById(R.id.titleTxt);
+            timeTxt = (TextView)itemView.findViewById(R.id.timeText);
+            contentTxt = (TextView)itemView.findViewById(R.id.contentTxt);
             image = (ImageView) itemView.findViewById(R.id.image);
         }
     }

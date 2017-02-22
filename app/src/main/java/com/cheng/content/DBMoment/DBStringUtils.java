@@ -22,7 +22,7 @@ public class DBStringUtils {
         return resultList;
     }
 
-    public static String getImgUrl(String str){
+    public static String getImgSrc(String str){
         Pattern pattern = Pattern.compile("src=\"(.*?)\"");
         Matcher matcher =pattern.matcher(str);
         while (matcher.find()){
@@ -35,6 +35,29 @@ public class DBStringUtils {
         Pattern pattern = Pattern.compile("<p>(.*?)</p>");
         Matcher matcher =pattern.matcher(str);
         while (matcher.find()){
+//            return matcher.group(1);
+            if(matcher.group(1)!=null){
+                Pattern pattern1 = Pattern.compile("</*a.*?>");
+                Matcher matcher1 = pattern1.matcher(matcher.group(1));
+                return matcher1.replaceAll("");
+            }
+        }
+        return null;
+    }
+
+    public static String getTitle(String str){
+        Pattern pattern = Pattern.compile("<title>(.*?)</title>");
+        Matcher matcher = pattern.matcher(str);
+        while(matcher.find()){
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+    public static String getTime(String str){
+        Pattern pattern = Pattern.compile("<time>(.*?)</time>");
+        Matcher matcher = pattern.matcher(str);
+        while(matcher.find()){
             return matcher.group(1);
         }
         return null;
