@@ -14,9 +14,9 @@ import okhttp3.Call;
 
 public class DBDetailPresenter {
 
-    private DBDetailView mDBDetailView;
+    private DBDetailViewEx mDBDetailView;
     private Call mCall;
-    public DBDetailPresenter(DBDetailView view){
+    public DBDetailPresenter(DBDetailViewEx view){
         mDBDetailView = view;
     }
 

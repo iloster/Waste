@@ -41,8 +41,8 @@ public class DBDetailView extends BaseSubView implements IDBDetailView{
 
         initUI();
 
-        mPresenter = new DBDetailPresenter(this);
-        mPresenter.loadData(dbMainBean);
+//        mPresenter = new DBDetailPresenter(this);
+//        mPresenter.loadData(dbMainBean);
     }
 
     private void initUI(){

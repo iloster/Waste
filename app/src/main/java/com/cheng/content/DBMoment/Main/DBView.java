@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cheng.content.DBMoment.Detail.DBDetailView;
+import com.cheng.content.DBMoment.Detail.DBDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -74,7 +75,9 @@ public class DBView extends BaseSubView implements IDBView {
             @Override
             public void onItemClick(int position, Object data) {
                 LogUtils.v(TAG,"onItemClick");
-                MyWindowManager.replaceSubView(new DBDetailView((DBMainBean) data),"豆瓣一刻");
+//                MyWindowManager.replaceSubView(new DBDetailView((DBMainBean) data),"豆瓣一刻");
+                MyWindowManager.replaceSubView(new DBDetailViewEx((DBMainBean) data),"豆瓣一刻");
+                MyWindowManager.showLoading();
             }
         });
         mRecyclerView.setAdapter(mDbMainItem);
