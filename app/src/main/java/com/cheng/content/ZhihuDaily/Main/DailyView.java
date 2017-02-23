@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.cheng.content.ZhihuDaily.Detail.DailyDetailView;
+import com.cheng.content.ZhihuDaily.Detail.DailyDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.view.BaseSubView;
@@ -66,8 +67,9 @@ public class DailyView extends BaseSubView implements IDailyView {
 
             @Override
             public void onItemClick(int position, Object data) {
-                DailyDetailView dailyDetailView = new DailyDetailView((DailyMainBean.StoriesBean)data);
+                DailyDetailViewEx dailyDetailView = new DailyDetailViewEx((DailyMainBean.StoriesBean)data);
                 MyWindowManager.replaceSubView(dailyDetailView,"知乎日报");
+                MyWindowManager.showLoading();
             }
         });
 

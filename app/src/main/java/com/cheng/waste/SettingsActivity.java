@@ -36,9 +36,6 @@ public class SettingsActivity extends BaseAppCompatActivity {
     private static String TAG = "SettingsActivity";
     public SettingsFragment mSettingsFragment;
 
-    public SettingsActivity(){
-
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

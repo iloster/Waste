@@ -2,6 +2,7 @@ package com.cheng.content.GuoKr.Detail;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.cheng.content.DBMoment.DBStringUtils;
 import com.cheng.content.DBMoment.Detail.DBDetailAdapter;
+import com.cheng.content.GuoKr.GuokrStringUtils;
 import com.cheng.utils.LogUtils;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
@@ -48,16 +50,16 @@ public class GuokrDetailAdapter extends RecyclerView.Adapter{
             h.timeTxt.setVisibility(View.GONE);
             h.image.setVisibility(View.VISIBLE);
             h.contentTxt.setVisibility(View.GONE);
-            String url = DBStringUtils.getImgSrc(str);
+            String url = GuokrStringUtils.getImgSrc(str);
 //            LogUtils.v(TAG,"url:"+url);
-            Picasso.with(mContext).load(url).placeholder(R.mipmap.default_cover_image).into(h.image);
+            Picasso.with(mContext).load(url).placeholder(R.mipmap.default_cover_image).resize(800,500).into(h.image);
         }else if(str.startsWith("<title")){
             h.image.setVisibility(View.GONE);
             h.titleTxt.setVisibility(View.VISIBLE);
             h.timeTxt.setVisibility(View.GONE);
             h.contentTxt.setVisibility(View.GONE);
 
-            h.titleTxt.setText(DBStringUtils.getTitle(str));
+            h.titleTxt.setText(GuokrStringUtils.getTitle(str));
 
         }else if(str.startsWith("<time")){
             h.image.setVisibility(View.GONE);
@@ -65,15 +67,15 @@ public class GuokrDetailAdapter extends RecyclerView.Adapter{
             h.timeTxt.setVisibility(View.VISIBLE);
             h.contentTxt.setVisibility(View.GONE);
 
-            h.timeTxt.setText(DBStringUtils.getTime(str));
+            h.timeTxt.setText(GuokrStringUtils.getTime(str));
         } else{
             h.image.setVisibility(View.GONE);
             h.titleTxt.setVisibility(View.GONE);
             h.timeTxt.setVisibility(View.GONE);
             String txt = DBStringUtils.getText(str);
-//                LogUtils.v(TAG,"txt:"+txt);
+                LogUtils.v(TAG,"txt:"+txt);
             if(txt!=null) {
-                h.contentTxt.setText("\t\t\t\t" + DBStringUtils.getText(str));
+                h.contentTxt.setText("\t\t\t" + Html.fromHtml(GuokrStringUtils.getText(str)));
                 h.contentTxt.setVisibility(View.VISIBLE);
             }else{
                 h.contentTxt.setVisibility(View.GONE);

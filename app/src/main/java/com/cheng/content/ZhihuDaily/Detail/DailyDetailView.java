@@ -35,8 +35,8 @@ public class DailyDetailView extends BaseSubView implements IDailyDetailView{
         mStoriesBean = storiesBean;
         initUI();
 
-        mPresenter = new DailyDetailPresenter(this);
-        mPresenter.loadData(storiesBean);
+//        mPresenter = new DailyDetailPresenter(this);
+//        mPresenter.loadData(storiesBean);
 
     }
 

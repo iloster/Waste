@@ -42,7 +42,9 @@ public class GuokrDetailViewEx extends BaseSubView implements IGuokrDetailView{
 
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class GuokrDetailViewEx extends BaseSubView implements IGuokrDetailView{
         String time = TimeUtils.getTimeByFormat(new Long(bean.getResult().get(0).getDate_picked())*1000,"yyyy-MM-dd HH:MM");
         List<String> list = GuokrStringUtils.splitHtml(content);
         list.add(0,"<title>"+title+"</title>");
-        list.add(1,"<time>"+time+" "+author+"</time>");
+        list.add(1,"<time>"+time+"\t\t"+author+"</time>");
         GuokrDetailAdapter adapter = new GuokrDetailAdapter(list);
         mRecyclerView.setAdapter(adapter);
     }

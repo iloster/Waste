@@ -14,9 +14,9 @@ import okhttp3.Call;
 
 public class DailyDetailPresenter {
 
-    private DailyDetailView mDailyDetailView;
+    private DailyDetailViewEx mDailyDetailView;
     private Call mCall = null;
-    public DailyDetailPresenter(DailyDetailView view){
+    public DailyDetailPresenter(DailyDetailViewEx view){
         mDailyDetailView = view;
     }
 
