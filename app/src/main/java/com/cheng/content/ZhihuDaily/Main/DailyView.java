@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
-import com.cheng.content.ZhihuDaily.Detail.DailyDetailView;
 import com.cheng.content.ZhihuDaily.Detail.DailyDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
@@ -33,7 +32,7 @@ public class DailyView extends BaseSubView implements IDailyView {
     private DailyPresenter mPresenter;
 
     private List<DailyMainBean.StoriesBean> mStoriesBeanList = new ArrayList<>();
-    private DailyMainItem mDailyMainItem;
+    private DailyMainAdapter mDailyMainAdapter;
 
     private int mOffsetDay = 1;
     private boolean mIsRefresh = false;
@@ -61,9 +60,9 @@ public class DailyView extends BaseSubView implements IDailyView {
         mRecyclerView.setLayoutManager(layoutManager);
 
 
-        mDailyMainItem = new DailyMainItem(mStoriesBeanList);
-        mRecyclerView.setAdapter(mDailyMainItem);
-        mDailyMainItem.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
+        mDailyMainAdapter = new DailyMainAdapter(mStoriesBeanList);
+        mRecyclerView.setAdapter(mDailyMainAdapter);
+        mDailyMainAdapter.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
 
             @Override
             public void onItemClick(int position, Object data) {
@@ -92,7 +91,7 @@ public class DailyView extends BaseSubView implements IDailyView {
             int lastVisibleItem ;
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mDailyMainItem.getItemCount()){
+                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1== mDailyMainAdapter.getItemCount()){
                     LogUtils.v(TAG,"上啦刷新");
                     if(!mIsRefresh) {
                         mIsRefresh = true;
@@ -128,7 +127,7 @@ public class DailyView extends BaseSubView implements IDailyView {
                 for(int i = 0;i<list.size();i++){
                     mStoriesBeanList.add(i,list.get(i));
                 }
-                mDailyMainItem.notifyItemRangeInserted(0,list.size());
+                mDailyMainAdapter.notifyItemRangeInserted(0,list.size());
             }else{
                 //上拉刷新
 
@@ -136,10 +135,10 @@ public class DailyView extends BaseSubView implements IDailyView {
                 for(int i = 0; i<list.size();i++){
                     mStoriesBeanList.add(orgLenght + i,list.get(i));
                 }
-                mDailyMainItem.notifyItemRangeInserted(orgLenght,orgLenght+list.size());
+                mDailyMainAdapter.notifyItemRangeInserted(orgLenght,orgLenght+list.size());
             }
 
-            mDailyMainItem.notifyDataSetChanged();
+            mDailyMainAdapter.notifyDataSetChanged();
         }
     }
 

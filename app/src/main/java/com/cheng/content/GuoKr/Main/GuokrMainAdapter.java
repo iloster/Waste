@@ -20,13 +20,13 @@ import java.util.List;
  * Created by dev on 2017/1/11.
  */
 
-public class GuokrMainItem extends RecyclerView.Adapter{
+public class GuokrMainAdapter extends RecyclerView.Adapter{
 
     private List<GuokrMainBean.ResultBean> mList;
     private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     private int SHOW_TIME = 0;
     private int HIDE_TIME = 1;
-    public GuokrMainItem(List<GuokrMainBean.ResultBean> list){
+    public GuokrMainAdapter(List<GuokrMainBean.ResultBean> list){
         mList = list;
     }
 

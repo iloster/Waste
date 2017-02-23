@@ -84,9 +84,9 @@ public class V2exDetail extends BaseSubView {
                 Type type = new TypeToken<List<V2exCommentBean>>(){}.getType();
                 List<V2exCommentBean> list = new Gson().fromJson(ret,type);
                 LogUtils.v(TAG,"showComment success size:"+list.size());
-                V2exCommentItem v2ExCommentItem = new V2exCommentItem(mContext,list,mV2exEntity);
+                V2exCommentAdapter v2ExCommentAdapter = new V2exCommentAdapter(mContext,list,mV2exEntity);
 
-                mRecyclerView.setAdapter(v2ExCommentItem);
+                mRecyclerView.setAdapter(v2ExCommentAdapter);
             }
         });
     }

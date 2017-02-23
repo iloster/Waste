@@ -53,8 +53,8 @@ public class FloatContentMainView extends BaseSubView {
             BlockItem blockItem = new BlockItem(i,Constants.BLOCK_NAMES[i],Constants.BLOCK_ICONS[i]);
             list.add(blockItem);
         }
-        FloatContentMainItem floatContentMainItem = new FloatContentMainItem(mContext,list);
-        floatContentMainItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
+        FloatContentMainAdapter floatContentMainAdapter = new FloatContentMainAdapter(mContext,list);
+        floatContentMainAdapter.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position, Object data) {
                 BlockItem item = (BlockItem)data;
@@ -85,7 +85,7 @@ public class FloatContentMainView extends BaseSubView {
                }
             }
         });
-        mRecyclerView.setAdapter(floatContentMainItem);
+        mRecyclerView.setAdapter(floatContentMainAdapter);
     }
 
 

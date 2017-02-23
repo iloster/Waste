@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.cheng.content.DBMoment.Detail.DBDetailView;
 import com.cheng.content.DBMoment.Detail.DBDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
@@ -36,7 +35,7 @@ public class DBView extends BaseSubView implements IDBView {
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Context mContext;
-    private DBMainItem mDbMainItem;
+    private DBMainAdapter mDbMainAdapter;
     private List<DBMainBean> mDBMainBeanList = new ArrayList<>();
     private DBPresenter mPresenter;
     private int mOffsetDay = 1;
@@ -70,8 +69,8 @@ public class DBView extends BaseSubView implements IDBView {
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mDbMainItem = new DBMainItem(mDBMainBeanList);
-        mDbMainItem.setItemClickListener(new OnRecyclerViewItemClickListener() {
+        mDbMainAdapter = new DBMainAdapter(mDBMainBeanList);
+        mDbMainAdapter.setItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position, Object data) {
                 LogUtils.v(TAG,"onItemClick");
@@ -80,7 +79,7 @@ public class DBView extends BaseSubView implements IDBView {
                 MyWindowManager.showLoading();
             }
         });
-        mRecyclerView.setAdapter(mDbMainItem);
+        mRecyclerView.setAdapter(mDbMainAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -96,7 +95,7 @@ public class DBView extends BaseSubView implements IDBView {
             int lastVisibleItem ;
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mDbMainItem.getItemCount()){
+                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1== mDbMainAdapter.getItemCount()){
                     LogUtils.v(TAG,"上拉刷新");
                     if(!mIsRefresh) {
                         mIsRefresh = true;
@@ -130,16 +129,16 @@ public class DBView extends BaseSubView implements IDBView {
             for(int i = 0; i < list.size(); i++) {
                 mDBMainBeanList.add(i, list.get(i));
             }
-            mDbMainItem.notifyItemRangeInserted(0,list.size());
+            mDbMainAdapter.notifyItemRangeInserted(0,list.size());
         }else {
             mOffsetDay = mOffsetDay + 1;
             for(int i = 0; i < list.size(); i++) {
                 mDBMainBeanList.add(orgLength + i, list.get(i));
             }
-            mDbMainItem.notifyItemRangeInserted(orgLength,orgLength+list.size());
+            mDbMainAdapter.notifyItemRangeInserted(orgLength,orgLength+list.size());
         }
 
-        mDbMainItem.notifyDataSetChanged();
+        mDbMainAdapter.notifyDataSetChanged();
     }
 
     public void showError(boolean flag){

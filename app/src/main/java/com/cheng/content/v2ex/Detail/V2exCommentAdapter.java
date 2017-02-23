@@ -24,14 +24,14 @@ import java.util.List;
  * Created by cheng on 2017/1/2.
  */
 
-public class V2exCommentItem extends RecyclerView.Adapter {
+public class V2exCommentAdapter extends RecyclerView.Adapter {
 
-    private String TAG = "V2exCommentItem";
+    private String TAG = "V2exCommentAdapter";
     private Context mContext;
     private List<V2exCommentBean> mV2ExCommentBeanList;
     private V2exEntity mV2exEntity;
 
-    public V2exCommentItem(Context context, List<V2exCommentBean> list, V2exEntity v2exEntity) {
+    public V2exCommentAdapter(Context context, List<V2exCommentBean> list, V2exEntity v2exEntity) {
         mContext = context;
         mV2ExCommentBeanList = list;
         mV2exEntity = v2exEntity;

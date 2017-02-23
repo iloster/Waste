@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
-import com.cheng.content.GuoKr.Detail.GuokrDetailView;
 import com.cheng.content.GuoKr.Detail.GuokrDetailViewEx;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
@@ -31,7 +30,7 @@ public class GuokrView extends BaseSubView implements IGuokrView {
 
     private GuokrPresenter mPresenter;
     private List<GuokrMainBean.ResultBean> mResultBeanList = new ArrayList<>();
-    private GuokrMainItem mGuokrMainItem;
+    private GuokrMainAdapter mGuokrMainAdapter;
     private int mOffsetDay = 0;
     private boolean mIsRefresh = false;
     public GuokrView() {
@@ -58,8 +57,8 @@ public class GuokrView extends BaseSubView implements IGuokrView {
             mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
-        mGuokrMainItem = new GuokrMainItem(mResultBeanList);
-        mRecyclerView.setAdapter(mGuokrMainItem);
+        mGuokrMainAdapter = new GuokrMainAdapter(mResultBeanList);
+        mRecyclerView.setAdapter(mGuokrMainAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -74,7 +73,7 @@ public class GuokrView extends BaseSubView implements IGuokrView {
             int lastVisibleItem ;
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==mGuokrMainItem.getItemCount()){
+                if(newState == RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1== mGuokrMainAdapter.getItemCount()){
                     LogUtils.v(TAG,"上拉刷新");
                     if(!mIsRefresh) {
                         mIsRefresh = true;
@@ -94,7 +93,7 @@ public class GuokrView extends BaseSubView implements IGuokrView {
             }
         });
 
-        mGuokrMainItem.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
+        mGuokrMainAdapter.setOnRecyclerViewItemClickListener(new BaseSubView.OnRecyclerViewItemClickListener(){
 
             @Override
             public void onItemClick(int position, Object data) {
@@ -131,15 +130,15 @@ public class GuokrView extends BaseSubView implements IGuokrView {
                 for (int i = 0; i < list1.size(); i++) {
                     mResultBeanList.add(i, list1.get(i));
                 }
-                mGuokrMainItem.notifyItemRangeChanged(0, list1.size());
+                mGuokrMainAdapter.notifyItemRangeChanged(0, list1.size());
             }else{
                 int orgLength = mResultBeanList.size();
                 for(int i = 0;i<list.size();i++){
                     mResultBeanList.add(orgLength+i,list.get(i));
                 }
-                mGuokrMainItem.notifyItemRangeChanged(orgLength,orgLength+list.size());
+                mGuokrMainAdapter.notifyItemRangeChanged(orgLength,orgLength+list.size());
             }
-            mGuokrMainItem.notifyDataSetChanged();
+            mGuokrMainAdapter.notifyDataSetChanged();
         }
     }
 

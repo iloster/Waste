@@ -22,12 +22,12 @@ import java.util.List;
  * Created by dev on 2017/1/3.
  */
 
-public class DBMainItem extends RecyclerView.Adapter{
-    private String TAG = "DBMainItem";
+public class DBMainAdapter extends RecyclerView.Adapter{
+    private String TAG = "DBMainAdapter";
     private Context mContext;
     private List<DBMainBean> mDBMainBeanList;
     private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-    public DBMainItem(List<DBMainBean> list){
+    public DBMainAdapter(List<DBMainBean> list){
         mContext = WasteApplication.getInstance();
         mDBMainBeanList = list;
 

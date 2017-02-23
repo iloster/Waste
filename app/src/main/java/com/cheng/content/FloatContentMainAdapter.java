@@ -19,11 +19,11 @@ import java.util.List;
  * Created by cheng on 2017/1/5.
  */
 
-public class FloatContentMainItem extends RecyclerView.Adapter {
+public class FloatContentMainAdapter extends RecyclerView.Adapter {
    private Context mConext;
     private List<BlockItem> mList;
     private BaseSubView.OnRecyclerViewItemClickListener mListener;
-    public FloatContentMainItem(Context context, List<BlockItem> list){
+    public FloatContentMainAdapter(Context context, List<BlockItem> list){
         mConext = context;
         mList = list;
    }

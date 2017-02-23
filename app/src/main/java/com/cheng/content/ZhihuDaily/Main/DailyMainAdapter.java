@@ -20,15 +20,15 @@ import java.util.List;
  * Created by cheng on 2017/1/8.
  */
 
-public class DailyMainItem extends RecyclerView.Adapter {
+public class DailyMainAdapter extends RecyclerView.Adapter {
 
-    private String TAG = "DailyMainItem";
+    private String TAG = "DailyMainAdapter";
     private List<DailyMainBean.StoriesBean> mStoriesBeanList;
     private BaseSubView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
     private int SHOW_TIME = 0;
     private int HIDE_TIME = 1;
 
-    public DailyMainItem(List<DailyMainBean.StoriesBean> list){
+    public DailyMainAdapter(List<DailyMainBean.StoriesBean> list){
         mStoriesBeanList = list;
     }
     @Override
