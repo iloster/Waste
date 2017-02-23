@@ -54,5 +54,6 @@ dependencies {
 //    compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.zzhoujay.richtext:richtext:2.4.0'
 
 }

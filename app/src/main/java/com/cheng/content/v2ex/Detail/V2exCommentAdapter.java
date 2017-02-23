@@ -14,6 +14,7 @@ import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
+import com.zzhoujay.richtext.RichText;
 
 import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
@@ -59,7 +60,8 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
             vHolder.mTopicDetailName.setText(mV2exEntity.getUsername());
             vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
             vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
-            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
+//            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
+            RichText.fromMarkdown(mV2exEntity.getContent()).into(vHolder.mTopicDetailContent);
             vHolder.mTopicDetailHead.setText("总共"+(getItemCount()-1)+"个回复  |  直到"+TimeUtils.getNowTimeStr());
         }else {
 
@@ -138,7 +140,7 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
         public TextView mTopicDetailName;
         public TextView mTopicDetailTime;
         public TextView mTopicDetailTitle;
-        public HtmlTextView mTopicDetailContent;
+        public TextView mTopicDetailContent;
         public TextView mTopicDetailHead;
         public V2exMainDetailTopicHolder(View itemView) {
             super(itemView);
@@ -147,7 +149,7 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
             mTopicDetailName = (TextView)itemView.findViewById(R.id.topic_detail_name);
             mTopicDetailTime = (TextView)itemView.findViewById(R.id.topic_detail_time);
             mTopicDetailTitle = (TextView)itemView.findViewById(R.id.topic_detail_title);
-            mTopicDetailContent = (HtmlTextView)itemView.findViewById(R.id.topic_detail_content);
+            mTopicDetailContent = (TextView)itemView.findViewById(R.id.topic_detail_content);
             mTopicDetailHead = (TextView)itemView.findViewById(R.id.topic_detail_head);
 
         }

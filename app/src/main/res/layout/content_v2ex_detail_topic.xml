@@ -44,7 +44,7 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:text="this is title"/>
-    <org.sufficientlysecure.htmltextview.HtmlTextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topic_detail_content"
