@@ -15,6 +15,7 @@ import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
 import com.zzhoujay.richtext.RichText;
+import com.zzhoujay.richtext.callback.OnUrlClickListener;
 
 import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
@@ -61,7 +62,13 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
             vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
             vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
 //            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
-            RichText.fromMarkdown(mV2exEntity.getContent()).into(vHolder.mTopicDetailContent);
+            RichText.fromMarkdown(mV2exEntity.getContent()).urlClick(new OnUrlClickListener(){
+                @Override
+                public boolean urlClicked(String url) {
+                    LogUtils.v(TAG,"RichText url:"+url);
+                    return true;
+                }
+            }).into(vHolder.mTopicDetailContent);
             vHolder.mTopicDetailHead.setText("总共"+(getItemCount()-1)+"个回复  |  直到"+TimeUtils.getNowTimeStr());
         }else {
 
