@@ -1,10 +1,10 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Detail;
 
 /**
  * Created by cheng on 2017/1/2.
  */
 
-public class V2exMainCommentBean {
+public class V2exCommentBean {
 
     /**
      * id : 3886724

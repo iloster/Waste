@@ -1,10 +1,8 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
 
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 

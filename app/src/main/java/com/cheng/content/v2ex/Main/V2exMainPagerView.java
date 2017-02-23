@@ -1,4 +1,4 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.cheng.content.v2ex.Detail.V2exDetail;
+import com.cheng.content.v2ex.V2exDbUtils;
+import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
@@ -101,8 +104,8 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
     @Override
     public void showDetail(V2exEntity v) {
-        V2exMainDetail v2exMainDetail = new V2exMainDetail(mContext,v);
-        MyWindowManager.replaceSubView(v2exMainDetail,"V2EX");
+        V2exDetail v2ExDetail = new V2exDetail(mContext,v);
+        MyWindowManager.replaceSubView(v2ExDetail,"V2EX");
         MyWindowManager.showLoading();
 //        V2exMainWebDetail v2exMainWebDetail = new V2exMainWebDetail(mContext,v);
 //        MyWindowManager.replaceSubView(v2exMainWebDetail,"V2EX");

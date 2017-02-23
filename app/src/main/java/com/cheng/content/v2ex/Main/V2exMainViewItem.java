@@ -1,4 +1,4 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;

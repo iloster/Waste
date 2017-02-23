@@ -1,4 +1,6 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
+
+import com.cheng.content.v2ex.V2exEntity;
 
 import java.util.List;
 

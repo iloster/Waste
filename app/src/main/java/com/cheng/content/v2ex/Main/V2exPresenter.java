@@ -1,15 +1,17 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
 
-import com.cheng.config.Constants;
+import com.cheng.content.v2ex.Main.IV2exMainPagerView;
+import com.cheng.content.v2ex.Main.V2exMainBean;
+import com.cheng.content.v2ex.V2exConstants;
+import com.cheng.content.v2ex.V2exDbUtils;
+import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
 import com.cheng.utils.LogUtils;
-import com.cheng.waste.WasteApplication;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

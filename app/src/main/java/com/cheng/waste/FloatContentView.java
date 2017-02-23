@@ -1,28 +1,13 @@
 package com.cheng.waste;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
-import com.cheng.config.Constants;
 //import com.cheng.content.ArticleSubView;
 import com.cheng.content.FloatContentMainView;
-import com.cheng.content.v2ex.V2exMainView;
-import com.cheng.http.CallBack;
-import com.cheng.http.HttpUtil;
-import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseContentView;
-import com.cheng.view.MyViewFlipper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

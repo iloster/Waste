@@ -11,7 +11,7 @@ import com.cheng.config.Constants;
 import com.cheng.content.DBMoment.Main.DBView;
 import com.cheng.content.GuoKr.Main.GuokrView;
 import com.cheng.content.ZhihuDaily.Main.DailyView;
-import com.cheng.content.v2ex.V2exMainView;
+import com.cheng.content.v2ex.Main.V2exMainView;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;

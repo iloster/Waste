@@ -1,10 +1,7 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Detail;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,35 +9,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.squareup.picasso.Picasso;
 
 import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
-import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
-
-import io.github.angebagui.mediumtextview.MediumTextView;
 
 /**
  * Created by cheng on 2017/1/2.
  */
 
-public class V2exMainCommentItem extends RecyclerView.Adapter {
+public class V2exCommentItem extends RecyclerView.Adapter {
 
-    private String TAG = "V2exMainCommentItem";
+    private String TAG = "V2exCommentItem";
     private Context mContext;
-    private List<V2exMainCommentBean> mV2exMainCommentBeanList;
+    private List<V2exCommentBean> mV2ExCommentBeanList;
     private V2exEntity mV2exEntity;
 
-    public V2exMainCommentItem(Context context, List<V2exMainCommentBean> list,V2exEntity v2exEntity) {
+    public V2exCommentItem(Context context, List<V2exCommentBean> list, V2exEntity v2exEntity) {
         mContext = context;
-        mV2exMainCommentBeanList = list;
+        mV2ExCommentBeanList = list;
         mV2exEntity = v2exEntity;
     }
 
@@ -71,7 +64,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
         }else {
 
             V2exMainCommentItemHolder vHolder = (V2exMainCommentItemHolder) holder;
-            V2exMainCommentBean v = mV2exMainCommentBeanList.get(position-1);
+            V2exCommentBean v = mV2ExCommentBeanList.get(position-1);
 //            if(position == 1){
 //                vHolder.mHeadLayout.setVisibility(View.VISIBLE);
 //                vHolder.mCommentItemHead.setVisibility(View.VISIBLE);
@@ -98,7 +91,7 @@ public class V2exMainCommentItem extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mV2exMainCommentBeanList.size()+1;
+        return mV2ExCommentBeanList.size()+1;
     }
 
     @Override

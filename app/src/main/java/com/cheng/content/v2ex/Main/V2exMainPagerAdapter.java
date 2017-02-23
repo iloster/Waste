@@ -1,4 +1,4 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Main;
 
 import android.content.Context;
 import android.content.Intent;

@@ -1,5 +1,6 @@
 package com.cheng.content.v2ex;
 
+import com.cheng.content.v2ex.Main.V2exMainBean;
 import com.cheng.db.V2exEntityDao;
 import com.cheng.utils.LogUtils;
 import com.cheng.waste.WasteApplication;

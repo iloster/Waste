@@ -1,8 +1,9 @@
-package com.cheng.content.v2ex;
+package com.cheng.content.v2ex.Detail;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.view.BaseSubView;
 import com.cheng.view.MyWebView;
 import com.cheng.view.MyWebViewEx;
@@ -14,11 +15,11 @@ import com.cheng.waste.WasteApplication;
  * Created by cheng on 2017/1/14.
  */
 
-public class V2exMainWebDetail extends BaseSubView {
+public class V2exWebDetail extends BaseSubView {
     private Context mContext;
     private MyWebViewEx mWebView;
     private V2exEntity mV2exEntity;
-    public V2exMainWebDetail(Context context,V2exEntity v) {
+    public V2exWebDetail(Context context, V2exEntity v) {
         super(context);
         mContext = context;
         mV2exEntity = v;
