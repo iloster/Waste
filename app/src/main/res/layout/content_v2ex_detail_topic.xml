@@ -22,7 +22,7 @@
         android:layout_marginBottom="3dp"
         android:textSize="15sp"
         android:textColor="@color/primary_text"
-        android:text="name"/>
+        android:text=""/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:id="@+id/topic_detail_time"
         android:layout_marginLeft="10dp"
         android:textColor="@color/seconaary_text"
-        android:text="dads"/>
+        android:text=""/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:textColor="@color/primary_text"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:text="this is title"/>
+        android:text=""/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:lineSpacingMultiplier="1.2"
-        android:text="dsadasdadadaksbdlsbfhb"/>
+        android:text=""/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         android:textSize="11sp"
         android:textColor="@color/primary_text"
         android:layout_marginTop="20dp"
-        android:text="53个回复"/>
+        android:text=""/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
