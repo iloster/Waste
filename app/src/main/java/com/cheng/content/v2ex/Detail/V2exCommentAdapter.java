@@ -62,7 +62,7 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
             vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
             vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
 //            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
-            RichText.fromMarkdown(mV2exEntity.getContent()).urlClick(new OnUrlClickListener(){
+            RichText.fromMarkdown(mV2exEntity.getContent()).placeHolder(R.mipmap.default_loading_image).urlClick(new OnUrlClickListener(){
                 @Override
                 public boolean urlClicked(String url) {
                     LogUtils.v(TAG,"RichText url:"+url);
