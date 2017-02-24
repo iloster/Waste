@@ -32,10 +32,9 @@
         android:layout_marginRight="@dimen/x8"
         android:id="@+id/contentTxt"/>
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
         android:layout_centerInParent="true"
-        android:src="@mipmap/default_cover_image"
+        android:src="@mipmap/default_loading_image"
         android:id ="@+id/image"/>
 </RelativeLayout>
