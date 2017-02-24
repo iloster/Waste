@@ -1,6 +1,7 @@
 package com.cheng.content.Qsbk;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
@@ -28,6 +29,9 @@ public class QsbkView extends BaseSubView implements IQsbkView{
 
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
