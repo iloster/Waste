@@ -5,9 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
+import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
+
+import java.util.List;
 
 /**
  * Created by dev on 2017/2/24.
@@ -19,12 +22,16 @@ public class QsbkView extends BaseSubView implements IQsbkView{
     private RecyclerView mRecyclerView;
     private Context mContext;
 
+    private QsbkPresenter mPresenter;
+    private int mPage = 1;
     public QsbkView() {
         super(WasteApplication.getInstance());
         mContext = WasteApplication.getInstance();
         LayoutInflater.from(mContext).inflate(R.layout.content_qsbk_view,this);
 
         initUI();
+        mPresenter = new QsbkPresenter(this);
+        mPresenter.loadData(mPage);
     }
 
     private void initUI(){
@@ -46,7 +53,10 @@ public class QsbkView extends BaseSubView implements IQsbkView{
 
     @Override
     public void refreshData(QsbkBean bean) {
-
+        LogUtils.v(TAG,"refreshData");
+        List<QsbkBean.ItemsBean> itemsBeanList = bean.getItems();
+        QsbkAdapter adapter = new QsbkAdapter(itemsBeanList);
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override

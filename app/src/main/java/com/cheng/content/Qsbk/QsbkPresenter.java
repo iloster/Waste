@@ -18,8 +18,8 @@ public class QsbkPresenter {
         mQsbkView = view;
     }
 
-    public void loadData(){
-        int page = 1;
+    public void loadData(int page){
+//        int page = 1;
         String url = QsbkConstants.URL + page;
 
         mCall = HttpUtil.getInstance().enqueueEx(url,new CallBack() {

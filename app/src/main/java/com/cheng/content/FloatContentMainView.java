@@ -10,6 +10,7 @@ import android.view.View;
 import com.cheng.config.Constants;
 import com.cheng.content.DBMoment.Main.DBView;
 import com.cheng.content.GuoKr.Main.GuokrView;
+import com.cheng.content.Qsbk.QsbkView;
 import com.cheng.content.ZhihuDaily.Main.DailyView;
 import com.cheng.content.v2ex.Main.V2exMainView;
 import com.cheng.utils.LogUtils;
@@ -49,7 +50,7 @@ public class FloatContentMainView extends BaseSubView {
     private void showIcon(){
         final List<BlockItem> list = new ArrayList<>();
 
-        for(int i = 0;i< Constants.BLOCK_COUNT; i++){
+        for(int i = 0;i< Constants.BLOCK_NAMES.length; i++){
             BlockItem blockItem = new BlockItem(i,Constants.BLOCK_NAMES[i],Constants.BLOCK_ICONS[i]);
             list.add(blockItem);
         }
@@ -78,6 +79,11 @@ public class FloatContentMainView extends BaseSubView {
                    case Constants.ID_ZHIHUDAILY:{
                        DailyView dailyView = new DailyView();
                        MyWindowManager.replaceSubView(dailyView,item.getName());
+                   }
+                   break;
+                   case Constants.ID_QISHIBAIKE:{
+                       QsbkView qsbkView = new QsbkView();
+                       MyWindowManager.replaceSubView(qsbkView,item.getName());
                    }
                    break;
                    default:break;

@@ -24,16 +24,16 @@ public class Constants {
     public static final String NIGHTSHIFT_SP_KEY = "nightshift";
     public static final String SHOWSPEED_SP_KEY = "showspeed";
 
-    public static final int BLOCK_COUNT = 4;
+//    public static final int BLOCK_COUNT = 5;
     public static final int ID_V2EX = 0;
     public static final int ID_DBMOMENT = 1;
     public static final int ID_GUOKR = 2;
     public static final int ID_ZHIHUDAILY = 3;
-
+    public static final int ID_QISHIBAIKE = 4;
 //    public static final String NAME_V2EX = "v2ex";
 //    public static final String NAME_DBMOMENT ="豆瓣一刻";
 //    public static final String NAME_GUOKR = "果壳";
 //    public static final String NAME_ZHIHUDAILT ="知乎日报";
-    public static final String[] BLOCK_NAMES = {"V2EX","豆瓣一刻","果壳精选","知乎日报"};
-    public static final int[] BLOCK_ICONS = {R.mipmap.v2ex,R.mipmap.douban,R.mipmap.guokr,R.mipmap.zhihu};
+    public static final String[] BLOCK_NAMES = {"V2EX","豆瓣一刻","果壳精选","知乎日报","糗事百科"};
+    public static final int[] BLOCK_ICONS = {R.mipmap.v2ex,R.mipmap.douban,R.mipmap.guokr,R.mipmap.zhihu,R.mipmap.zhihu};
 }

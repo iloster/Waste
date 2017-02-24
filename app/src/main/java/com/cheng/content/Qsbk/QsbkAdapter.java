@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
+import java.util.List;
+
 /**
  * Created by dev on 2017/2/24.
  */
@@ -17,10 +19,10 @@ import com.cheng.waste.WasteApplication;
 public class QsbkAdapter extends RecyclerView.Adapter{
 
     private String TAG = "Peek_QsbkAdapter";
-    private QsbkBean.ItemsBean mItemsBean;
+    private List<QsbkBean.ItemsBean> mItemsBeanList;
     private Context mContext;
-    public QsbkAdapter(QsbkBean.ItemsBean itemsBeanList){
-        mItemsBean = itemsBeanList;
+    public QsbkAdapter(List<QsbkBean.ItemsBean> itemsBeanList){
+        mItemsBeanList = itemsBeanList;
         mContext = WasteApplication.getInstance();
     }
 
@@ -34,12 +36,13 @@ public class QsbkAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemHolder h = (ItemHolder)holder;
-        
+        QsbkBean.ItemsBean bean = mItemsBeanList.get(position);
+        h.tv.setText(bean.getContent());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mItemsBeanList.size();
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder{
