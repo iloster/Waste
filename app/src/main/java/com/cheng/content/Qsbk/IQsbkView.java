@@ -6,6 +6,14 @@ package com.cheng.content.Qsbk;
 
 public interface IQsbkView {
 
+    /**
+     * 刷新数据
+     * @param bean
+     */
     void refreshData(QsbkBean bean);
+
+    /**
+     * 网络请求错误的时候
+     */
     void showError();
 }

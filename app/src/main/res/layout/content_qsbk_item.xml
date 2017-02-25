@@ -9,9 +9,40 @@
     card_view:cardBackgroundColor="@color/cardview_normal"
     android:layout_marginBottom="@dimen/x8"
     android:layout_height="match_parent">
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="cehsi"
-        android:id="@+id/txt"/>
+        android:padding="5dp"
+        android:background="@color/cardview_normal">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:id="@+id/qsbk_item_icon"
+            android:background="@mipmap/default_head"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/qsbk_item_icon"
+            android:layout_marginTop="5dp"
+            android:id="@+id/qsbk_item_author"
+            android:textColor="@color/primary_text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/qsbk_item_icon"
+            android:layout_below="@id/qsbk_item_author"
+            android:id="@+id/qsbk_item_time"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/seconaary_text"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cehsi"
+            android:layout_below="@id/qsbk_item_icon"
+            android:id="@+id/qsbk_item_content"
+            android:layout_margin="5dp"
+            android:lineSpacingMultiplier="1.3"
+            android:textColor="@color/primary_text"/>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

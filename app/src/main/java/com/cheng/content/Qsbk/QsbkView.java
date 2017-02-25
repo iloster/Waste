@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
+import com.cheng.waste.MyWindowManager;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
 
@@ -34,6 +35,9 @@ public class QsbkView extends BaseSubView implements IQsbkView{
         mPresenter.loadData(mPage);
     }
 
+    /**
+     * 初始化UI
+     */
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -44,11 +48,13 @@ public class QsbkView extends BaseSubView implements IQsbkView{
     @Override
     public void onRefreshClick() {
         super.onRefreshClick();
+        mPresenter.loadData(1);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        mPresenter.release();
     }
 
     @Override
@@ -61,6 +67,6 @@ public class QsbkView extends BaseSubView implements IQsbkView{
 
     @Override
     public void showError() {
-
+        MyWindowManager.showErrorView();
     }
 }

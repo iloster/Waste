@@ -5,10 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cheng.utils.LogUtils;
+import com.cheng.utils.TimeUtils;
 import com.cheng.waste.R;
 import com.cheng.waste.WasteApplication;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +41,16 @@ public class QsbkAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ItemHolder h = (ItemHolder)holder;
         QsbkBean.ItemsBean bean = mItemsBeanList.get(position);
-        h.tv.setText(bean.getContent());
+        if(bean.getUser() != null) {
+            String url = bean.getUser().getMedium();
+            LogUtils.v(TAG, "url:" + url);
+            Picasso.with(mContext).load("http:" + bean.getUser().getMedium()).into(h.mIcon);
+            h.mAuthorTxt.setText(bean.getUser().getLogin());
+        }else{
+            h.mAuthorTxt.setText("匿名");
+        }
+        h.mTimeTxt.setText(TimeUtils.formatTime(new Long(bean.getPublished_at())*1000));
+        h.mContentTxt.setText(bean.getContent());
     }
 
     @Override
@@ -47,10 +60,17 @@ public class QsbkAdapter extends RecyclerView.Adapter{
 
     private class ItemHolder extends RecyclerView.ViewHolder{
 
-        public TextView tv;
+        public ImageView mIcon;
+        public TextView mAuthorTxt;
+        public TextView mTimeTxt;
+        public TextView mContentTxt;
         public ItemHolder(View itemView) {
             super(itemView);
-            tv = (TextView)itemView.findViewById(R.id.txt);
+            mIcon = (ImageView)itemView.findViewById(R.id.qsbk_item_icon);
+            mAuthorTxt = (TextView)itemView.findViewById(R.id.qsbk_item_author);
+            mTimeTxt = (TextView)itemView.findViewById(R.id.qsbk_item_time);
+            mContentTxt = (TextView)itemView.findViewById(R.id.qsbk_item_content);
+
         }
     }
 }
