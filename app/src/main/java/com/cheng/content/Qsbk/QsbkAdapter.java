@@ -23,6 +23,8 @@ import java.util.List;
 public class QsbkAdapter extends RecyclerView.Adapter{
 
     private String TAG = "Peek_QsbkAdapter";
+    private int STYPE_CONTENT = 0;
+    private int STYLE_MORE = 1;
     private List<QsbkBean.ItemsBean> mItemsBeanList;
     private Context mContext;
     public QsbkAdapter(List<QsbkBean.ItemsBean> itemsBeanList){
@@ -32,30 +34,49 @@ public class QsbkAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.content_qsbk_item,parent,false);
-        ItemHolder holder = new ItemHolder(view);
-        return holder;
+        if(viewType==STYPE_CONTENT) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.content_qsbk_item, parent, false);
+            ItemHolder holder = new ItemHolder(view);
+            return holder;
+        }else{
+            View view = LayoutInflater.from(mContext).inflate(R.layout.content_loadmore_btn,parent,false);
+            MoreHolder holder = new MoreHolder(view);
+            return holder;
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ItemHolder h = (ItemHolder)holder;
-        QsbkBean.ItemsBean bean = mItemsBeanList.get(position);
-        if(bean.getUser() != null) {
-            String url = bean.getUser().getMedium();
-            LogUtils.v(TAG, "url:" + url);
-            Picasso.with(mContext).load("http:" + bean.getUser().getMedium()).into(h.mIcon);
-            h.mAuthorTxt.setText(bean.getUser().getLogin());
+        if(position<mItemsBeanList.size()-1) {
+            ItemHolder h = (ItemHolder) holder;
+            QsbkBean.ItemsBean bean = mItemsBeanList.get(position);
+            if (bean.getUser() != null) {
+                String url = bean.getUser().getMedium();
+                LogUtils.v(TAG, "url:" + url);
+                Picasso.with(mContext).load("http:" + bean.getUser().getMedium()).into(h.mIcon);
+                h.mAuthorTxt.setText(bean.getUser().getLogin());
+            } else {
+                h.mAuthorTxt.setText("匿名");
+            }
+            h.mTimeTxt.setText(TimeUtils.formatTime(new Long(bean.getPublished_at()) * 1000));
+            h.mContentTxt.setText(bean.getContent());
         }else{
-            h.mAuthorTxt.setText("匿名");
+
         }
-        h.mTimeTxt.setText(TimeUtils.formatTime(new Long(bean.getPublished_at())*1000));
-        h.mContentTxt.setText(bean.getContent());
     }
 
     @Override
     public int getItemCount() {
         return mItemsBeanList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position<mItemsBeanList.size()-1){
+            return STYPE_CONTENT;
+        }else{
+            return STYLE_MORE;
+        }
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder{
@@ -71,6 +92,13 @@ public class QsbkAdapter extends RecyclerView.Adapter{
             mTimeTxt = (TextView)itemView.findViewById(R.id.qsbk_item_time);
             mContentTxt = (TextView)itemView.findViewById(R.id.qsbk_item_content);
 
+        }
+    }
+
+    private class MoreHolder extends RecyclerView.ViewHolder{
+
+        public MoreHolder(View itemView) {
+            super(itemView);
         }
     }
 }

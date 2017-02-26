@@ -67,7 +67,7 @@ public class QsbkView extends BaseSubView implements IQsbkView{
                     if(!mIsRefresh) {
                         mIsRefresh = true;
 //                        mSwipeRefreshLayout.setRefreshing(true);
-                        mPresenter.loadData(mPage+1);
+//                        mPresenter.loadData(mPage+1);
                     }else{
                         LogUtils.v(TAG,"数据还没有加载完");
                     }
@@ -92,14 +92,16 @@ public class QsbkView extends BaseSubView implements IQsbkView{
     @Override
     public void refreshData(QsbkBean bean) {
         LogUtils.v(TAG,"refreshData:"+bean.getCount());
+        MyWindowManager.hideLoading();
         if(bean.getCount()>0) {
             mPage = mPage + 1;
             if(mItemsBeanList.size()==0) {
                 mItemsBeanList = bean.getItems();
+                mItemsBeanList.add(bean.getItems().get(0));
                 mQsbkAdapter = new QsbkAdapter(mItemsBeanList);
                 mRecyclerView.setAdapter(mQsbkAdapter);
             }else{
-                int orgLength = mItemsBeanList.size();
+                int orgLength = mItemsBeanList.size() - 1;
                 for(int i = 0;i<bean.getItems().size();i++){
                     mItemsBeanList.add(orgLength,bean.getItems().get(i));
                 }
