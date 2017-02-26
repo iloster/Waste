@@ -84,6 +84,7 @@ public class FloatContentMainView extends BaseSubView {
                    case Constants.ID_QISHIBAIKE:{
                        QsbkView qsbkView = new QsbkView();
                        MyWindowManager.replaceSubView(qsbkView,item.getName());
+                       MyWindowManager.showLoading();
                    }
                    break;
                    default:break;

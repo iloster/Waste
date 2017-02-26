@@ -2,6 +2,7 @@ package com.cheng.content.Qsbk;
 
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
+import com.cheng.utils.LogUtils;
 import com.google.gson.Gson;
 
 import okhttp3.Call;
@@ -11,6 +12,7 @@ import okhttp3.Call;
  */
 
 public class QsbkPresenter {
+    private String TAG = "Peek_QsbkPresenter";
     private QsbkView mQsbkView;
 
     private Call mCall;
@@ -25,6 +27,7 @@ public class QsbkPresenter {
         mCall = HttpUtil.getInstance().enqueueEx(url,new CallBack() {
             @Override
             public void onError() {
+                LogUtils.v(TAG,"showError");
                 mQsbkView.showError();
             }
 
