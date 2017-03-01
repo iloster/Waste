@@ -51,6 +51,14 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         mV2exPresenter.loadData();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(mV2exPresenter!=null){
+            mV2exPresenter.release();
+        }
+    }
+
     private void initUI(){
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);

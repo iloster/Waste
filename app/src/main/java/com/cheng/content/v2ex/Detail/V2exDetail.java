@@ -23,6 +23,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import okhttp3.Call;
+
 /**
  * Created by cheng on 2016/12/26.
  */
@@ -38,6 +40,7 @@ public class V2exDetail extends BaseSubView {
     private RecyclerView mRecyclerView;
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
+    private Call mCall = null;
 
     public V2exDetail(Context context, V2exEntity v) {
         super(context);
@@ -72,7 +75,7 @@ public class V2exDetail extends BaseSubView {
     public void showComment(){
         mCommentUrl = V2exConstants.V2EX_URL_REPLAY + mV2exEntity.getId();
         LogUtils.v(TAG,"showComment: "+mCommentUrl);
-        HttpUtil.getInstance().enqueue(mCommentUrl, new CallBack() {
+        mCall = HttpUtil.getInstance().enqueueEx(mCommentUrl, new CallBack() {
             @Override
             public void onError() {
                 showError(true);
@@ -102,4 +105,11 @@ public class V2exDetail extends BaseSubView {
         }
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(mCall!=null){
+            mCall.cancel();
+        }
+    }
 }

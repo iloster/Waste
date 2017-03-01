@@ -67,7 +67,7 @@ public class QsbkView extends BaseSubView implements IQsbkView{
                     if(!mIsRefresh) {
                         mIsRefresh = true;
 //                        mSwipeRefreshLayout.setRefreshing(true);
-//                        mPresenter.loadData(mPage+1);
+                        mPresenter.loadData(mPage+1);
                     }else{
                         LogUtils.v(TAG,"数据还没有加载完");
                     }

@@ -14,6 +14,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import okhttp3.Call;
+
 /**
  * Created by dev on 2016/12/21.
  */
@@ -22,6 +24,7 @@ public class V2exPresenter {
     private String TAG = "V2exPresenter";
     private IV2exMainPagerView mIV2exMainView;
     private int mIndex;
+    private Call mCall = null;
     public V2exPresenter(IV2exMainPagerView iv2exMainView, int index){
         mIV2exMainView = iv2exMainView;
         mIndex = index;
@@ -38,7 +41,7 @@ public class V2exPresenter {
         }else{
             url = V2exConstants.V2EX_URL_LATEST;
         }
-        HttpUtil.getInstance().enqueue(url, new CallBack() {
+        mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
             public void onError() {
                 mIV2exMainView.showError();
@@ -90,6 +93,12 @@ public class V2exPresenter {
                 mIV2exMainView.refreshData(mIndex,list);
             }
         });
+    }
+
+    public void release(){
+        if(mCall!=null){
+            mCall.cancel();
+        }
     }
 
 }
