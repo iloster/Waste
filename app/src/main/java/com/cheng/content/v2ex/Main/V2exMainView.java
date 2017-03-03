@@ -39,15 +39,23 @@ public class V2exMainView extends BaseSubView{
         mTabLayout = (TabLayout)findViewById(R.id.tabLayout);
         mTabLayout.addTab(mTabLayout.newTab().setText("最热"));//添加tab选项卡
         mTabLayout.addTab(mTabLayout.newTab().setText("最新"));//添加tab选项卡
+        mTabLayout.addTab(mTabLayout.newTab().setText("问与答"));//添加tab选项卡
+
         List<View> list = new ArrayList<>();
         View view = new V2exMainPagerView(mContext,1);
-        View view1 = new V2exMainPagerView(mContext,2);
+        View view2 = new V2exMainPagerView(mContext,2);
+        View view3 = new V2exMainPagerView(mContext,3);
+
         list.add(view);
-        list.add(view1);
+        list.add(view2);
+        list.add(view3);
+
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         List<String> titleList = new ArrayList<>();
         titleList.add("最热");
         titleList.add("最新");
+        titleList.add("问与答");
+
         V2exMainPagerAdapter v2exMainPager = new V2exMainPagerAdapter(mContext,list,titleList);
         mViewPager.setAdapter(v2exMainPager);
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
