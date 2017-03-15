@@ -8,7 +8,7 @@ public class BlockItem {
 
 //    private int sort; //位置
     private String name; //名字
-    private int icon; //图片路径
+    private int icon; //图片 路径
     private int id;
 
     public BlockItem(int id,String name,int icon){
