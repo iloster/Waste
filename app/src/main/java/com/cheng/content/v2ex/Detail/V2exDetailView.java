@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.cheng.content.v2ex.Main.V2exMainBean;
 import com.cheng.content.v2ex.V2exConstants;
 import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.http.CallBack;
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -29,32 +31,38 @@ import okhttp3.Call;
  * Created by cheng on 2016/12/26.
  */
 
-public class V2exDetail extends BaseSubView {
+public class V2exDetailView extends BaseSubView implements IV2exDetailView{
 
     private String TAG = "V2exMainDetail";
 
     private Context mContext;
     private String mCommentUrl="";
 
-    private V2exEntity mV2exEntity;
+    private V2exMainBean mV2exMainBean;
     private RecyclerView mRecyclerView;
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
     private Call mCall = null;
+    private V2exTopicBean mV2exTopicBean;
+    private List<V2exCommentBean> mV2exCommentBeanList;
+    private V2exDetailPresenter mPresenter;
 
-    public V2exDetail(Context context, V2exEntity v) {
+
+    public V2exDetailView(Context context, V2exMainBean v) {
         super(context);
         mContext = context;
-        mV2exEntity = v;
+        mV2exMainBean = v;
         LayoutInflater.from(context).inflate(R.layout.content_v2ex_detail,this);
 
         initUI();
+        mPresenter = new V2exDetailPresenter(this);
+        mPresenter.loadTopic(mV2exMainBean);
+        mPresenter.loadComment(mV2exMainBean);
 
-        showComment();
+
     }
 
     private void initUI(){
-
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mErrorLayout = (LinearLayout)findViewById(R.id.errorLayout);
         mErrorBtn = (Button)findViewById(R.id.errorBtn);
@@ -62,54 +70,44 @@ public class V2exDetail extends BaseSubView {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-
-        mErrorBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showComment();
-            }
-        });
+        mErrorLayout.setVisibility(GONE);
     }
 
 
-    public void showComment(){
-        mCommentUrl = V2exConstants.V2EX_URL_REPLAY + mV2exEntity.getId();
-        LogUtils.v(TAG,"showComment: "+mCommentUrl);
-        mCall = HttpUtil.getInstance().enqueueEx(mCommentUrl, new CallBack() {
-            @Override
-            public void onError() {
-                showError(true);
-            }
-
-            @Override
-            public void onSuccess(String ret) {
-                showError(false);
-                Type type = new TypeToken<List<V2exCommentBean>>(){}.getType();
-                List<V2exCommentBean> list = new Gson().fromJson(ret,type);
-                LogUtils.v(TAG,"showComment success size:"+list.size());
-                V2exCommentAdapter v2ExCommentAdapter = new V2exCommentAdapter(mContext,list,mV2exEntity);
-
-                mRecyclerView.setAdapter(v2ExCommentAdapter);
-            }
-        });
+    @Override
+    public void showComment(List<V2exCommentBean> list) {
+        mV2exCommentBeanList = list;
     }
 
-    private void showError(boolean flag){
-        MyWindowManager.hideLoading();
-        if(flag){
-            mRecyclerView.setVisibility(GONE);
-            mErrorLayout.setVisibility(VISIBLE);
-        }else{
-            mRecyclerView.setVisibility(VISIBLE);
-            mErrorLayout.setVisibility(GONE);
+    @Override
+    public void showTopic(V2exTopicBean v2exTopicBean) {
+        mV2exTopicBean = v2exTopicBean;
+    }
+
+    @Override
+    public void showDetail() {
+        if(mV2exTopicBean!=null&&mV2exCommentBeanList.size()!=0) {
+            MyWindowManager.hideLoading();
+            V2exCommentAdapter v2exCommentAdapter = new V2exCommentAdapter(mContext, mV2exCommentBeanList, mV2exTopicBean);
+            mRecyclerView.setAdapter(v2exCommentAdapter);
         }
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if(mCall!=null){
-            mCall.cancel();
+    public void showError() {
+        MyWindowManager.hideLoading();
+        mRecyclerView.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void onRefreshClick() {
+        super.onRefreshClick();
+        MyWindowManager.showLoading();
+        if(mV2exTopicBean == null){
+            mPresenter.loadTopic(mV2exMainBean);
+        }
+        if(mV2exCommentBeanList.size()==0){
+            mPresenter.loadComment(mV2exMainBean);
         }
     }
 }

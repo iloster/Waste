@@ -8,6 +8,7 @@ public class V2exConstants {
     public static final String V2EX_URL_HOT = "https://www.v2ex.com/api/topics/hot.json";
     public static final String V2EX_URL_LATEST = "https://www.v2ex.com/api/topics/latest.json";
     public static final String V2EX_URL_REPLAY = "https://www.v2ex.com/api/replies/show.json?topic_id=";//329991";
+    public static final String V2EX_URL_TOPIC = "https://www.v2ex.com/api/topics/show.json?id=";
 
     public static final int V2EX_INDEX_HOT = 1;
     public static final int V2EX_INDEX_LATEST = 2;

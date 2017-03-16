@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cheng.content.v2ex.Main.V2exMainBean;
 import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.utils.LogUtils;
 import com.cheng.utils.TimeUtils;
@@ -31,12 +32,12 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
     private String TAG = "V2exCommentAdapter";
     private Context mContext;
     private List<V2exCommentBean> mV2ExCommentBeanList;
-    private V2exEntity mV2exEntity;
+    private V2exTopicBean mV2exTopicBean;
 
-    public V2exCommentAdapter(Context context, List<V2exCommentBean> list, V2exEntity v2exEntity) {
+    public V2exCommentAdapter(Context context, List<V2exCommentBean> list, V2exTopicBean v2exTopicBean) {
         mContext = context;
         mV2ExCommentBeanList = list;
-        mV2exEntity = v2exEntity;
+        mV2exTopicBean = v2exTopicBean;
     }
 
     @Override
@@ -56,13 +57,13 @@ public class V2exCommentAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position == 0){
             V2exMainDetailTopicHolder vHolder = (V2exMainDetailTopicHolder)holder;
-            String url = "http:"+mV2exEntity.getAvatar_normal();
+            String url = "http:"+mV2exTopicBean.getMember().getAvatar_normal();
             Picasso.with(mContext).load(url).into(vHolder.mTopicDetailIcon);
-            vHolder.mTopicDetailName.setText(mV2exEntity.getUsername());
-            vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(new Long(mV2exEntity.getCreated())*1000));
-            vHolder.mTopicDetailTitle.setText(mV2exEntity.getTitle());
+            vHolder.mTopicDetailName.setText(mV2exTopicBean.getMember().getUsername());
+            vHolder.mTopicDetailTime.setText(TimeUtils.formatTime(Long.valueOf(mV2exTopicBean.getCreated())*1000));
+            vHolder.mTopicDetailTitle.setText(mV2exTopicBean.getTitle());
 //            vHolder.mTopicDetailContent.setHtml(mV2exEntity.getContent_rendered(), new HtmlHttpImageGetter(vHolder.mTopicDetailContent));
-            RichText.fromMarkdown(mV2exEntity.getContent()).placeHolder(R.mipmap.default_loading_image).urlClick(new OnUrlClickListener(){
+            RichText.fromMarkdown(mV2exTopicBean.getContent()).placeHolder(R.mipmap.default_loading_image).urlClick(new OnUrlClickListener(){
                 @Override
                 public boolean urlClicked(String url) {
                     LogUtils.v(TAG,"RichText url:"+url);

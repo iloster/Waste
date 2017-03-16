@@ -10,8 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.cheng.content.v2ex.Detail.V2exDetail;
-import com.cheng.content.v2ex.V2exEntity;
+import com.cheng.content.v2ex.Detail.V2exDetailView;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.MyWindowManager;
@@ -99,7 +98,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
             mV2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(int position, Object data) {
-                    mV2exPresenter.getDetail((V2exEntity) data);
+                    mV2exPresenter.getDetail((V2exMainBean) data);
                 }
             });
         }
@@ -111,8 +110,8 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     }
 
     @Override
-    public void showDetail(V2exEntity v) {
-        V2exDetail v2ExDetail = new V2exDetail(mContext,v);
+    public void showDetail(V2exMainBean v) {
+        V2exDetailView v2ExDetail = new V2exDetailView(mContext,v);
         MyWindowManager.replaceSubView(v2ExDetail,"V2EX");
         MyWindowManager.showLoading();
 //        V2exMainWebDetail v2exMainWebDetail = new V2exMainWebDetail(mContext,v);

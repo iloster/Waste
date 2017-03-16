@@ -65,7 +65,7 @@ public class V2exPresenter {
      * 获取详情
      * @param
      */
-    public void getDetail(V2exEntity v){
+    public void getDetail(V2exMainBean v){
         mIV2exMainView.showDetail(v);
     }
 

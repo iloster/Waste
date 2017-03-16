@@ -11,7 +11,7 @@ import java.util.List;
 public interface IV2exMainPagerView {
     void showData(int index,List<V2exMainBean> v2exMainBean);
     void showLoading(boolean flag);
-    void showDetail(V2exEntity v);
+    void showDetail(V2exMainBean v);
     void refreshData(int index,List<V2exMainBean> v);
     void showError();
 }
