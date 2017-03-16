@@ -24,10 +24,10 @@ import java.util.List;
 public class V2exMainViewItem extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<V2exEntity> mList;
+    private List<V2exMainBean> mList;
     private String TAG = "V2exMainViewItem";
     private V2exMainPagerView.OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-    public V2exMainViewItem(Context context, List<V2exEntity> list){
+    public V2exMainViewItem(Context context, List<V2exMainBean> list){
         mContext = context;
         mList = list;
     }
@@ -42,14 +42,14 @@ public class V2exMainViewItem extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         V2exMainViewItemHolder myViewHolder = (V2exMainViewItemHolder)holder;
-        V2exEntity v = mList.get(position);
+        V2exMainBean v = mList.get(position);
         myViewHolder.mV2exItemTitleTxt.setText(v.getTitle());
-        LogUtils.v(TAG,"reply:"+v.getReplies());
+//        LogUtils.v(TAG,"reply:"+v.getReplies());
         myViewHolder.mV2exItemReplyTxt.setText(v.getReplies()+"个回复");
-        myViewHolder.mV2exItemNodeTxt.setText(v.getNode_name());
-        myViewHolder.mV2exItemTimeTxt.setText(TimeUtils.formatTime(new Long(v.getCreated())*1000));
-        myViewHolder.mV2exItemUserTxt.setText(v.getUsername());
-        String url = "http:"+v.getAvatar_normal();
+        myViewHolder.mV2exItemNodeTxt.setText(v.getNode());
+        myViewHolder.mV2exItemTimeTxt.setText(TimeUtils.formatTime(new Long(v.getPublic_time())*1000));
+        myViewHolder.mV2exItemUserTxt.setText(v.getAuthor());
+        String url = v.getAvatar();
         LogUtils.v(TAG,"url:"+url);
         Picasso.with(mContext).load(url).into(myViewHolder.mV2exItemIconImg);
     }

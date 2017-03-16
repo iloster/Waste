@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cheng.content.v2ex.Detail.V2exDetail;
-import com.cheng.content.v2ex.V2exDbUtils;
 import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
@@ -34,7 +33,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     private V2exPresenter mV2exPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private V2exMainViewItem mV2exMainViewItem;
-    private List<V2exEntity> mV2exEntityList = new ArrayList<>();
+    private List<V2exMainBean> mV2exMainBeanList = new ArrayList<>();
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
     public V2exMainPagerView(Context context,int index) {
@@ -87,14 +86,15 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
 
 
     @Override
-    public void showData(int index) {
+    public void showData(int index,List<V2exMainBean> v2exMainBeanList) {
         mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setVisibility(VISIBLE);
         mErrorLayout.setVisibility(GONE);
         if(index == mIndex) {
             mSwipeRefreshLayout.setRefreshing(false);
-            mV2exEntityList = V2exDbUtils.get(index);
-            mV2exMainViewItem = new V2exMainViewItem(mContext, mV2exEntityList);
+//            mV2exEntityList = V2exDbUtils.get(index);
+            LogUtils.v(TAG,"showData:"+v2exMainBeanList.size());
+            mV2exMainViewItem = new V2exMainViewItem(mContext, v2exMainBeanList);
             mRecyclerView.setAdapter(mV2exMainViewItem);
             mV2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
                 @Override
@@ -120,7 +120,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     }
 
     @Override
-    public void refreshData(int index, List<V2exEntity> v) {
+    public void refreshData(int index, List<V2exMainBean> v) {
         LogUtils.v(TAG,"refreshData:"+v.size());
         mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
@@ -128,7 +128,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         mSwipeRefreshLayout.setRefreshing(false);
         if(mIndex == index&&v.size()>0){
             for(int i = 0; i < v.size(); i++){
-                mV2exEntityList.add(i,v.get(i));
+                mV2exMainBeanList.add(i,v.get(i));
             }
             mV2exMainViewItem.notifyItemRangeInserted(0,v.size());
             mV2exMainViewItem.notifyDataSetChanged();

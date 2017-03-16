@@ -1,9 +1,8 @@
 package com.cheng.content.v2ex.Main;
 
-import com.cheng.content.v2ex.Main.IV2exMainPagerView;
-import com.cheng.content.v2ex.Main.V2exMainBean;
+import android.util.Log;
+
 import com.cheng.content.v2ex.V2exConstants;
-import com.cheng.content.v2ex.V2exDbUtils;
 import com.cheng.content.v2ex.V2exEntity;
 import com.cheng.http.CallBack;
 import com.cheng.http.HttpUtil;
@@ -37,9 +36,11 @@ public class V2exPresenter {
         LogUtils.v(TAG,"V2exPresenter:loadData");
         String url = "";
         if(mIndex == 1){
-            url = V2exConstants.V2EX_URL_HOT;
+            url = V2exConstants.V2EX_URL_QNA;
+        }else if (mIndex == 2){
+            url = V2exConstants.V2EX_URL_SHARE;
         }else{
-            url = V2exConstants.V2EX_URL_LATEST;
+            url = V2exConstants.V2EX_URL_CREATE;
         }
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
@@ -49,11 +50,12 @@ public class V2exPresenter {
 
             @Override
             public void onSuccess(String ret) {
+//                LogUtils.v(TAG,"ret:"+ret);
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<V2exMainBean>>(){}.getType();
                 List<V2exMainBean> v2exMainBeanList = gson.fromJson(ret,type);
-                V2exDbUtils.save(mIndex,v2exMainBeanList);
-                mIV2exMainView.showData(mIndex);
+//                V2exDbUtils.save(mIndex,v2exMainBeanList);
+                mIV2exMainView.showData(mIndex,v2exMainBeanList);
             }
         });
 
@@ -74,9 +76,11 @@ public class V2exPresenter {
         LogUtils.v(TAG,"V2exPresenter:loadData");
         String url = "";
         if(mIndex == 1){
-            url = V2exConstants.V2EX_URL_HOT;
+            url = V2exConstants.V2EX_URL_QNA;
+        }else if (mIndex == 2){
+            url = V2exConstants.V2EX_URL_SHARE;
         }else{
-            url = V2exConstants.V2EX_URL_LATEST;
+            url = V2exConstants.V2EX_URL_CREATE;
         }
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override
@@ -89,8 +93,8 @@ public class V2exPresenter {
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<V2exMainBean>>(){}.getType();
                 List<V2exMainBean> v2exMainBeanList = gson.fromJson(ret,type);
-                List<V2exEntity> list = V2exDbUtils.save(mIndex,v2exMainBeanList);
-                mIV2exMainView.refreshData(mIndex,list);
+//                List<V2exEntity> list = V2exDbUtils.save(mIndex,v2exMainBeanList);
+                mIV2exMainView.refreshData(mIndex,v2exMainBeanList);
             }
         });
     }

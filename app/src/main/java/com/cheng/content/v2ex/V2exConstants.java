@@ -12,6 +12,13 @@ public class V2exConstants {
     public static final int V2EX_INDEX_HOT = 1;
     public static final int V2EX_INDEX_LATEST = 2;
 
-    public static final String V2EX_URL_QNA = "https://www.v2ex.com/go/qna?p=1";
-    public static final int V2EX_INDEX_QNA = 3;
+    public static final String V2EX_URL_QNA = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/qna/page/1";
+    public static final int V2EX_INDEX_QNA = 1;
+
+//    share
+    public static final String V2EX_URL_SHARE = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/share/page/1";
+    public static final int V2EX_INDEX_SHARE = 2;
+//  create
+    public static final String V2EX_URL_CREATE = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/create/page/1";
+    public static final int V2EX_INDEX_CREATE = 3;
 }
