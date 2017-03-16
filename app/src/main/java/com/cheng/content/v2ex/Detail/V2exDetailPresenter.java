@@ -36,9 +36,11 @@ public class V2exDetailPresenter {
 
             @Override
             public void onSuccess(String ret) {
+                LogUtils.v(TAG,"loadTopic");
                 Gson gson = new Gson();
-                V2exTopicBean v2exTopicBean = gson.fromJson(ret,V2exTopicBean.class);
-                mV2exDetailView.showTopic(v2exTopicBean);
+                V2exTopicBean[] v2exTopicBean = gson.fromJson(ret,V2exTopicBean[].class);
+                mV2exDetailView.showTopic(v2exTopicBean[0]);
+                mV2exDetailView.showDetail();
             }
         });
     }
@@ -57,6 +59,7 @@ public class V2exDetailPresenter {
                 List<V2exCommentBean> list = new Gson().fromJson(ret,type);
                 LogUtils.v(TAG,"showComment success size:"+list.size());
                 mV2exDetailView.showComment(list);
+                mV2exDetailView.showDetail();
             }
         });
     }

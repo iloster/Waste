@@ -43,8 +43,8 @@ public class V2exDetailView extends BaseSubView implements IV2exDetailView{
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
     private Call mCall = null;
-    private V2exTopicBean mV2exTopicBean;
-    private List<V2exCommentBean> mV2exCommentBeanList;
+    private V2exTopicBean mV2exTopicBean = null;
+    private List<V2exCommentBean> mV2exCommentBeanList = new ArrayList<V2exCommentBean>();
     private V2exDetailPresenter mPresenter;
 
 
