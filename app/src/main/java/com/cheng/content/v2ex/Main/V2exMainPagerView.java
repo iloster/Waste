@@ -35,18 +35,16 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     private List<V2exMainBean> mV2exMainBeanList = new ArrayList<>();
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
-    public V2exMainPagerView(Context context,int index) {
+    public V2exMainPagerView(Context context) {
         super(context);
         mContext = context;
-        mIndex = index;
         LayoutInflater.from(context).inflate(R.layout.content_v2ex_main_pager,this);
-        LogUtils.v(TAG,"index:"+index);
         initUI();
 
         mSwipeRefreshLayout.setProgressViewOffset(false, 0, 100);
         mSwipeRefreshLayout.setRefreshing(true);
-        mV2exPresenter = new V2exPresenter(this,mIndex);
-        mV2exPresenter.loadData();
+        mV2exPresenter = new V2exPresenter(this);
+//        mV2exPresenter.loadData();
     }
 
     @Override
@@ -74,34 +72,29 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
                 mV2exPresenter.refreshData();
             }
         });
-
-        mErrorBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mV2exPresenter.loadData();
-            }
-        });
     }
 
+    public void loadData(int index){
+        mV2exPresenter.loadData(index);
+    }
 
     @Override
     public void showData(int index,List<V2exMainBean> v2exMainBeanList) {
         mSwipeRefreshLayout.setRefreshing(false);
         mSwipeRefreshLayout.setVisibility(VISIBLE);
         mErrorLayout.setVisibility(GONE);
-        if(index == mIndex) {
-            mSwipeRefreshLayout.setRefreshing(false);
+
+        mSwipeRefreshLayout.setRefreshing(false);
 //            mV2exEntityList = V2exDbUtils.get(index);
-            LogUtils.v(TAG,"showData:"+v2exMainBeanList.size());
-            mV2exMainViewItem = new V2exMainViewItem(mContext, v2exMainBeanList);
-            mRecyclerView.setAdapter(mV2exMainViewItem);
-            mV2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
-                @Override
-                public void onItemClick(int position, Object data) {
-                    mV2exPresenter.getDetail((V2exMainBean) data);
-                }
-            });
-        }
+        LogUtils.v(TAG,"showData:"+v2exMainBeanList.size());
+        mV2exMainViewItem = new V2exMainViewItem(mContext, v2exMainBeanList);
+        mRecyclerView.setAdapter(mV2exMainViewItem);
+        mV2exMainViewItem.setItemOnClickListener(new OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position, Object data) {
+                mV2exPresenter.getDetail((V2exMainBean) data);
+            }
+        });
     }
 
     @Override
@@ -125,7 +118,7 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
         mErrorLayout.setVisibility(GONE);
         mSwipeRefreshLayout.setRefreshing(false);
-        if(mIndex == index&&v.size()>0){
+        if(v.size()>0){
             for(int i = 0; i < v.size(); i++){
                 mV2exMainBeanList.add(i,v.get(i));
             }

@@ -11,6 +11,7 @@
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabSelectedTextColor="@color/colorPrimaryDark"
         app:tabTextColor="@color/gray_de"
+        app:tabMode="scrollable"
         android:id="@+id/tabLayout">
 
     </android.support.design.widget.TabLayout>

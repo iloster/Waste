@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.cheng.content.v2ex.V2exConstants;
 import com.cheng.utils.LogUtils;
 import com.cheng.view.BaseSubView;
 import com.cheng.waste.R;
@@ -24,6 +25,7 @@ public class V2exMainView extends BaseSubView{
     private V2exPresenter mV2exPresenter;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private List mList = new ArrayList<>();
     public V2exMainView(Context context) {
         super(context);
         mContext = context;
@@ -42,26 +44,50 @@ public class V2exMainView extends BaseSubView{
         mTabLayout.addTab(mTabLayout.newTab().setText("最新"));//添加tab选项卡
 
 
-        List<View> list = new ArrayList<>();
-        View view = new V2exMainPagerView(mContext,1);
-        View view2 = new V2exMainPagerView(mContext,2);
-        View view3 = new V2exMainPagerView(mContext,3);
+//        final List<View> list = new ArrayList<>();
 
-        list.add(view);
-        list.add(view2);
-        list.add(view3);
+        for(int i = 0;i< V2exConstants.V2EX_URL.length;i++){
+            V2exMainPagerView v = new V2exMainPagerView(mContext);
+            mList.add(v);
+        }
+
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         List<String> titleList = new ArrayList<>();
-        titleList.add("问与答");
-        titleList.add("分享发现");
-        titleList.add("分享创造");
+        for(int i = 0;i<V2exConstants.V2EX_TITLE.length;i++){
+            titleList.add(V2exConstants.V2EX_TITLE[i]);
+        }
 
-        V2exMainPagerAdapter v2exMainPager = new V2exMainPagerAdapter(mContext,list,titleList);
+        V2exMainPagerAdapter v2exMainPager = new V2exMainPagerAdapter(mContext,mList,titleList);
         mViewPager.setAdapter(v2exMainPager);
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(v2exMainPager);//给Tabs设置适配器
+        showListByIndex(0);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                LogUtils.v(TAG,"position:"+position);
+                showListByIndex(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+
+    private void showListByIndex(int index){
+        V2exMainPagerView v= (V2exMainPagerView) mList.get(index);
+        if(v!=null){
+            v.loadData(index);
+        }
     }
 
 }

@@ -14,12 +14,31 @@ public class V2exConstants {
     public static final int V2EX_INDEX_LATEST = 2;
 
     public static final String V2EX_URL_QNA = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/qna/page/1";
-    public static final int V2EX_INDEX_QNA = 1;
+    public static final int V2EX_INDEX_QNA = 0;
 
 //    share
     public static final String V2EX_URL_SHARE = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/share/page/1";
-    public static final int V2EX_INDEX_SHARE = 2;
+    public static final int V2EX_INDEX_SHARE = 1;
 //  create
     public static final String V2EX_URL_CREATE = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/create/page/1";
-    public static final int V2EX_INDEX_CREATE = 3;
+    public static final int V2EX_INDEX_CREATE = 2;
+
+    public static final String V2EX_URL_AUTISTIC = "http://192.168.31.246/AppApi/public/index.php/v2ex/node/autistic/page/1";
+    public static final int V2EX_INDEX_AUTISTIC = 3;
+
+    public static final String V2EX_URL_IDEAS = "";
+    public static final String[] V2EX_URL = {
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/qna/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/share/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/create/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/autistic/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/random/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/design/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/programmer/page/1",
+
+    };
+
+    public static final String[] V2EX_TITLE = {
+      "问与答","分享发现","分享创造","自言自语","奇思妙想","随想","设计","程序员",
+    };
 }

@@ -24,24 +24,16 @@ public class V2exPresenter {
     private IV2exMainPagerView mIV2exMainView;
     private int mIndex;
     private Call mCall = null;
-    public V2exPresenter(IV2exMainPagerView iv2exMainView, int index){
+    public V2exPresenter(IV2exMainPagerView iv2exMainView){
         mIV2exMainView = iv2exMainView;
-        mIndex = index;
     }
 
     /**
      * 加载数据
      */
-    public void loadData(){
+    public void loadData(final int index){
         LogUtils.v(TAG,"V2exPresenter:loadData");
-        String url = "";
-        if(mIndex == 1){
-            url = V2exConstants.V2EX_URL_QNA;
-        }else if (mIndex == 2){
-            url = V2exConstants.V2EX_URL_SHARE;
-        }else{
-            url = V2exConstants.V2EX_URL_CREATE;
-        }
+        String url = V2exConstants.V2EX_URL[index];
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
             public void onError() {
@@ -55,7 +47,7 @@ public class V2exPresenter {
                 Type type = new TypeToken<List<V2exMainBean>>(){}.getType();
                 List<V2exMainBean> v2exMainBeanList = gson.fromJson(ret,type);
 //                V2exDbUtils.save(mIndex,v2exMainBeanList);
-                mIV2exMainView.showData(mIndex,v2exMainBeanList);
+                mIV2exMainView.showData(index,v2exMainBeanList);
             }
         });
 
@@ -75,13 +67,6 @@ public class V2exPresenter {
     public void refreshData(){
         LogUtils.v(TAG,"V2exPresenter:loadData");
         String url = "";
-        if(mIndex == 1){
-            url = V2exConstants.V2EX_URL_QNA;
-        }else if (mIndex == 2){
-            url = V2exConstants.V2EX_URL_SHARE;
-        }else{
-            url = V2exConstants.V2EX_URL_CREATE;
-        }
         HttpUtil.getInstance().enqueue(url, new CallBack() {
             @Override
             public void onError() {
