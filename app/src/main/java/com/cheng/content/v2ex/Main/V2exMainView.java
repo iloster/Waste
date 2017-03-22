@@ -39,18 +39,10 @@ public class V2exMainView extends BaseSubView{
 //        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mTabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        mTabLayout.addTab(mTabLayout.newTab().setText("问与答"));//添加tab选项卡
-        mTabLayout.addTab(mTabLayout.newTab().setText("最热"));//添加tab选项卡
-        mTabLayout.addTab(mTabLayout.newTab().setText("最新"));//添加tab选项卡
-
-
-//        final List<View> list = new ArrayList<>();
-
         for(int i = 0;i< V2exConstants.V2EX_URL.length;i++){
-            V2exMainPagerView v = new V2exMainPagerView(mContext);
+            V2exMainPagerView v = new V2exMainPagerView(mContext,i);
             mList.add(v);
         }
-
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         List<String> titleList = new ArrayList<>();
@@ -86,7 +78,7 @@ public class V2exMainView extends BaseSubView{
     private void showListByIndex(int index){
         V2exMainPagerView v= (V2exMainPagerView) mList.get(index);
         if(v!=null){
-            v.loadData(index);
+            v.loadData(0);
         }
     }
 

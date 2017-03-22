@@ -35,9 +35,11 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
     private List<V2exMainBean> mV2exMainBeanList = new ArrayList<>();
     private LinearLayout mErrorLayout;
     private Button mErrorBtn;
-    public V2exMainPagerView(Context context) {
+    private boolean mIsRefresh= false;
+    public V2exMainPagerView(Context context,int index) {
         super(context);
         mContext = context;
+        mIndex = index;
         LayoutInflater.from(context).inflate(R.layout.content_v2ex_main_pager,this);
         initUI();
 
@@ -69,13 +71,19 @@ public class V2exMainPagerView extends BaseSubView implements IV2exMainPagerView
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mV2exPresenter.refreshData();
+                //下拉刷新
+//                mV2exPresenter.loadData();
+                if(mIsRefresh){
+                    
+                }else{
+                    LogUtils.v(TAG,"正在下拉刷新中");
+                }
             }
         });
     }
 
-    public void loadData(int index){
-        mV2exPresenter.loadData(index);
+    public void loadData(int page){
+        mV2exPresenter.loadData(mIndex,page);
     }
 
     @Override

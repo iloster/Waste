@@ -28,13 +28,14 @@ public class V2exConstants {
 
     public static final String V2EX_URL_IDEAS = "";
     public static final String[] V2EX_URL = {
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/qna/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/share/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/create/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/autistic/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/random/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/design/page/1",
-            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/programmer/page/1",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/qna/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/share/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/create/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/autistic/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/random/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/ideas/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/design/page/%s",
+            "http://192.168.31.246/AppApi/public/index.php/v2ex/node/programmer/page/%s",
 
     };
 

@@ -31,9 +31,9 @@ public class V2exPresenter {
     /**
      * 加载数据
      */
-    public void loadData(final int index){
+    public void loadData(final int index,int page){
         LogUtils.v(TAG,"V2exPresenter:loadData");
-        String url = V2exConstants.V2EX_URL[index];
+        String url = String.format(V2exConstants.V2EX_URL[index],page+1);
         mCall = HttpUtil.getInstance().enqueueEx(url, new CallBack() {
             @Override
             public void onError() {
